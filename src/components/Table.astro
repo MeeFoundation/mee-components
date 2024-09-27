@@ -1,0 +1,62 @@
+---
+interface Props {
+    columns: {title: string, name: string, sorted?: boolean}[];
+    withCheckbox?: boolean;
+    labels?: {text: string, bgColor: string, color: string, borderColor: string}[];
+    actions?: {text: string, icon: string, color: string}[];
+
+    // small data for small tables
+    tableData?: {[K: string]: number | string | undefined}[];
+    // or url for fetching data from API
+    url?: string;
+}
+
+import Checkbox from "@components/Checkbox.astro";
+
+const { 
+  columns,
+  withCheckbox = false,
+  labels,
+  tableData,
+  actions,
+  url,
+  } = Astro.props;
+---
+
+<div class="w-full border border-grey-300 rounded-lg">
+  <table 
+    class="w-full text-sm" 
+    data-url={url} 
+    data-tableData={JSON.stringify(tableData)} 
+    data-columns={JSON.stringify(columns)}
+    data-labels={JSON.stringify(labels)}
+    data-actions={JSON.stringify(actions)}
+    >
+      <thead>
+          <tr class="flex justify-between items-center w-full h-auto border-b border-gray-200">
+            {withCheckbox && <th class="th-checkbox p-4 flex">
+              <Checkbox id="thead-checkbox" />
+            </th>}
+              {columns.map(({ name, title, sorted = false }) => (
+                  <th class="p-4 flex w-full">
+                    <div class="text-start text-grey-800">{title}</div>
+                    {sorted && (
+                      <div class="arrow-icon w-5 h-5 flex justify-center items-center transition-transform duration-300 ease-in-out transform" data-name={name}>
+                        <i class="bi text-base leading-4 bi-arrow-down-short"></i>
+                      </div>
+                    )}
+                    </th>
+              ))}
+          </tr>
+      </thead>
+      <tbody>
+      </tbody>
+  </table>
+</div>
+    
+<script>
+  import TableHelper from "../helpers/table";
+
+  TableHelper.init();
+
+</script>

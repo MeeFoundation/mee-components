@@ -1,0 +1,83 @@
+---
+import Table from "@components/Table.astro";
+
+const tableColumns = [
+    { name: "agent_service_id", title: "Agent Service Id" },
+    { name: "name", title: "Name", sorted: true },
+    { name: "agent_service_url", title: "Agent Service Url", sorted: true },
+    { name: "label", title: "Label" },
+    { name: "actions", title: "Actions" },
+];
+
+// small data for small tables
+const tableData = [
+    {
+        agent_service_id: 2,
+        name: "Agent Service 1",
+        agent_service_url: "https://agent-service-1.com",
+        action: "Actions",
+    },
+    {
+        agent_service_id: 1,
+        name: "Agent Service 2",
+        agent_service_url: "https://agent-service-2.com",
+        actions: "Actions",
+    },
+    {
+        agent_service_id: 3,
+        name: "Agent Service 3",
+        agent_service_url: "https://agent-service-3.com",
+        actions: "Actions",
+    },
+    {
+        agent_service_id: 3,
+        name: "Agent Service 4",
+        agent_service_url: "https://agent-service-4.com",
+        actions: "Actions",
+    },
+    {
+        agent_service_id: 5,
+        name: "Agent Service 5",
+        agent_service_url: "https://agent-service-5.com",
+        actions: "Actions",
+    },
+    {
+        agent_service_id: 6,
+        name: "Agent Service 6",
+        agent_service_url: "https://agent-service-6.com",
+        actions: "Actions",
+    },
+];
+
+// or url for fetching data from API
+const url = "/provider_apps.json";
+
+const labels = [
+    { text: "Label1", bgColor: "brand-700", color: "white", borderColor: "brand-800" },
+    { text: "Label2", bgColor: "brand-700", color: "white", borderColor: "brand-800" },
+    { text: "Label3", bgColor: "error-700", color: "white", borderColor: "error-800" },
+    { text: "Label4", bgColor: "brand-700", color: "white", borderColor: "brand-800" },
+    { text: "Label5", bgColor: "brand-700", color: "white", borderColor: "brand-800" },
+    { text: "Label6", bgColor: "error-700", color: "white", borderColor: "error-800" },
+    ];
+
+    const actions = [
+        { text: "Edit", icon: 'pencil-fill', color: "brand-700" },
+        { text: "Delete", icon: 'trash3-fill', color: "brand-700" },
+    ];
+---
+<div class="flex flex-col gap-10 p-10">
+    <div>
+        <h1 class="text-2xl font-semibold">Table</h1>
+        <div class="flex flex-row gap-4">
+        <Table 
+            columns={tableColumns} 
+            withCheckbox={true} 
+            labels={labels}
+            tableData={tableData} 
+            actions={actions}
+            url={url}
+         />
+        </div>
+    </div>
+</div>
