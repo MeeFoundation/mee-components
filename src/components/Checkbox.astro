@@ -26,7 +26,9 @@ const { className, id, disabled, checked = false, label } = Astro.props;
     checked={checked}
     id={id}
   />
-  <label class="inline-block ps-0.5 hover:cursor-pointer peer-disabled:opacity-35 peer-disabled:pointer-events-none peer-disabled:cursor-default" for={id}>
-    {label}
-  </label>
+  {label && 
+    <label class="inline-block ps-0.5 hover:cursor-pointer peer-disabled:opacity-35 peer-disabled:pointer-events-none peer-disabled:cursor-default" for={id}>
+      {label}
+    </label>
+  }
 </div>
