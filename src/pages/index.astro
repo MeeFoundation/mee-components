@@ -1,6 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Buttons from "@components/showcase/Buttons.astro";
+import IconButtons from "@components/showcase/IconButtons.astro";
 import Shadows from "@components/showcase/Shadows.astro";
 import Accordion from "@components/Accordion.astro";
 import PasswordInputs from "@components/showcase/PasswordInputs.astro";
@@ -18,6 +19,9 @@ import Scrollbars from "@components/showcase/Scrollbars.astro";
   <main>
     <Accordion title="Buttons" icon="menu-button-wide" collapse={false}>
       <Buttons />
+    </Accordion>
+    <Accordion title="Icon Buttons" icon="menu-button-wide" collapse={false}>
+      <IconButtons />
     </Accordion>
     <Accordion title="Shadows" icon="shadows">
       <Shadows />
