@@ -1,0 +1,635 @@
+---
+import Button from "@components/IconButton.astro";
+---
+
+<div class="flex flex-col gap-10 p-10">
+  <div class="flex flex-wrap gap-10">
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Primary</h2>
+      <div>
+        <Button size="s" icon="plus" />
+      </div>
+      <div>
+        <Button size="m" icon="plus" />
+      </div>
+      <div>
+        <Button size="l" icon="plus" />
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Primary disabled</h2>
+      <div>
+        <Button size="s" icon="plus" disabled />
+      </div>
+      <div>
+        <Button size="m" icon="plus" disabled />
+      </div>
+      <div>
+        <Button size="l" icon="plus" disabled />
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Primary outlined</h2>
+      <div>
+        <Button
+          size="s"
+          icon="plus"
+          style="outlined"
+        />
+      </div>
+      <div>
+        <Button
+          size="m"
+          icon="plus"
+          style="outlined" 
+        />
+      </div>
+      <div>
+        <Button
+          size="l"
+          icon="plus"
+          style="outlined"
+        />
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Primary outlined disabled</h2>
+      <div>
+        <Button
+          size="s"
+          icon="plus"
+          disabled
+          style="outlined"
+        />
+      </div>
+      <div>
+        <Button
+          size="m"
+          icon="plus"
+          disabled
+          style="outlined"
+        />
+      </div>
+      <div>
+        <Button
+          size="l"
+          icon="plus"
+          disabled
+          style="outlined"
+        />
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Primary with<br />transparent border</h2>
+      <div>
+        <Button
+          size="s"
+          icon="plus"
+          style="transparent"
+        />
+      </div>
+      <div>
+        <Button
+          size="m"
+          icon="plus"
+          style="transparent"
+        />
+      </div>
+      <div>
+        <Button
+          size="l"
+          icon="plus"
+          style="transparent"
+        />
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Primary disabled<br />with transparent border</h2>
+      <div>
+        <Button
+          size="s"
+          icon="plus"
+          disabled
+          style="transparent"
+        />
+      </div>
+      <div>
+        <Button
+          size="m"
+          icon="plus"
+          disabled
+          style="transparent"
+        />
+      </div>
+      <div>
+        <Button
+          size="l"
+          icon="plus"
+          disabled
+          style="transparent"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-wrap gap-10">
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Secondary</h2>
+      <div>
+        <Button
+          size="s"
+          icon="plus"
+          buttonType="secondary"
+        />
+      </div>
+      <div>
+        <Button
+          size="m"
+          icon="plus"
+          buttonType="secondary"
+        />
+      </div>
+      <div>
+        <Button
+          size="l"
+          icon="plus"
+          buttonType="secondary"
+        />
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Secondary disabled</h2>
+      <div>
+        <Button
+          size="s"
+          icon="plus"
+          disabled
+          buttonType="secondary"
+        />
+      </div>
+      <div>
+        <Button
+          size="m"
+          icon="plus"
+          disabled
+          buttonType="secondary"
+        />
+      </div>
+      <div>
+        <Button
+          size="l"
+          icon="plus"
+          disabled
+          buttonType="secondary"
+        />
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Secondary outlined</h2>
+      <div>
+        <Button
+          size="s"
+          icon="plus"
+          style="outlined"
+          buttonType="secondary"
+        />
+      </div>
+      <div>
+        <Button
+          size="m"
+          icon="plus"
+          style="outlined"
+          buttonType="secondary"
+        />
+      </div>
+      <div>
+        <Button
+          size="l"
+          icon="plus"
+          style="outlined"
+          buttonType="secondary"
+        />
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Secondary outlined disabled</h2>
+      <div>
+        <Button
+          size="s"
+          icon="plus"
+          style="outlined"
+          disabled
+          buttonType="secondary"
+        />
+      </div>
+      <div>
+        <Button
+          size="m"
+          icon="plus"
+          style="outlined"
+          disabled
+          buttonType="secondary"
+        />
+      </div>
+      <div>
+        <Button
+          size="l"
+          icon="plus"
+          style="outlined"
+          disabled
+          buttonType="secondary"
+        />
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Secondary with<br />transparent border</h2>
+      <div>
+        <Button
+          size="s"
+          icon="plus"
+          style="transparent"
+          buttonType="secondary"
+        />
+      </div>
+      <div>
+        <Button
+          size="m"
+          icon="plus"
+          style="transparent"
+          buttonType="secondary"
+        />
+      </div>
+      <div>
+        <Button
+          size="l"
+          icon="plus"
+          style="transparent"
+          buttonType="secondary"
+        />
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Secondary disabled<br />with transparent border</h2>
+      <div>
+        <Button
+          size="s"
+          icon="plus"
+          style="transparent"
+          disabled
+          buttonType="secondary"
+        />
+      </div>
+      <div>
+        <Button
+          size="m"
+          icon="plus"
+          style="transparent"
+          disabled
+          buttonType="secondary"
+        />
+      </div>
+      <div>
+        <Button
+          size="l"
+          icon="plus"
+          style="transparent"
+          disabled
+          buttonType="secondary"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-wrap gap-10">
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Tertiary</h2>
+      <div>
+        <Button
+          size="s"
+          icon="plus"
+          buttonType="tertiary"
+        />
+      </div>
+      <div>
+        <Button
+          size="m"
+          icon="plus"
+          buttonType="tertiary"
+        />
+      </div>
+      <div>
+        <Button
+          size="l"
+          icon="plus"
+          buttonType="tertiary"
+        />
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Tertiary disabled</h2>
+      <div>
+        <Button
+          size="s"
+          icon="plus"
+          disabled
+          buttonType="tertiary"
+        />
+      </div>
+      <div>
+        <Button
+          size="m"
+          icon="plus"
+          disabled
+          buttonType="tertiary"
+        />
+      </div>
+      <div>
+        <Button
+          size="l"
+          icon="plus"
+          style="outlined"
+          disabled
+          buttonType="tertiary"
+        />
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Tertiary outlined</h2>
+      <div>
+        <Button
+          size="s"
+          icon="plus"
+          style="outlined"
+          buttonType="tertiary"
+        />
+      </div>
+      <div>
+        <Button
+          size="m"
+          icon="plus"
+          style="outlined"
+          buttonType="tertiary"
+        />
+      </div>
+      <div>
+        <Button
+          size="l"
+          icon="plus"
+          style="outlined"
+          buttonType="tertiary"
+        />
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Tertiary outlined disabled</h2>
+      <div>
+        <Button
+          size="s"
+          icon="plus"
+          style="outlined"
+          buttonType="tertiary"
+        />
+      </div>
+      <div>
+        <Button
+          size="m"
+          icon="plus"
+          style="outlined"
+          disabled
+          buttonType="tertiary"
+        />
+      </div>
+      <div>
+        <Button
+          size="l"
+          icon="plus"
+          style="outlined"
+          disabled
+          buttonType="tertiary"
+        />
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Tertiary with<br />transparent border</h2>
+      <div>
+        <Button
+          size="s"
+          icon="plus"
+          style="transparent"
+          buttonType="tertiary"
+        />
+      </div>
+      <div>
+        <Button
+          size="m"
+          icon="plus"
+          style="transparent"
+          buttonType="tertiary"
+        />
+      </div>
+      <div>
+        <Button
+          size="l"
+          icon="plus"
+          style="transparent"
+          buttonType="tertiary"
+        />
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Tertiary disabled<br />with transparent border</h2>
+      <div>
+        <Button
+          size="s"
+          icon="plus"
+          style="transparent"
+          disabled
+          buttonType="tertiary"
+        />
+      </div>
+      <div>
+        <Button
+          size="m"
+          icon="plus"
+          style="transparent"
+          disabled
+          buttonType="tertiary"
+        />
+      </div>
+      <div>
+        <Button
+          size="l"
+          icon="plus"
+          style="transparent"
+          disabled
+          buttonType="tertiary"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-wrap gap-10">
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Danger</h2>
+      <div>
+        <Button
+          size="s"
+          icon="plus"
+          buttonType="danger"
+        />
+      </div>
+      <div>
+        <Button
+          size="m"
+          icon="plus"
+          buttonType="danger"
+        />
+      </div>
+      <div>
+        <Button
+          size="l"
+          icon="plus"
+          buttonType="danger"
+        />
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Danger disabled</h2>
+      <div>
+        <Button
+          size="s"
+          icon="plus"
+          disabled
+          buttonType="danger"
+        />
+      </div>
+      <div>
+        <Button
+          size="m"
+          icon="plus"
+          disabled
+          buttonType="danger"
+        />
+      </div>
+      <div>
+        <Button
+          size="l"
+          icon="plus"
+          disabled
+          buttonType="danger"
+       />
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Danger outlined</h2>
+      <div>
+        <Button
+          size="s"
+          icon="plus"
+          style="outlined"
+          buttonType="danger"
+        />
+      </div>
+      <div>
+        <Button
+          size="m"
+          icon="plus"
+          style="outlined"
+          buttonType="danger"
+        />
+      </div>
+      <div>
+        <Button
+          size="l"
+          icon="plus"
+          style="outlined"
+          buttonType="danger"
+        />
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Danger outlined disabled</h2>
+      <div>
+        <Button
+          size="s"
+          icon="plus"
+          style="outlined"
+          disabled
+          buttonType="danger"
+        />
+      </div>
+      <div>
+        <Button
+          size="m"
+          icon="plus"
+          style="outlined"
+          disabled
+          buttonType="danger"
+        />
+      </div>
+      <div>
+        <Button
+          size="l"
+          icon="plus"
+          style="outlined"
+          disabled
+          buttonType="danger"
+        />
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Danger with<br />transparent border</h2>
+      <div>
+        <Button
+          size="s"
+          icon="plus"
+          style="transparent"
+          buttonType="danger"
+        />
+      </div>
+      <div>
+        <Button
+          size="m"
+          icon="plus"
+          style="transparent"
+          buttonType="danger"
+        />
+      </div>
+      <div>
+        <Button
+          size="l"
+          icon="plus"
+          style="transparent"
+          buttonType="danger"
+        />
+      </div>
+    </div>
+    <div class="flex flex-col gap-2">
+      <h2 class="font-semibold">Danger disabled<br />with transparent border</h2>
+      <div>
+        <Button
+          size="s"
+          icon="plus"
+          style="transparent"
+          disabled
+          buttonType="danger"
+        />
+      </div>
+      <div>
+        <Button
+          size="m"
+          icon="plus"
+          style="transparent"
+          disabled
+          buttonType="danger"
+        />
+      </div>
+      <div>
+        <Button
+          size="l"
+          icon="plus"
+          style="transparent"
+          disabled
+          buttonType="danger"
+        />
+      </div>
+    </div>
+  </div>
+</div>
