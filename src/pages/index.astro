@@ -13,11 +13,12 @@ import Alerts from "@components/showcase/Alerts.astro";
 import Loader from "@components/showcase/Loader.astro";
 import Checkboxes from "@components/showcase/Checkboxes.astro";
 import Scrollbars from "@components/showcase/Scrollbars.astro";
+import Accordions from "@components/showcase/Accordions.astro";
 ---
 
 <Layout title="Showcase">
-  <main>
-    <Accordion title="Buttons" icon="menu-button-wide" collapse={false}>
+  <main class="flex flex-col gap-3 px-10 pb-10">
+    <Accordion title="Buttons" icon="menu-button-wide" >
       <Buttons />
     </Accordion>
     <Accordion title="Icon Buttons" icon="menu-button-wide" collapse={false}>
@@ -40,5 +41,8 @@ import Scrollbars from "@components/showcase/Scrollbars.astro";
     <Accordion title="Alerts" icon="app-indicator"><Alerts /></Accordion>
     <Accordion title="Loaders" icon="hourglass-split"><Loader /></Accordion>
     <Accordion title="Scrollbars" icon="arrows-move"><Scrollbars /></Accordion>
+    <Accordion title="Accordions" icon="arrows-vertical">
+      <Accordions />
+    </Accordion>
   </main>
 </Layout>

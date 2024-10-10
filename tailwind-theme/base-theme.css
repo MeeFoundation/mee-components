@@ -112,6 +112,7 @@
     --shadow-button: 0px 0px 0px 3px rgba(79, 134, 142, 0.2);
     --shadow-button-danger: 0px 0px 0px 3px rgba(238, 108, 88, 0.2);
     --shadow-button-tertiary: 0px 0px 0px 3px rgba(100, 116, 139, 0.2);
+    --shadow-header: 0px 5px 20px rgba(2, 6, 23, 0.8);
 
     --primary-gradient: linear-gradient(92.42deg, #3b5b63 0%, #4f868e 100%);
     --primary-gradient-hover: linear-gradient(0deg, #374e53 0%, #374e53 100%);

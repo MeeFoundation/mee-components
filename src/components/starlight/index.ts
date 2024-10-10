@@ -1,0 +1,6 @@
+export { default as DocsHead } from './DocsHead.astro'
+export { default as EditLink } from './EditLink.astro'
+export { default as Footer } from './Footer.astro'
+export { default as PageFrame } from './PageFrame.astro'
+export { default as Sidebar } from './Sidebar.astro'
+export { default as SidebarSublist } from './SidebarSublist.astro'

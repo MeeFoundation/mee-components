@@ -43,7 +43,7 @@ const theme = {
         "800": "rgb(var(--color-grey-800) / <alpha-value>)",
         "900": "rgb(var(--color-grey-900) / <alpha-value>)",
         "950": "rgb(var(--color-grey-950) / <alpha-value>)",
-        "scrollbar": "var(--color-scrollbar)",
+        scrollbar: "var(--color-scrollbar)",
       },
       error: {
         "50": "rgb(var(--color-error-50) / <alpha-value>)",
@@ -168,6 +168,7 @@ const theme = {
       button: "var(--shadow-button)",
       "button-danger": "var(--shadow-button-danger)",
       "button-tertiary": "var(--shadow-button-tertiary)",
+      "header": "var(--shadow-header)",
     },
     fontSize: {
       xxs: ["0.625rem", "0.875rem"],
@@ -220,6 +221,7 @@ const theme = {
       14.5: "3.625rem",
       15: "3.75rem",
       16.5: "4.125rem",
+      17: "4.25rem",
       17.25: "4.313rem",
       17.5: "4.375rem",
       21: "5.25rem",
@@ -229,6 +231,7 @@ const theme = {
       24.25: "6.063rem",
       24.5: "6.125rem",
       25: "6.25rem",
+      27: "6.75rem",
       30: "7.5rem",
       32.5: "8.125rem",
       33: "8.25rem",
