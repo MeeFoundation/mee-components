@@ -31,12 +31,10 @@ const { className, activePage, type = "default", header } = Astro.props;
 ---
 
 <div class="relative">
-  <div class:list={[type === "dark" ? "hidden" : "h-27"]} id="header-plug">
-  </div>
   <header
     id="header"
     class:list={[
-      "h-27 fixed left-0 top-0 z-100 flex w-screen items-center justify-center",
+      "h-27 fixed left-0 top-0 z-200 flex w-screen items-center justify-center",
       type === "docs" && "border-b border-grey-200",
       type !== "dark" && "bg-white transition-all duration-300",
     ]}
@@ -150,7 +148,7 @@ const { className, activePage, type = "default", header } = Astro.props;
   </header>
   <div class="relative">
     <div
-      class="fixed right-0 top-0 z-100 h-screen w-0 overflow-hidden bg-white transition-all duration-400 md:hidden"
+      class="fixed right-0 top-0 z-200 h-screen w-0 overflow-hidden bg-white transition-all duration-400 md:hidden"
       id="menu"
     >
       <div
