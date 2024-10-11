@@ -1,7 +1,7 @@
 {
   "name": "mee-components",
   "type": "module",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -14,6 +14,11 @@
       "types": "./src/index.d.ts",
       "default": "./src/index.ts"
     },
+    "./starlight": {
+      "types": "./src/starlight.d.ts",
+      "default": "./src/starlight.ts"
+    },
+    "./starlight2/": "./src/components/starlight",
     "./base-theme": "./tailwind-theme/base-theme.css",
     "./tailwind": "./tailwind-theme/base-theme.ts"
   },

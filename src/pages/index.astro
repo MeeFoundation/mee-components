@@ -17,11 +17,11 @@ import Accordions from "@components/showcase/Accordions.astro";
 ---
 
 <Layout title="Showcase">
-  <main class="flex flex-col gap-3 px-10 pb-10">
-    <Accordion title="Buttons" icon="menu-button-wide" >
+  <main class="flex flex-col gap-3 p-10"> 
+    <Accordion title="Buttons" icon="menu-button-wide" collapse={false}>
       <Buttons />
     </Accordion>
-    <Accordion title="Icon Buttons" icon="menu-button-wide" collapse={false}>
+    <Accordion title="Icon Buttons" icon="menu-button-wide">
       <IconButtons />
     </Accordion>
     <Accordion title="Shadows" icon="shadows">

@@ -168,7 +168,7 @@ const theme = {
       button: "var(--shadow-button)",
       "button-danger": "var(--shadow-button-danger)",
       "button-tertiary": "var(--shadow-button-tertiary)",
-      "header": "var(--shadow-header)",
+      header: "var(--shadow-header)",
     },
     fontSize: {
       xxs: ["0.625rem", "0.875rem"],
@@ -328,6 +328,10 @@ const theme = {
       "primary-gradient": "var(--primary-gradient)",
       "primary-gradient-hover": "var(--primary-gradient-hover)",
       "auth-gradient": "var(--auth-gradient)",
+    },
+    backdropBlur: {
+      12.5: "3.125rem",
+      62.5: "15.625rem",
     },
     zIndex: {
       1: "1",
