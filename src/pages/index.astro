@@ -11,6 +11,7 @@ import RadioInputs from "@components/showcase/RadioInputs.astro";
 import Notifications from "@components/showcase/Notifications.astro";
 import Alerts from "@components/showcase/Alerts.astro";
 import Loader from "@components/showcase/Loader.astro";
+import Modals from "@components/showcase/Modals.astro";
 import Checkboxes from "@components/showcase/Checkboxes.astro";
 import Scrollbars from "@components/showcase/Scrollbars.astro";
 import Accordions from "@components/showcase/Accordions.astro";
@@ -44,5 +45,6 @@ import Accordions from "@components/showcase/Accordions.astro";
     <Accordion title="Accordions" icon="arrows-vertical">
       <Accordions />
     </Accordion>
+    <Accordion title="Modals" icon="chat-square" collapse={false}><Modals /></Accordion>
   </main>
 </Layout>

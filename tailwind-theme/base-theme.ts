@@ -44,6 +44,7 @@ const theme = {
         "900": "rgb(var(--color-grey-900) / <alpha-value>)",
         "950": "rgb(var(--color-grey-950) / <alpha-value>)",
         scrollbar: "var(--color-scrollbar)",
+        "modal-overlay": "var(--color-modal-overlay)",
       },
       error: {
         "50": "rgb(var(--color-error-50) / <alpha-value>)",

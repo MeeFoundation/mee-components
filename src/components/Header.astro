@@ -10,6 +10,7 @@ export interface Props {
     links: Link[];
     rightLinks: RigthLink[];
     footerLinks: Link[];
+    logoLink?: string;
   };
 }
 
@@ -52,14 +53,18 @@ const { className, activePage, type = "default", header } = Astro.props;
       ]}
     >
       <div class:list={[type !== "dark" && "w-1/3"]}>
-        <a id="mainLogo" href="/" class="logo block h-6 w-20">
+        <a
+          id="mainLogo"
+          href={header.logoLink ? header.logoLink : "/"}
+          class="logo block h-6 w-20"
+        >
           <Logo className={type === "dark" ? "!fill-white" : ""} />
         </a>
       </div>
 
       <ul
         class:list={[
-          "items-right hidden justify-center gap-2 text-center md:flex whitespace-nowrap",
+          "items-right hidden justify-center gap-2 whitespace-nowrap text-center md:flex",
           type !== "dark" && "w-1/3",
         ]}
       >

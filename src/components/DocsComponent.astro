@@ -8,6 +8,8 @@ interface DataItem {
 }
 
 interface Props {
+  title: string;
+  subtitle?: string;
   data: {
     users: DataItem;
     providers: DataItem;
@@ -15,7 +17,7 @@ interface Props {
   };
 }
 
-const { data } = Astro.props;
+const { data, title, subtitle } = Astro.props;
 
 const categories = [
   {
@@ -58,17 +60,19 @@ const categories = [
       <h1
         class="marker animate-riseIn text-center text-4xl font-semibold text-gray-900 lg:text-7xl lg:tracking-0.02"
       >
-        Your Mee Docs
+        {title}
       </h1>
     </div>
-    <section class="overflow-hidden">
-      <h3
-        class="text animation-delay-800 animate-riseIn px-6 text-center text-xl leading-relaxed text-gray-900 md:text-2xl"
-      >
-        Everything you need to build a stellar documentation website. Fast,
-        accessible, and easy-to-use.
-      </h3>
-    </section>
+    {
+      subtitle && (
+        <section class="overflow-hidden">
+          <h3 class="text animation-delay-800 animate-riseIn px-6 text-center text-xl leading-relaxed text-gray-900 md:text-2xl">
+            Everything you need to build a stellar documentation website. Fast,
+            accessible, and easy-to-use.
+          </h3>
+        </section>
+      )
+    }
   </div>
 </section>
 
