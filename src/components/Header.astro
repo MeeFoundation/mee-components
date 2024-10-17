@@ -72,7 +72,7 @@ const { className, activePage, type = "default", header } = Astro.props;
           header.links.map((link) => (
             <li
               class:list={[
-                "px-4 text-base font-semibold text-brand-950/80",
+                "text-base font-semibold text-brand-950",
                 type === "dark" && "!text-white/90",
               ]}
             >
@@ -80,9 +80,12 @@ const { className, activePage, type = "default", header } = Astro.props;
                 href={link.link}
                 target={link.target}
                 class:list={[
-                  "hover:text-brand-950",
-                  activePage === link.id && "text-brand-950",
-                  type === "dark" && "hover:text-white",
+                  "rounded-2xl px-4 py-1.5",
+                  type !== "dark" && "hover:bg-primary hover:text-white",
+                  type === "dark" && "hover:text-white hover:underline",
+                  type !== "dark" &&
+                    activePage === link.id &&
+                    "bg-primary text-white",
                   type === "dark" && activePage === link.id && "text-white",
                 ]}
               >
@@ -181,7 +184,19 @@ const { className, activePage, type = "default", header } = Astro.props;
           {
             header.links.map((link) => (
               <li class="text-lg font-semibold">
-                <a href={link.link} target={link.target}>
+                <a
+                  href={link.link}
+                  target={link.target}
+                  class:list={[
+                    "rounded-2xl px-4 py-1.5",
+                    type !== "dark" && "hover:bg-primary hover:text-white",
+                    type === "dark" && "hover:text-white hover:underline",
+                    type !== "dark" &&
+                      activePage === link.id &&
+                      "bg-primary text-white",
+                    type === "dark" && activePage === link.id && "text-white",
+                  ]}
+                >
                   {link.name}
                 </a>
               </li>
@@ -228,9 +243,6 @@ const { className, activePage, type = "default", header } = Astro.props;
 </div>
 
 <style>
-  a:hover {
-    text-decoration: underline;
-  }
   .after-border:after {
     content: "";
     position: absolute;

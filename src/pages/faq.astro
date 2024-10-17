@@ -22,6 +22,11 @@ const header = {
       link: "/docs",
       id: "docs",
     },
+    {
+      name: "FAQ",
+      link: "/faq",
+      id: "faq",
+    },
   ],
   rightLinks: [
     {
@@ -93,7 +98,7 @@ const footer = {
     <article
       class="relative flex h-full min-h-screen w-screen flex-col items-center justify-between gap-16 overflow-hidden"
     >
-      <Header header={header} />
+      <Header header={header} activePage="faq" />
       <section
         class="section top-0 z-10 mb-3.5 flex h-full w-screen items-center justify-center pt-25 md:pt-36"
       >
