@@ -15,10 +15,11 @@ import Modals from "@components/showcase/Modals.astro";
 import Checkboxes from "@components/showcase/Checkboxes.astro";
 import Scrollbars from "@components/showcase/Scrollbars.astro";
 import Accordions from "@components/showcase/Accordions.astro";
+import Avatars from "@components/showcase/Avatars.astro";
 ---
 
 <Layout title="Showcase">
-  <main class="flex flex-col gap-3 p-10"> 
+  <main class="flex flex-col gap-3 p-10">
     <Accordion title="Buttons" icon="menu-button-wide" collapse={false}>
       <Buttons />
     </Accordion>
@@ -45,6 +46,7 @@ import Accordions from "@components/showcase/Accordions.astro";
     <Accordion title="Accordions" icon="arrows-vertical">
       <Accordions />
     </Accordion>
-    <Accordion title="Modals" icon="chat-square" collapse={false}><Modals /></Accordion>
+    <Accordion title="Modals" icon="chat-square"><Modals /></Accordion>
+    <Accordion title="Avatars" icon="person-circle"><Avatars /></Accordion>
   </main>
 </Layout>

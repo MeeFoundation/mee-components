@@ -19,3 +19,4 @@ export { default as DocsComponent } from "./components/DocsComponent.astro";
 export { default as Scroll } from "./components/Scroll.astro";
 export { default as ScrollHelper } from "./helpers/scroll";
 export { default as Breadcrumbs } from "./components/Breadcrumbs.astro";
+export { default as Avatar } from "./components/Avatar.astro"
