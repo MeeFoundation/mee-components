@@ -17,11 +17,7 @@ const notificationPositions = [
   "center-right",
   "center-left",
 ];
-const openNotification = (
-  id: string,
-  type?: string,
-  position?: string,
-) => {
+const openNotification = (id: string, type?: string, position?: string) => {
   const notificationContainer = document.getElementById(id);
   if (type) {
     notificationTypes.forEach((notificationType) => {
