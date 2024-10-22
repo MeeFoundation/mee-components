@@ -52,3 +52,5 @@ export default {
 ```bash
 import 'bootstrap-icons/font/bootstrap-icons.css';
 ```
+
+## Publish [locally](./PUBLISH-LOCALLY.md)
