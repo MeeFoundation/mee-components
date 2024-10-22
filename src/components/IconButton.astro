@@ -5,9 +5,8 @@ interface Props {
   type?: "submit" | "reset" | "button" | undefined | null;
   size?: "l" | "m" | "s";
   buttonType?: "primary" | "secondary" | "tertiary" | "danger";
-  style?: "filled" | "outlined";
-  leftIcon?: string;
-  rightIcon?: string;
+  style?: "filled" | "outlined" | "transparent";
+  icon: string;
   disabled?: boolean;
 }
 
@@ -18,8 +17,7 @@ const {
   buttonType = "primary",
   style = "filled",
   size = "l",
-  leftIcon,
-  rightIcon,
+  icon,
   disabled,
 } = Astro.props;
 ---
@@ -29,42 +27,23 @@ const {
   type={type}
   disabled={disabled}
   class:list={[
-    "z-10 box-border flex h-11 flex-none grow-0 flex-row items-center justify-center gap-2 rounded-xl border border-solid font-semibold",
+    "z-10 box-border flex flex-none grow-0 flex-row items-center justify-center gap-2 rounded-md border border-solid font-semibold",
     `${buttonType}-${style}`,
     "disabled:cursor-default disabled:opacity-60",
-    size === "l" && "h-11 px-4 py-2.5 text-base",
-    size === "m" && "h-9 px-3.5 py-2 text-sm",
-    size === "s" && "h-7.5 px-3 py-1.75 text-xs",
+    size === "l" && "size-11",
+    size === "m" && "size-9",
+    size === "s" && "size-7.5",
     className,
   ]}
 >
-  {
-    leftIcon && (
-      <i
-        class:list={[
-          "bi font-thin",
-          "bi-" + leftIcon,
-          size === "l" && "text-4xl",
-          size === "m" && "text-3xl",
-          size === "s" && "text-2xl",
-        ]}
-      />
-    )
-  }
-  <slot />
-  {
-    rightIcon && (
-      <i
-        class:list={[
-          "bi font-normal",
-          "bi-" + rightIcon,
-          size === "l" && "text-2xl",
-          size === "m" && "text-xl",
-          size === "s" && "text-lg",
-        ]}
-      />
-    )
-  }
+  <i
+    class:list={[
+      "bi font-thin",
+      "bi-" + icon,
+      size === "l" && "text-4xl",
+      size === "m" && "text-3xl",
+      size === "s" && "text-2xl",
+    ]}></i>
 </button>
 
 <style>
@@ -72,12 +51,12 @@ const {
     @apply border-brand-600 bg-primary-gradient text-white hover:border-brand-800 hover:bg-primary-gradient-hover focus:shadow-button disabled:hover:border-brand-600 disabled:hover:bg-primary-gradient;
   }
 
-  .primary-transparent {
-    @apply border-0 bg-transparent text-brand-700 hover:text-brand-800 focus:border focus:border-brand-700 focus:text-brand-800 focus:shadow-button;
-  }
-
   .primary-outlined {
     @apply border-brand-700 bg-transparent text-brand-700 hover:bg-brand-50 focus:shadow-button disabled:hover:bg-transparent;
+  }
+
+  .primary-transparent {
+    @apply border-0 bg-transparent text-brand-700 hover:text-brand-800 focus:border focus:border-brand-700 focus:text-brand-800 focus:shadow-button;
   }
 
   .secondary-filled {
@@ -106,6 +85,10 @@ const {
 
   .danger-filled {
     @apply border-error-700 bg-error-700 text-white hover:bg-error-800 focus:shadow-button-danger disabled:hover:bg-error-700;
+  }
+
+  .danger-outlined {
+    @apply border-error-700 bg-white text-error-700 focus:shadow-button-danger;
   }
 
   .danger-outlined {

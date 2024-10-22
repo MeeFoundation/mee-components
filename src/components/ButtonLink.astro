@@ -7,7 +7,7 @@ interface Props {
   type?: "submit" | "reset" | "button" | undefined | null;
   size?: "l" | "m" | "s";
   buttonType?: "primary" | "secondary" | "tertiary" | "danger";
-  style?: "filled" | "outlined";
+  style?: "filled" | "outlined" | "transparent";
   leftIcon?: string;
   rightIcon?: string;
   disabled?: boolean;
@@ -34,9 +34,9 @@ const {
   href={href}
   target={target}
   class:list={[
-    "box-border flex h-11 flex-none grow-0 flex-row items-center justify-center gap-2 rounded-xl border border-solid font-semibold z-10",
+    "z-10 box-border flex h-11 flex-none grow-0 flex-row items-center justify-center gap-2 rounded-xl border border-solid font-semibold",
     `${buttonType}-${style}`,
-    disabled &&  "cursor-default opacity-60 pointer-events-none",
+    disabled && "pointer-events-none cursor-default opacity-60",
     size === "l" && "h-11 px-4 py-2.5 text-base",
     size === "m" && "h-9 px-3.5 py-2 text-sm",
     size === "s" && "h-7.5 px-3 py-1.75 text-xs",
@@ -74,11 +74,15 @@ const {
 
 <style>
   .primary-filled {
-    @apply bg-primary-gradient disabled:hover:bg-primary-gradient hover:bg-primary-gradient-hover border-brand-600 text-white hover:border-brand-800 focus:shadow-button disabled:hover:border-brand-600;
+    @apply border-brand-600 bg-primary-gradient text-white hover:border-brand-800 hover:bg-primary-gradient-hover focus:shadow-button disabled:hover:border-brand-600 disabled:hover:bg-primary-gradient;
+  }
+
+  .primary-transparent {
+    @apply border-0 bg-transparent text-brand-700 hover:text-brand-800 focus:border focus:border-brand-700 focus:text-brand-800 focus:shadow-button;
   }
 
   .primary-outlined {
-    @apply border-brand-700 bg-white text-brand-700 focus:shadow-button;
+    @apply border-brand-700 bg-transparent text-brand-700 hover:bg-brand-50 focus:shadow-button disabled:hover:bg-transparent;
   }
 
   .secondary-filled {
@@ -86,7 +90,11 @@ const {
   }
 
   .secondary-outlined {
-    @apply border-brand-300 bg-white text-brand-700 focus:shadow-button;
+    @apply border-brand-300 bg-transparent text-brand-700 hover:bg-brand-50 focus:shadow-button disabled:hover:bg-transparent;
+  }
+
+  .secondary-transparent {
+    @apply border-none bg-transparent text-brand-700 hover:text-brand-800 focus:text-brand-800 focus:shadow-button;
   }
 
   .tertiary-filled {
@@ -94,7 +102,11 @@ const {
   }
 
   .tertiary-outlined {
-    @apply border-gray-300 bg-white text-gray-700 focus:shadow-button-tertiary;
+    @apply border-gray-300 bg-transparent text-gray-700 hover:bg-grey-50 focus:shadow-button-tertiary disabled:hover:bg-transparent;
+  }
+
+  .tertiary-transparent {
+    @apply border-none bg-transparent text-gray-700 hover:text-gray-800 focus:text-gray-800 focus:shadow-button-tertiary;
   }
 
   .danger-filled {
@@ -102,6 +114,10 @@ const {
   }
 
   .danger-outlined {
-    @apply border-error-700 bg-white text-error-700 focus:shadow-button-danger;
+    @apply border-error-700 bg-transparent text-error-700 hover:bg-error-50 focus:shadow-button-danger disabled:hover:bg-transparent;
+  }
+
+  .danger-transparent {
+    @apply border-0 bg-transparent text-error-700 hover:text-error-800 focus:border focus:border-error-700 focus:text-error-800 focus:shadow-button-danger;
   }
 </style>

@@ -1,0 +1,97 @@
+---
+interface Props {
+  sublist: SidebarEntry[];
+  nested?: boolean;
+}
+export interface Link {
+  type: "link";
+  label: string;
+  href: string;
+  isCurrent: boolean;
+}
+
+interface Group {
+  type: "group";
+  label: string;
+  entries: (Link | Group)[];
+  collapsed: boolean;
+}
+
+type SidebarEntry = Link | Group;
+
+function flattenSidebar(sidebar: SidebarEntry[]): Link[] {
+  return sidebar.flatMap((entry) =>
+    entry.type === "group" ? flattenSidebar(entry.entries) : entry,
+  );
+}
+
+const { sublist, nested } = Astro.props;
+---
+
+<ul
+  class:list={[
+    "flex flex-col text-base text-brand-950",
+    !nested ? "gap-4" : "mt-3",
+  ]}
+>
+  {
+    sublist.map((entry) => {
+      const isCurrent =
+        entry.type === "link"
+          ? entry.isCurrent
+          : flattenSidebar(entry.entries).some((i) => i.isCurrent);
+      return (
+        <li
+          class:list={[
+            "flex flex-col",
+            nested && "border-s py-2 pl-4",
+            nested &&
+              entry.type === "link" &&
+              "border-s hover:border-s-grey-300 hover:bg-grey-100",
+            nested &&
+              isCurrent &&
+              "border-s-[var(--sl-mee-accent)] bg-transparent hover:border-s-[var(--sl-mee-accent)] hover:bg-transparent",
+          ]}
+        >
+          {entry.type === "link" ? (
+            <a
+              href={entry.href}
+              class=""
+              class:list={[
+                "relative bg-transparent text-[var(--sl-color-text-accent)]",
+                entry.isCurrent && "font-semibold",
+                nested && "text-sm",
+                // !nested && "p-2"
+              ]}
+            >
+              <span>{entry.label}</span>
+            </a>
+          ) : (
+            <details open={isCurrent || !entry.collapsed} class="flex flex-col">
+              <summary class="flex cursor-pointer select-none items-center justify-between pr-6 marker:content-['']">
+                <div class="group-label">
+                  <span>{entry.label}</span>
+                </div>
+                <i class="bi bi-chevron-right caret text-sm font-semibold" />
+              </summary>
+              <Astro.self sublist={entry.entries} nested />
+            </details>
+          )}
+        </li>
+      );
+    })
+  }
+</ul>
+
+<style>
+  .caret {
+    transition: transform 0.2s ease-in-out;
+    flex-shrink: 0;
+  }
+  [open] > summary .caret {
+    transform: rotateZ(90deg);
+  }
+  [open] > summary span {
+    @apply font-semibold;
+  }
+</style>
