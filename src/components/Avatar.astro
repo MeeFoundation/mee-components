@@ -1,0 +1,125 @@
+---
+interface Props {
+  isRounded?: boolean;
+  size?: 'xs' | 'sm' | 'md' | 'base' | 'lg' | 'xl';
+  isActive?: boolean;
+  count?: number;
+  initials?: string;
+  iconUrl?: string;
+}
+
+const { isRounded = true, size = 'base', isActive = false, count, initials, iconUrl } = Astro.props;
+
+const sizes = {
+  xs: 'size-4',
+  sm: 'size-6',
+  md: 'size-8',
+  base: 'size-10',
+  lg: 'size-12',
+  xl: 'size-16',
+};
+
+const roundedSize = {
+  xs: 'rounded-sm',
+  sm: 'rounded-sm',
+  md: 'rounded',
+  base: 'rounded-lg',
+  lg: 'rounded-lg',
+  xl: 'rounded-lg',
+};
+
+const isActiveMarkSize = {
+  xs: 'size-1',
+  sm: 'size-2',
+  md: 'size-2',
+  base: 'size-3',
+  lg: 'size-3',
+  xl: 'size-4',
+};
+
+const fontSizeCountText = {
+  xs: 'text-xxs',
+  sm: 'text-xxs',
+  md: 'text-xxs',
+  base: 'text-xxs',
+  lg: 'text-xxs',
+  xl: 'text-xs',
+};
+
+const topRoundedBadgePosition = {
+  xs: '-top-0.5 -right-0.5',
+  sm: '-top-2.5 -right-2.5',
+  md: '-top-2 -right-1.5',
+  base: '-top-1 -right-1',
+  lg: 'top-px -right-1',
+  xl: 'top-px -right-1',
+};
+
+const topBadgePosition = {
+  xs: '-top-1 -right-1',
+  sm: '-top-2.5 -right-2.5',
+  md: '-top-2 -right-1.5',
+  base: '-top-1.5 -right-1',
+  lg: '-top-1.5 -right-1',
+  xl: '-top-1.5 -right-1',
+};
+
+const bottomBadgePosition = {
+  xs: '-bottom-px -right-px',
+  sm: '-bottom-0.5 -right-0.5',
+  md: '-bottom-0.5 -right-0.5',
+  base: '-bottom-0.5 -right-1',
+  lg: '-bottom-1 -right-1',
+  xl: '-bottom-1 -right-1',
+};
+
+const intialsFontSize = {
+  xs: 'text-xs',
+  sm: 'text-sm',
+  md: 'text-md',
+  base: 'text-base',
+  lg: 'text-lg',
+  xl: 'text-xl',
+};
+
+const defaultAvatarSize = {
+  xs: 'text-xs',
+  sm: 'text-base',
+  md: 'text-lg',
+  base: 'text-xl',
+  lg: 'text-2xl',
+  xl: 'text-3xl',
+};
+---
+
+<div class:list={['relative cursor-pointer', sizes[size]]}>
+  <div class:list={[sizes[size], isRounded ? 'rounded-full' : roundedSize[size], ' flex items-center justify-center bg-brand-100 overflow-hidden']}>
+
+    {iconUrl ?
+    <img
+      class:list={[
+        
+      ]}
+      src={iconUrl}
+      alt="Avatar"
+    /> :
+    initials ?
+    <span class:list={["text-brand-500 font-bold", intialsFontSize[size]]}>
+      {size === 'xs' || size === 'sm' ? initials[0] :  initials}
+    </span> :
+    <i class:list={['bi bi-person text-brand-500', defaultAvatarSize[size]]} />
+    }
+  </div>
+  {count && 
+    <div class:list={["absolute bg-error-700 rounded-full flex items-center justify-center", isRounded ? topRoundedBadgePosition[size] : topBadgePosition[size]]}>
+      {size !== 'xs' ? 
+        <span class:list={["text-white text-xs font-semibold px-1.5 py-0.5", fontSizeCountText[size]]}>{count < 10 ? count : '9+'}</span>
+        : <span class="size-2"></span>
+      }
+    </div> 
+  }
+  {isActive && 
+    <div class:list={["absolute bg-success-700 rounded-full", isActiveMarkSize[size], isRounded ? 'right-0 bottom-0' : bottomBadgePosition[size]]}>
+    </div>
+  }
+</div>

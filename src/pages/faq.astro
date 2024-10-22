@@ -1,0 +1,295 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Accordion from "@components/AccordionNew.astro";
+export const meeFoundation = "https://mee.foundation/";
+export const github =
+  "https://github.com/MeeFoundation/private-advertising-website";
+export const discord =
+  "https://discord.com/channels/1275848491964436491/1275848492413223025";
+
+const header = {
+  links: [
+    {
+      name: "About us",
+      link: meeFoundation,
+      target: "_blank",
+      id: "about-us",
+    },
+    {
+      name: "Docs",
+      link: "/docs",
+      id: "docs",
+    },
+    {
+      name: "FAQ",
+      link: "/faq",
+      id: "faq",
+    },
+  ],
+  rightLinks: [
+    {
+      name: "Star us",
+      link: github,
+      target: "_blank",
+      id: "github",
+      icon: "github",
+    },
+    {
+      name: "Join us",
+      link: discord,
+      icon: "discord",
+      target: "_blank",
+      id: "discord",
+    },
+  ],
+  footerLinks: [
+    {
+      link: meeFoundation,
+      name: "About",
+      target: "_blank",
+      id: "about",
+    },
+    {
+      link: "/docs/",
+      name: "Docs",
+      target: "_blank",
+      id: "docs",
+    },
+  ],
+};
+
+const footer = {
+  links: [
+    {
+      link: "https://x.com/mee_foundation",
+      icon: "twitter-x",
+      target: "_blank",
+    },
+    {
+      link: github,
+      icon: "github",
+      target: "_blank",
+    },
+    {
+      link: discord,
+      icon: "discord",
+      target: "_blank",
+    },
+  ],
+  rightLinks: [
+    {
+      link: meeFoundation,
+      name: "About",
+      target: "_blank",
+    },
+    {
+      link: "/docs/",
+      name: "Docs",
+      target: "_blank",
+    },
+  ],
+};
+---
+
+<Layout title="FAQ">
+  <main class="">
+    <article
+      class="relative flex h-full min-h-screen w-screen flex-col items-center justify-between gap-16 overflow-hidden"
+    >
+      <Header header={header} activePage="faq" />
+      <section
+        class="section top-0 z-10 mb-3.5 flex h-full w-screen items-center justify-center pt-25 md:pt-36"
+      >
+        <div
+          class="flex max-w-7xl flex-col items-center justify-center gap-6 px-6 transition-opacity duration-500 md:p-0"
+        >
+          <div class="overflow-hidden">
+            <h1
+              class="marker animate-riseIn text-center text-4xl font-semibold text-gray-900 lg:text-5xl"
+            >
+              Frequently asked questions
+            </h1>
+          </div>
+        </div>
+      </section>
+      <section class="flex w-full max-w-7xl flex-col gap-4 px-6">
+        {
+          [
+            {
+              title: "What is Mee Extension?",
+              answer:
+                "Mee Extension is a browser extension that stops advertisers and other third-party trackers from secretly tracking where you go and what pages you look at on the web. If an advertiser seems to be tracking you across multiple websites without your permission, Mee Extension automatically blocks that advertiser from loading any more content in your browser. To the advertiser, it’s like you suddenly disappeared",
+            },
+            {
+              title: "How does Mee Extension work?",
+              answer: (
+                <div class="flex flex-col gap-2">
+                  <p>
+                    Mee Extension was born out of our desire to be able to
+                    recommend a single extension that would automatically
+                    analyze and block any tracker or ad that violated the
+                    principle of user consent; which could function well without
+                    any settings, knowledge, or configuration by the user; which
+                    is produced by an organization that is unambiguously working
+                    for its users rather than for advertisers; and which uses
+                    algorithmic methods to decide what is and isn’t tracking.
+                  </p>
+                  <p>
+                    As a result, Mee Extension differs from traditional
+                    ad-blocking extensions in two key ways. First, while most
+                    other blocking extensions prioritize blocking ads, Privacy
+                    Badger is purely a tracker-blocker. The extension doesn’t
+                    block ads unless they happen to be tracking you; in fact,
+                    one of our goals is to incentivize advertisers to adopt
+                    better privacy practices. Second, most other blockers rely
+                    on a human-curated list of domains or URLs to block. Privacy
+                    Badger is an algorithmic tracker blocker – we define what
+                    “tracking” looks like, and then Mee Extension blocks or
+                    restricts domains that it observes tracking in the wild.
+                    What is and isn’t considered a tracker is entirely based on
+                    how a specific domain acts, not on human judgment.
+                  </p>
+                </div>
+              ),
+            },
+            {
+              title: "What is a third party tracker?",
+              answer: "",
+            },
+            {
+              title:
+                "What do the red, yellow and green sliders in the Mee Extension menu mean?",
+              answer: "",
+            },
+            {
+              title: "Why does Mee Extension block ads?",
+              answer: "",
+            },
+            {
+              title: "Why doesn't Mee Extension block all ads?",
+              answer: "",
+            },
+            {
+              title: "What is Global Privacy Control (GPC)?",
+              answer: "",
+            },
+            {
+              title:
+                "What about tracking by the sites I actively visit, like NYTimes.com or Facebook.com?",
+              answer: "",
+            },
+            {
+              title: "Does Mee Extension contain a list of blocked sites?",
+              answer: "",
+            },
+            {
+              title: "How was the cookie blocking yellowlist created?",
+              answer: "",
+            },
+            {
+              title: " Does Mee Extension prevent fingerprinting?",
+              answer: "",
+            },
+            {
+              title:
+                " Does Mee Extension consider every cookie to be a tracking cookie?",
+              answer: "",
+            },
+            {
+              title:
+                "Will you be supporting any other browsers besides Chrome, Firefox, Edge and Opera?",
+              answer: "",
+            },
+            {
+              title: "Can I download Mee Extension directly from eff.org?",
+              answer: "",
+            },
+            {
+              title:
+                "I run a domain that uses cookies or other tracking. How do I stop Mee Extension from blocking me?",
+              answer: "",
+            },
+            {
+              title:
+                "Where can I find general information about Mee Extension that I can use for a piece I'm writing?",
+              answer: "",
+            },
+            {
+              title:
+                "As an administrator, how do I configure Mee Extension on my managed devices?",
+              answer: "",
+            },
+            {
+              title:
+                " What is the Mee Extension license? Where is the Mee Extension source code?",
+              answer: "",
+            },
+            {
+              title: "How can I support Mee Extension?",
+              answer: "",
+            },
+            {
+              title: "How does Mee Extension handle social media widgets?",
+              answer: "",
+            },
+            {
+              title: "How do I uninstall/remove Mee Extension?",
+              answer: "",
+            },
+            {
+              title:
+                "Is Mee Extension compatible with other extensions, including adblockers?",
+              answer: "",
+            },
+            {
+              title:
+                "Is Mee Extension compatible with Firefox's built-in privacy protections?",
+              answer: "",
+            },
+            {
+              title:
+                "Why does my browser connect to fastly.com IP addresses on startup after installing Mee Extension?",
+              answer: "",
+            },
+            {
+              title:
+                "Why does Mee Extension need access to my data for all websites?",
+              answer: "",
+            },
+            {
+              title:
+                "Why aren't videos loading on YouTube? Why isn't Mee Extension blocking ads on YouTube?",
+              answer: "",
+            },
+            {
+              title: "I need help! I found a bug! What do I do now?",
+              answer: "",
+            },
+          ].map((item, index) => (
+            <Accordion title={item.title} size="lg" collapse={index !== 0}>
+              <p>{item.answer}</p>
+            </Accordion>
+          ))
+        }
+      </section>
+      <div>
+        <Footer mode="dark" footer={footer} />
+      </div>
+    </article>
+  </main>
+</Layout>
+<style>
+  .bg-1 {
+    content: "";
+    position: absolute;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    min-height: 150vh;
+    height: 140%;
+    transform: translate3d(0, 0, 0);
+    z-index: 1;
+    width: 400vw;
+  }
+</style>

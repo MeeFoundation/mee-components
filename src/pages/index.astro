@@ -1,6 +1,7 @@
 ---
 import Layout from "@layouts/Layout.astro";
 import Buttons from "@components/showcase/Buttons.astro";
+import IconButtons from "@components/showcase/IconButtons.astro";
 import Shadows from "@components/showcase/Shadows.astro";
 import Accordion from "@components/Accordion.astro";
 import PasswordInputs from "@components/showcase/PasswordInputs.astro";
@@ -10,15 +11,21 @@ import RadioInputs from "@components/showcase/RadioInputs.astro";
 import Notifications from "@components/showcase/Notifications.astro";
 import Alerts from "@components/showcase/Alerts.astro";
 import Loader from "@components/showcase/Loader.astro";
+import Modals from "@components/showcase/Modals.astro";
 import Checkboxes from "@components/showcase/Checkboxes.astro";
 import Scrollbars from "@components/showcase/Scrollbars.astro";
+import Accordions from "@components/showcase/Accordions.astro";
+import Avatars from "@components/showcase/Avatars.astro";
 import Tables from "@components/showcase/Tables.astro";
 ---
 
 <Layout title="Showcase">
-  <main>
+  <main class="flex flex-col gap-3 p-10">
     <Accordion title="Buttons" icon="menu-button-wide" collapse={false}>
       <Buttons />
+    </Accordion>
+    <Accordion title="Icon Buttons" icon="menu-button-wide">
+      <IconButtons />
     </Accordion>
     <Accordion title="Shadows" icon="shadows">
       <Shadows />
@@ -37,6 +44,11 @@ import Tables from "@components/showcase/Tables.astro";
     <Accordion title="Alerts" icon="app-indicator"><Alerts /></Accordion>
     <Accordion title="Loaders" icon="hourglass-split"><Loader /></Accordion>
     <Accordion title="Scrollbars" icon="arrows-move"><Scrollbars /></Accordion>
-    <Accordion title="Tables" icon="table" collapse={false}><Tables /></Accordion>
+    <Accordion title="Accordions" icon="arrows-vertical">
+      <Accordions />
+    </Accordion>
+    <Accordion title="Modals" icon="chat-square"><Modals /></Accordion>
+    <Accordion title="Avatars" icon="person-circle"><Avatars /></Accordion>
+    <Accordion title="Tables" icon="table"><Tables /></Accordion>
   </main>
 </Layout>
