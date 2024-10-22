@@ -310,6 +310,7 @@ const theme = {
     height: {
       ...defaultConfig.theme?.extend?.height,
       0.75: "0.188rem",
+      1.25: "0.313rem",
       "screen-1.1": "101vh",
       "screen-2": "200vh",
       "screen-4": "400vh",
