@@ -60,7 +60,7 @@ const header = {
   ],
 };
 
-const footer = {
+export const footer = {
   links: [
     {
       link: "https://x.com/mee_foundation",
@@ -80,14 +80,29 @@ const footer = {
   ],
   rightLinks: [
     {
-      link: meeFoundation,
-      name: "About",
-      target: "_blank",
+      name: "Projects",
+      link: `${meeFoundation}projects/`,
+      id: "projects",
+    },
+    {
+      name: "Business",
+
+      link: `${meeFoundation}for-providers/`,
+      id: "business",
+    },
+    {
+      name: "About us",
+      link: `${meeFoundation}about/`,
+      id: "about",
+    },
+    {
+      link: "/privacy-policy/",
+      name: "Privacy",
+      id: "privacy-policy",
     },
     {
       link: "/docs/",
       name: "Docs",
-      target: "_blank",
     },
   ],
 };
