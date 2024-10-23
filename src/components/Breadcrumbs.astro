@@ -1,31 +1,45 @@
 ---
-interface Breadcrumb {
-  link: string;
+export interface Breadcrumb {
+  link?: string;
   title: string;
 }
 interface Props {
   breadcrumbs: Breadcrumb[];
+  className?: string;
 }
-const { breadcrumbs } = Astro.props;
+const { breadcrumbs, className } = Astro.props;
 ---
 
-<div
-  class="rounded-md border border-grey-300 bg-grey-50 px-2 py-1 text-sm text-brand-700"
+<ul
+  class:list={[
+    "flex flex-wrap items-center justify-center rounded-md border border-grey-300 bg-grey-50 px-2 py-1 text-sm text-brand-700",
+    className,
+  ]}
 >
   {
     breadcrumbs.map((breadcrumb, index) => (
-      <Fragment>
-        <a
-          href={breadcrumb.link}
-          class:list={[
-            "px-2 hover:text-grey-700",
-            index === breadcrumbs.length - 1 && "text-grey-700",
-          ]}
-        >
-          {breadcrumb.title}
-        </a>
+      <li class="flex items-center justify-center">
+        {breadcrumb.link ? (
+          <a
+            href={breadcrumb.link}
+            class:list={[
+              "text-nowrap px-2 hover:text-grey-700",
+              index === breadcrumbs.length - 1 && "text-grey-700",
+            ]}
+          >
+            {breadcrumb.title}
+          </a>
+        ) : (
+          <div
+            class:list={[
+              "pointer-events-none cursor-default text-nowrap px-2 text-grey-700",
+            ]}
+          >
+            {breadcrumb.title}
+          </div>
+        )}
         {index !== breadcrumbs.length - 1 && <i class="bi bi-chevron-right" />}
-      </Fragment>
+      </li>
     ))
   }
-</div>
+</ul>
