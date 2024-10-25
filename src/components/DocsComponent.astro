@@ -5,6 +5,10 @@ import developersImage from "./images/docs/developers.png";
 interface DataItem {
   enabled: boolean;
   link: string;
+  title?: string;
+  description?: string;
+  linkTitle?: string;
+  image?: ImageMetadata;
 }
 
 interface Props {
@@ -21,38 +25,39 @@ const { data, title, subtitle } = Astro.props;
 
 const categories = [
   {
-    image: usersImage,
-    title: "Users",
+    image: data.users.image ?? usersImage,
+    title: data.users.title ?? "Users",
     description:
+      data.users.description ??
       "We are a nonprofit with a mission to offer the Mee human-centered user experience for the internet.",
-    linkTitle: "View docs for users",
+    linkTitle: data.users.linkTitle ?? "View docs for users",
     link: data.users.link,
     enabled: data.users.enabled,
   },
   {
-    image: providersImage,
-    title: "Providers",
+    image: data.providers.image ?? providersImage,
+    title: data.providers.title ?? "Providers",
     description:
+      data.providers.description ??
       "We are a nonprofit with a mission to offer the Mee human-centered user experience for the internet.",
-    linkTitle: "View docs for providers",
+    linkTitle: data.providers.linkTitle ?? "View docs for providers",
     link: data.providers.link,
     enabled: data.providers.enabled,
   },
   {
-    image: developersImage,
-    title: "Developers",
+    image: data.developers.image ?? developersImage,
+    title: data.developers.title ?? "Developers",
     description:
+      data.developers.description ??
       "We are a nonprofit with a mission to offer the Mee human-centered user experience for the internet.",
-    linkTitle: "View docs for developers",
+    linkTitle: data.developers.linkTitle ?? "View docs for developers",
     link: data.developers.link,
     enabled: data.developers.enabled,
   },
 ];
 ---
 
-<section
-  class="section z-100 flex h-full w-screen items-center justify-center"
->
+<section class="section z-100 flex h-full w-screen items-center justify-center">
   <div
     class="flex max-w-192 flex-col items-center justify-center gap-2 px-6 transition-opacity duration-500 md:p-0"
   >
