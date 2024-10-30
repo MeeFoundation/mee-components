@@ -23,3 +23,4 @@ export { default as Avatar } from "./components/Avatar.astro";
 export { default as Table } from "./components/Table.astro";
 export { default as TableHelper } from "./helpers/table";
 export { default as SortHelper } from "./helpers/sort";
+export { default as Accordion } from "./components/Accordion.astro";

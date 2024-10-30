@@ -1,0 +1,357 @@
+---
+import Layout from "@layouts/Layout.astro";
+import Header from "@components/Header.astro";
+import Footer from "@components/Footer.astro";
+import Accordion from "@components/AccordionNew.astro";
+export const meeFoundation = "https://mee.foundation/";
+export const github =
+  "https://github.com/MeeFoundation/private-advertising-website";
+export const discord =
+  "https://discord.com/channels/1275848491964436491/1275848492413223025";
+
+export const header = {
+  logoLink: meeFoundation,
+  links: [
+    {
+      name: "Projects",
+      link: `${meeFoundation}projects/`,
+      id: "projects",
+    },
+    {
+      name: "Business",
+      link: `${meeFoundation}for-providers/`,
+      id: "business",
+    },
+    {
+      name: "About us",
+      link: `${meeFoundation}about/`,
+      id: "about",
+    },
+  ],
+  rightLinks: [
+    {
+      name: "Join us",
+      link: discord,
+      icon: "discord",
+      target: "_blank",
+      id: "discord",
+    },
+  ],
+  footerLinks: [
+    {
+      link: `${meeFoundation}privacy-policy/`,
+      name: "Privacy",
+      id: "privacy-policy",
+    },
+    {
+      link: "/docs/",
+      name: "Docs",
+      id: "docs",
+    },
+  ],
+};
+
+export const footer = {
+  links: [
+    {
+      link: "https://x.com/mee_foundation",
+      icon: "twitter-x",
+      target: "_blank",
+    },
+    {
+      link: github,
+      icon: "github",
+      target: "_blank",
+    },
+    {
+      link: discord,
+      icon: "discord",
+      target: "_blank",
+    },
+  ],
+  rightLinks: [
+    {
+      name: "Projects",
+      link: `${meeFoundation}projects/`,
+      id: "projects",
+    },
+    {
+      name: "Business",
+
+      link: `${meeFoundation}for-providers/`,
+      id: "business",
+    },
+    {
+      name: "About us",
+      link: `${meeFoundation}about/`,
+      id: "about",
+    },
+    {
+      link: "/privacy-policy/",
+      name: "Privacy",
+      id: "privacy-policy",
+    },
+    {
+      link: "/docs/",
+      name: "Docs",
+    },
+  ],
+};
+---
+
+<Layout title="FAQ">
+  <main class="">
+    <article
+      class="relative flex h-full min-h-screen w-screen flex-col items-center justify-between gap-16 overflow-hidden"
+    >
+      <Header header={header} activePage="faq" />
+      <section
+        class="section top-0 z-10 mb-3.5 flex h-full w-screen flex-col items-center justify-center pt-25 md:pt-36"
+      >
+        <div
+          class="flex max-w-7xl flex-col items-center justify-center gap-6 px-6 transition-opacity duration-500 md:p-0"
+        >
+          <div class="overflow-hidden">
+            <h1
+              class="marker animate-riseIn text-center text-4xl font-semibold text-gray-900 lg:text-5xl"
+            >
+              Frequently asked questions
+            </h1>
+          </div>
+        </div>
+      </section>
+      <section class="faq-content flex w-full max-w-7xl flex-col gap-4 px-6">
+        {
+          [
+            {
+              title: "What is Mee Extension?",
+              answer:
+                "Mee Extension is a browser extension that allows your online activities to be free from surveillance by third-party cookies and trackers. Advertisers will not be able to stalk you or sell your data, no more annoying cookie banner pop-ups. With Mee Extension you are able to enjoy web content supported by ads that respect your privacy and match your interests ",
+            },
+            {
+              title: "How does Mee Extension work? ",
+              answer: (
+                <ul class="flex flex-col gap-2 list-disc px-4">
+                  <li>
+                    The Mee extension automatically opts you out of your data
+                    being shared/sold by websites
+                  </li>
+                  <li>
+                    Based on your browsing history, which never leaves your
+                    computer, the extension generates a set of anonymous
+                    interests that are saved to a Mee server
+                  </li>
+                  <li>
+                    This Mee server uses these interests to assign you
+                    anonymously to groups of people with similar interests, but
+                    it never shares them with any other company
+                  </li>
+                  <li>
+                    Mee-authorized ad networks tailor the ads you see based on
+                    the groups you’re in
+                  </li>
+                </ul>
+              ),
+            },
+            {
+              title: "What is a third-party tracker?",
+              answer:
+                "Third-party trackers are snippets of code that are typically installed on multiple websites. They collect and send information about a user's browsing history to other companies, often for advertising purposes. Cookies and other methods are used to track your browsing habits - often to display advertisements.",
+            },
+            {
+              title: "How does Mee Extension block ads?",
+              answer: (
+                <div>
+                  The Mee extension automatically opts you out of your data
+                  being shared/sold by websites by sending{" "}
+                  <a href="https://globalprivacycontrol.org/" target="_blank">
+                    Global Privacy Control
+                  </a>{" "}
+                  opt-out signal to any website you visit. You can change this
+                  default on any website you visit. 
+                </div>
+              ),
+            },
+            {
+              title: "What is Global Privacy Control (GPC)?",
+              answer: (
+                <div class="flex flex-col gap-2">
+                  <p>
+                    <a href="https://globalprivacycontrol.org/" target="_blank">
+                      Global Privacy Control (GPC)
+                    </a>{" "}
+                    is a new specification that allows users to tell companies
+                    they’d like to opt out of having their data shared or sold.
+                    By default, Mee Extension sends the GPC signal to every
+                    website you interact with alongside the Do Not Track (DNT)
+                    signal.
+                  </p>
+                  <p>
+                    GPC is meant to be a legally-binding request to all
+                    companies in places with applicable privacy laws. For
+                    example, the
+                    <a href="https://theccpa.org/" target="_blank">
+                      California Consumer Privacy Act
+                    </a>{" "}
+                    gives California residents the right to opt out of having
+                    their data sold. By sending the GPC signal, Mee Extension is
+                    telling companies that you would like to exercise your legal
+                    right to control your own data. GPC applies to everyone –
+                    the first-party sites you visit, and any third-party
+                    trackers they might invite in.
+                  </p>
+                  <p>
+                    You can learn more about GPC and your rights{" "}
+                    <a href="https://globalprivacycontrol.org/" target="_blank">
+                      here
+                    </a>
+                    .
+                  </p>
+                </div>
+              ),
+            },
+            {
+              title: "Which browsers are supported?",
+              answer: (
+                <div class="flex flex-col gap-2">
+                  <p>
+                    Currently, Mee Extension is available to be downloaded from
+                    Chrome Web Store and be installed as a Chrome browser
+                    extension.
+                  </p>
+                  <p>
+                    To install in Chrome Mee Extension, visit the{" "}
+                    <a href="https://chromewebstore.google.com/detail/mee-extension-let-the-web/gfcagdccenaomgheadeimkfdfgkdapcf">
+                      Mee Extension
+                    </a>{" "}
+                    Chrome Web Store listing and click the “Add to Chrome”
+                    button there.
+                  </p>
+                </div>
+              ),
+            },
+            {
+              title:
+                "I run a domain that uses cookies or other tracking. How do I stop Mee Extension from blocking me?",
+              answer:
+                "Mee Extension includes a Global Privacy Control (GPC) feature that, by default, sends the GPC opt-out signal to any website you visit. You can change this default on any website you visit. ",
+            },
+            {
+              title: "Does Mee Extension prevent fingerprinting?",
+              answer:
+                "Currently, Mee Extension can’t prevent fingerprinting. Detection of different fingerprinting forms and protection against first-party fingerprinting are future projects.",
+            },
+            {
+              title:
+                "Is Mee Extension compatible with other extensions, including ad blockers?",
+              answer: (
+                <div>
+                  Mee Extension should be compatible with other extensions. If
+                  you notice any compatibility issues, please email us at{" "}
+                  <a href="mailto:contact@mee.foundation">
+                    contact@mee.foundation
+                  </a>
+                  .
+                </div>
+              ),
+            },
+            {
+              title:
+                "Why does Mee Extension need access to my browsing history?",
+              answer:
+                "When you install Mee Extension, your browser warns that Mee Extension “read and change all your data on all websites” and “read and change your browsing history”. Please be sure you only install extensions made by organizations you trust. Mee Extension needs access to your browsing history. It processes this locally inside your browser and it never leaves your computer. Based on your browsing history, which never leaves your computer, the extension generates a set of anonymous interest data, which is used to assign you anonymously to groups of people with similar interests, but it never shares them with any other company. ",
+            },
+            {
+              title:
+                "What is the Mee Extension license? Where is the Mee Extension source code?",
+              answer: (
+                <div>
+                  Mee Extension’s{" "}
+                  <a
+                    href="https://github.com/MeeFoundation/browser-extensions"
+                    target="_blank"
+                  >
+                    source code
+                  </a>{" "}
+                  is licensed under{" "}
+                  <a
+                    href="https://www.apache.org/licenses/LICENSE-2.0"
+                    target="_blank"
+                  >
+                    Apache 2.0
+                  </a>
+                  .
+                </div>
+              ),
+            },
+            {
+              title: "How can I support Mee Extension?",
+              answer: (
+                <div>
+                  Thanks for asking! Individual donations can help us work on
+                  human-centered projects. If you want to support the
+                  development of Mee Extension and other projects like it,
+                  helping build a more safe user experience for the internet,
+                  you can follow{" "}
+                  <a
+                    href="https://www.patreon.com/TheMeeFoundation"
+                    target="_blank"
+                  >
+                    this link
+                  </a>
+                  . Thank you.
+                </div>
+              ),
+            },
+            {
+              title: "How do I uninstall/remove Mee Extension?",
+              answer: (
+                <div>
+                  See the{" "}
+                  <a
+                    href="https://support.google.com/chrome_webstore/answer/2664769?hl=en"
+                    target="_blank"
+                  >
+                    Install and manage extensions
+                  </a>{" "}
+                  Chrome Web Store help page.
+                </div>
+              ),
+            },
+            {
+              title: "I need help or I found a bug - what do I do now?",
+              answer: (
+                <div>
+                  <p>
+                    If a website isn’t working as it should, you can disable Mee
+                    Extension only for that site, leaving Mee Extension enabled
+                    and protecting you everywhere else.
+                  </p>
+                  <p>
+                    To get help or to report bugs, please email us at{" "}
+                    <a href="mailto:contact@mee.foundation">
+                      contact@mee.foundation
+                    </a>
+                    .
+                  </p>
+                </div>
+              ),
+            },
+          ].map((item, index) => (
+            <Accordion title={item.title} size="lg" collapse={index !== 0}>
+              <p>{item.answer}</p>
+            </Accordion>
+          ))
+        }
+      </section>
+      <div>
+        <Footer mode="dark" footer={footer} />
+      </div>
+    </article>
+  </main>
+</Layout>
+<style>
+  .faq-content a {
+    @apply text-brand-500 underline;
+  }
+</style>
