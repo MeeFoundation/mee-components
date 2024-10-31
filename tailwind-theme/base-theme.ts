@@ -275,6 +275,7 @@ const theme = {
     },
     scale: {
       ...defaultConfig.theme?.extend?.scale,
+      60: "0.6",
       80: "0.8",
       85: "0.85",
     },
@@ -345,6 +346,10 @@ const theme = {
       "primary-gradient": "var(--primary-gradient)",
       "primary-gradient-hover": "var(--primary-gradient-hover)",
       "auth-gradient": "var(--auth-gradient)",
+      "header-gradient":
+        "linear-gradient(90deg,rgba(255, 255, 255, 0) 0%, rgb(231, 232, 233) 50%,rgba(255, 255, 255, 0) 100%)",
+      "header-bg": "linear-gradient(180deg,rgba(255, 255, 255, 0.8) 0%,rgba(255, 255, 255, 0.6) 100%)",
+      "header-bg-dark": "linear-gradient(90.44deg,rgba(255, 255, 255, 0.15) 0%,rgba(255, 255, 255, 0.05) 99.88%)",
     },
     backdropBlur: {
       12.5: "3.125rem",

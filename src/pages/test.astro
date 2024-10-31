@@ -104,7 +104,11 @@ export const footer = {
     <article
       class="relative flex h-full min-h-screen w-screen flex-col items-center justify-between gap-16 overflow-hidden"
     >
-      <Header header={header} activePage="faq" />
+      <Header
+        header={header}
+        activePage="faq"
+        location="Private advertision"
+      />
       <section
         class="section top-0 z-10 mb-3.5 flex h-full w-screen flex-col items-center justify-center pt-25 md:pt-36"
       >
@@ -131,7 +135,7 @@ export const footer = {
             {
               title: "How does Mee Extension work? ",
               answer: (
-                <ul class="flex flex-col gap-2 list-disc px-4">
+                <ul class="flex list-disc flex-col gap-2 px-4">
                   <li>
                     The Mee extension automatically opts you out of your data
                     being shared/sold by websites
@@ -355,3 +359,16 @@ export const footer = {
     @apply text-brand-500 underline;
   }
 </style>
+
+<script>
+  const changeHeader = document.getElementById("change-header");
+  const header = document.getElementById("header");
+  const main = document.getElementById("main");
+  changeHeader?.addEventListener("click", () => {
+    console.log(header?.parentElement);
+    main?.classList.remove("bg-purple-950");
+    header?.parentElement?.classList.remove("type-dark");
+    header?.parentElement?.classList.add("type-default");
+    header?.setAttribute("data-type", "default"); 
+  });
+</script>

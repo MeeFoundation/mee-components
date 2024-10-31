@@ -38,40 +38,44 @@ const {
 } = Astro.props;
 ---
 
-<div class="relative">
+<div class:list={["group relative transition-all", `type-${type}`]}>
   <header
     id="header"
     class:list={[
-      "fixed left-0 top-0 z-300 flex h-27 w-screen items-center justify-center",
-      type === "docs" && "border-b border-grey-200",
-      type !== "dark" &&
-        "menu-bg bg-white backdrop-blur-62.5 transition-all duration-300",
+      "fixed left-0 top-0 z-300 flex h-27 w-screen items-center justify-center transition-all duration-300",
+      "group-[.type-docs]:border-b group-[.type-docs]:border-grey-200",
+      "group-[.type-default]:bg-header-bg group-[.type-default]:bg-white group-[.type-default]:backdrop-blur-62.5 group-[.type-default]:transition-all group-[.type-default]:duration-300",
+      "group-[.type-docs]:bg-header-bg group-[.type-docs]:bg-white group-[.type-docs]:backdrop-blur-62.5 group-[.type-docs]:transition-all group-[.type-docs]:duration-300",
     ]}
     data-type={type}
   >
     <div
       class:list={[
         "header mx-auto flex max-w-7xl items-center justify-between px-5",
-        type === "default" && "after-border",
-        type !== "dark" && "w-full flex-wrap",
-        type === "dark" &&
-          "menu-bg-dark gap-10 rounded-2.5xl border border-white/15 py-2 shadow-header backdrop-blur-12.5",
+        "group-[.type-default]:w-full group-[.type-default]:flex-wrap",
+        "group-[.type-default]:after:bg-header-gradient group-[.type-default]:after:absolute group-[.type-default]:after:bottom-0 group-[.type-default]:after:left-0 group-[.type-default]:after:right-0 group-[.type-default]:after:h-px group-[.type-default]:after:w-full group-[.type-default]:after:content-['']",
+        "group-[.type-docs]:w-full group-[.type-docs]:flex-wrap",
+        "group-[.type-dark]:bg-header-bg-dark group-[.type-dark]:gap-10 group-[.type-dark]:rounded-2.5xl group-[.type-dark]:border group-[.type-dark]:border-white/15 group-[.type-dark]:py-2 group-[.type-dark]:shadow-header group-[.type-dark]:backdrop-blur-12.5",
         className,
       ]}
     >
-      <div class:list={["flex items-center gap-2", type !== "dark" && "w-1/3"]}>
+      <div
+        class:list={[
+          "flex items-center gap-2 group-[.type-default]:w-1/3 group-[.type-docs]:w-1/3",
+        ]}
+      >
         <div>
           <a
             id="mainLogo"
             href={header.logoLink ? header.logoLink : "/"}
             class="logo flex h-6 w-20 items-center justify-center"
           >
-            <Logo className={type === "dark" ? "!fill-white" : ""} />
+            <Logo className="group-[.type-dark]:!fill-white" />
           </a>
         </div>
         {
           location && (
-            <div class="flex rounded-full border border-brand-300 bg-brand-50 px-1.5 py-0.5 text-sm font-semibold text-brand-700 md:hidden text-nowrap">
+            <div class="flex text-nowrap rounded-full border border-brand-300 bg-brand-50 px-1.5 py-0.5 text-sm font-semibold text-brand-700 md:hidden">
               {location}
             </div>
           )
@@ -79,8 +83,7 @@ const {
       </div>
       <ul
         class:list={[
-          "items-right hidden justify-center gap-2 whitespace-nowrap text-center md:flex",
-          type !== "dark" && "w-1/3",
+          "items-right hidden justify-center gap-2 whitespace-nowrap text-center group-[.type-default]:w-1/3 group-[.type-docs]:w-1/3 md:flex",
         ]}
       >
         {
@@ -88,7 +91,7 @@ const {
             <li
               class:list={[
                 "text-base font-semibold text-brand-950",
-                type === "dark" && "!text-white/90",
+                "group-[.type-dark]:!text-white/90",
               ]}
             >
               <a
@@ -96,12 +99,12 @@ const {
                 target={link.target}
                 class:list={[
                   "rounded-2xl px-4 py-1.5",
-                  type !== "dark" && "hover:bg-primary hover:text-white",
-                  type === "dark" && "hover:text-white hover:underline",
-                  type !== "dark" &&
-                    activePage === link.id &&
-                    "bg-primary text-white",
-                  type === "dark" && activePage === link.id && "text-white",
+                  "group-[.type-default]:hover:bg-primary group-[.type-default]:hover:text-white",
+                  "group-[.type-docs]:hover:bg-primary group-[.type-docs]:hover:text-white",
+                  "group-[.type-dark]:hover:text-white group-[.type-dark]:hover:underline",
+                  activePage === link.id &&
+                    "group-[.type-default]:bg-primary group-[.type-docs]:bg-primary group-[.type-default]:text-white group-[.type-docs]:text-white",
+                  activePage === link.id && "group-[.type-dark]:text-white",
                 ]}
               >
                 {link.name}
@@ -112,8 +115,7 @@ const {
       </ul>
       <div
         class:list={[
-          "hidden items-end justify-end gap-3 md:flex",
-          type !== "dark" && "w-1/3",
+          "hidden items-end justify-end gap-3 group-[.type-default]:w-1/3 group-[.type-docs]:w-1/3 md:flex",
         ]}
       >
         {
@@ -121,22 +123,35 @@ const {
             <ButtonLink
               leftIcon={`${link.icon} text-lg`}
               buttonType="tertiary"
-              buttonType={type === "dark" ? "primary" : "tertiary"}
-              style={type === "dark" ? "transparent" : "outlined"}
+              buttonType="tertiary"
+              style="outlined"
               size="l"
               href={link.link}
               target={link.target}
-              className={type === "dark" ? "border-none !text-white/90" : ""}
+              className="group-[.type-dark]:hidden"
             >
-              {type !== "dark" && link.name}
+              {link.name}
             </ButtonLink>
+          ))
+        }
+        {
+          header.rightLinks.map((link) => (
+            <ButtonLink
+              leftIcon={`${link.icon} text-lg`}
+              buttonType="tertiary"
+              buttonType={"primary"}
+              style={"transparent"}
+              size="l"
+              href={link.link}
+              target={link.target}
+              className="group-[.type-default]:hidden group-[.type-docs]:hidden border-none !text-white/90"
+            />
           ))
         }
       </div>
       <div
         class:list={[
-          "flex items-center justify-end gap-1 md:hidden",
-          type !== "dark" && "w-1/3",
+          "flex items-center justify-end gap-1 group-[.type-default]:w-1/3 group-[.type-docs]:w-1/3 md:hidden",
         ]}
       >
         {
@@ -145,14 +160,27 @@ const {
               <ButtonLink
                 leftIcon={`${link.icon} text-lg`}
                 buttonType="tertiary"
-                buttonType={type === "dark" ? "primary" : "tertiary"}
+                buttonType={"tertiary"}
                 style="transparent"
                 size="l"
                 href={link.link}
                 target={link.target}
-                className={
-                  type === "dark" ? "border-none !text-white/90" : "border-none"
-                }
+                className="border-none  group-[.type-dark]:hidden"
+              />
+            ))
+        }
+        {
+          !location &&
+            header.rightLinks.map((link) => (
+              <ButtonLink
+                leftIcon={`${link.icon} text-lg`}
+                buttonType="tertiary"
+                buttonType={"primary"}
+                style="transparent"
+                size="l"
+                href={link.link}
+                target={link.target}
+                className="border-none !text-white/90 group-[.type-default]:hidden group-[.type-docs]:hidden"
               />
             ))
         }
@@ -162,10 +190,7 @@ const {
           buttonType="tertiary"
           style="transparent"
           size="m"
-          className={"border-none"}
-          className={type === "dark"
-            ? "border-none !text-white"
-            : "border-none"}
+          className="border-none group-[.type-dark]:!text-white"
           id="open-menu"
         />
       </div>
@@ -260,47 +285,17 @@ const {
 
 <style>
   .after-border:after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    width: 100%;
-    background: linear-gradient(
-      90deg,
-      rgba(255, 255, 255, 0) 0%,
-      rgb(231, 232, 233) 50%,
-      rgba(255, 255, 255, 0) 100%
-    );
-  }
-
-  .menu-bg-dark {
-    background: linear-gradient(
-      90.44deg,
-      rgba(255, 255, 255, 0.15) 0%,
-      rgba(255, 255, 255, 0.05) 99.88%
-    );
-  }
-
-  .menu-bg {
-    background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.8) 0%,
-      rgba(255, 255, 255, 0.6) 100%
-    );
+    @apply bg-header-gradient absolute bottom-0 left-0 right-0 h-px w-full content-[''];
   }
 </style>
 
 <script>
   const header = document.getElementById("header") as HTMLElement;
-  const headerType = header.dataset.type;
-  console.log(headerType);
   const menu = document.getElementById("menu") as HTMLElement;
   const openMenu = document.getElementById("open-menu") as HTMLButtonElement;
   const closeMenu = document.getElementById("close-menu") as HTMLButtonElement;
-  if (headerType !== "dark") {
-    document.addEventListener("scroll", () => {
+  document.addEventListener("scroll", () => {
+    if (header.dataset.type !== "dark") {
       if (window.scrollY > 50) {
         header.classList.remove("h-27");
         header.classList.add("h-17");
@@ -308,8 +303,8 @@ const {
         header.classList.remove("h-17");
         header.classList.add("h-27");
       }
-    });
-  }
+    }
+  });
 
   openMenu?.addEventListener("click", () => {
     menu.classList.remove("w-0");
