@@ -196,7 +196,7 @@ const {
       </div>
     </div>
   </header>
-  <div class="relative">
+  <div class="relative" id="mobile-header">
     <div
       class="fixed right-0 top-0 z-300 h-screen w-0 overflow-hidden bg-white transition-all duration-400 md:hidden"
       id="menu"
@@ -307,11 +307,13 @@ const {
   });
 
   openMenu?.addEventListener("click", () => {
+    document.body.classList.add("h-screen", "overflow-hidden");
     menu.classList.remove("w-0");
     menu.classList.add("w-screen");
   });
   closeMenu?.addEventListener("click", () => {
     menu.classList.add("w-0");
     menu.classList.remove("w-screen");
+    document.body.classList.remove("h-screen", "overflow-hidden");
   });
 </script>
