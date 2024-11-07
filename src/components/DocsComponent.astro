@@ -61,14 +61,12 @@ const categories = [
   title && (
     <section class="section z-100 flex h-full w-screen items-center justify-center">
       <div class="flex max-w-192 flex-col items-center justify-center gap-2 px-6 transition-opacity duration-500 md:p-0">
-        <div class="overflow-hidden">
-          <h1 class="marker animate-riseIn text-center text-4xl font-semibold text-gray-900 lg:text-7xl lg:tracking-0.02">
-            {title}
-          </h1>
-        </div>
+        <h1 class="marker text-center text-4xl font-semibold text-gray-900 lg:text-7xl lg:tracking-0.02">
+          {title}
+        </h1>
         {subtitle && (
           <section class="overflow-hidden">
-            <h3 class="text animation-delay-800 animate-riseIn px-6 text-center text-xl leading-relaxed text-gray-900 md:text-2xl">
+            <h3 class="text animation-delay-800 px-6 text-center text-xl leading-relaxed text-gray-900 md:text-2xl">
               Everything you need to build a stellar documentation website.
               Fast, accessible, and easy-to-use.
             </h3>
@@ -82,44 +80,40 @@ const categories = [
 <section
   class="flex h-auto max-w-7xl flex-col items-center justify-center bg-white"
 >
-  <div class="overflow-hidden">
-    <div class="flex animate-riseIn">
-      <div
-        class="flex flex-wrap items-stretch justify-center gap-8 p-8"
-      >
-        {
-          categories.map((category) => {
-            return (
-              category.enabled && (
-                <a
-                  class="flex max-w-96 flex-col rounded-2xl border border-grey-300 pb-8 transition-all hover:border-brand-300 hover:shadow-3-strong"
-                  href={category.link}
-                >
-                  <img
-                    src={category.image.src}
-                    class="w-full"
-                    alt={`${category.title} Docs`}
-                  />
-                  <div class="flex flex-col justify-between h-full">
-                    <div class="flex flex-col justify-between gap-2 p-8 pb-4 pt-0">
-                      <div class="flex items-center gap-2 text-left text-xl font-semibold text-grey-900 lg:text-2xl">
-                        {category.title}
-                      </div>
-                      <div class="text-sm text-grey-800 lg:text-base">
-                        {category.description}
-                      </div>
+  <div class="flex">
+    <div class="flex flex-wrap items-stretch justify-center gap-8 p-8">
+      {
+        categories.map((category) => {
+          return (
+            category.enabled && (
+              <a
+                class="flex max-w-96 flex-col rounded-2xl border border-grey-300 pb-8 transition-all hover:border-brand-300 hover:shadow-3-strong"
+                href={category.link}
+              >
+                <img
+                  src={category.image.src}
+                  class="w-full"
+                  alt={`${category.title} Docs`}
+                />
+                <div class="flex h-full flex-col justify-between">
+                  <div class="flex flex-col justify-between gap-2 p-8 pb-4 pt-0">
+                    <div class="flex items-center gap-2 text-left text-xl font-semibold text-grey-900 lg:text-2xl">
+                      {category.title}
                     </div>
-                    <p class="flex cursor-pointer items-center gap-2.5 px-8 py-0.5 text-brand-700">
-                      <span class="underline">{category.linkTitle}</span>
-                      <i class="bi bi-arrow-right" />
-                    </p>
+                    <div class="text-sm text-grey-800 lg:text-base">
+                      {category.description}
+                    </div>
                   </div>
-                </a>
-              )
-            );
-          })
-        }
-      </div>
+                  <p class="flex cursor-pointer items-center gap-2.5 px-8 py-0.5 text-brand-700">
+                    <span class="underline">{category.linkTitle}</span>
+                    <i class="bi bi-arrow-right" />
+                  </p>
+                </div>
+              </a>
+            )
+          );
+        })
+      }
     </div>
   </div>
 </section>
