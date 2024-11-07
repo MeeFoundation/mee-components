@@ -44,8 +44,8 @@ const {
     class:list={[
       "fixed left-0 top-0 z-300 flex h-27 w-screen items-center justify-center transition-all duration-300",
       "group-[.type-docs]:border-b group-[.type-docs]:border-grey-200",
-      "group-[.type-default]:bg-header-bg group-[.type-default]:bg-white group-[.type-default]:backdrop-blur-62.5 group-[.type-default]:transition-all group-[.type-default]:duration-300",
-      "group-[.type-docs]:bg-header-bg group-[.type-docs]:bg-white group-[.type-docs]:backdrop-blur-62.5 group-[.type-docs]:transition-all group-[.type-docs]:duration-300",
+      "group-[.type-default]:bg-white group-[.type-default]:bg-header-bg group-[.type-default]:backdrop-blur-62.5 group-[.type-default]:transition-all group-[.type-default]:duration-300",
+      "group-[.type-docs]:bg-white group-[.type-docs]:bg-header-bg group-[.type-docs]:backdrop-blur-62.5 group-[.type-docs]:transition-all group-[.type-docs]:duration-300",
     ]}
     data-type={type}
   >
@@ -53,9 +53,8 @@ const {
       class:list={[
         "header mx-auto flex max-w-7xl items-center justify-between px-5",
         "group-[.type-default]:w-full group-[.type-default]:flex-wrap",
-        "group-[.type-default]:after:bg-header-gradient group-[.type-default]:after:absolute group-[.type-default]:after:bottom-0 group-[.type-default]:after:left-0 group-[.type-default]:after:right-0 group-[.type-default]:after:h-px group-[.type-default]:after:w-full group-[.type-default]:after:content-['']",
         "group-[.type-docs]:w-full group-[.type-docs]:flex-wrap",
-        "group-[.type-dark]:bg-header-bg-dark group-[.type-dark]:gap-10 group-[.type-dark]:rounded-2.5xl group-[.type-dark]:border group-[.type-dark]:border-white/15 group-[.type-dark]:py-2 group-[.type-dark]:shadow-header group-[.type-dark]:backdrop-blur-12.5",
+        "group-[.type-dark]:gap-10 group-[.type-dark]:rounded-2.5xl group-[.type-dark]:border group-[.type-dark]:border-white/15 group-[.type-dark]:bg-header-bg-dark group-[.type-dark]:py-2 group-[.type-dark]:shadow-header group-[.type-dark]:backdrop-blur-12.5",
         className,
       ]}
     >
@@ -75,7 +74,7 @@ const {
         </div>
         {
           location && (
-            <div class="flex text-nowrap whitespace-nowrap rounded-full border border-brand-300 bg-brand-50 px-1.5 py-0.5 text-sm font-semibold text-brand-700 md:hidden">
+            <div class="flex whitespace-nowrap text-nowrap rounded-full border border-brand-300 bg-brand-50 px-1.5 py-0.5 text-sm font-semibold text-brand-700 md:hidden">
               {location}
             </div>
           )
@@ -195,6 +194,10 @@ const {
         />
       </div>
     </div>
+    <div
+      class="group-[.type-default]:absolute group-[.type-default]:bottom-0 group-[.type-default]:left-0 group-[.type-default]:right-0 group-[.type-default]:h-px group-[.type-default]:w-full group-[.type-default]:bg-header-gradient"
+    >
+    </div>
   </header>
   <div class="relative" id="mobile-header">
     <div
@@ -285,7 +288,7 @@ const {
 
 <style>
   .after-border:after {
-    @apply bg-header-gradient absolute bottom-0 left-0 right-0 h-px w-full content-[''];
+    @apply absolute bottom-0 left-0 right-0 h-px w-full bg-header-gradient content-[''];
   }
 </style>
 
