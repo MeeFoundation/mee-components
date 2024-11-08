@@ -145,6 +145,7 @@ const theme = {
         light: "#F9DF89",
         DEFAULT: "#FFDF80",
         dark: "#C5C05C",
+        strong: "#F4B62B",
       },
       green: {
         moss: "#858E4F",
@@ -153,6 +154,7 @@ const theme = {
       brown: {
         spicy: "#8E564F",
       },
+      darky: "rgba(2, 6, 23, 1)",
     },
     boxShadow: {
       ...defaultConfig.theme?.extend?.boxShadow,
@@ -348,8 +350,12 @@ const theme = {
       "auth-gradient": "var(--auth-gradient)",
       "header-gradient":
         "linear-gradient(90deg,rgba(255, 255, 255, 0) 0%, rgb(231, 232, 233) 50%,rgba(255, 255, 255, 0) 100%)",
-      "header-bg": "linear-gradient(180deg,rgba(255, 255, 255, 0.8) 0%,rgba(255, 255, 255, 0.6) 100%)",
-      "header-bg-dark": "linear-gradient(90.44deg,rgba(255, 255, 255, 0.15) 0%,rgba(255, 255, 255, 0.05) 99.88%)",
+      "header-bg":
+        "linear-gradient(180deg,rgba(255, 255, 255, 0.8) 0%,rgba(255, 255, 255, 0.6) 100%)",
+      "header-bg-dark":
+        "linear-gradient(90.44deg,rgba(255, 255, 255, 0.15) 0%,rgba(255, 255, 255, 0.05) 99.88%)",
+      "gradient-darky":
+        "linear-gradient(180deg, rgba(2, 6, 23, 0.8) 0%, rgba(2, 6, 23, 0.6) 100%)",
     },
     backdropBlur: {
       12.5: "3.125rem",

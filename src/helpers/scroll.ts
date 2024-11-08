@@ -384,6 +384,7 @@ const initScroll = () => {
       "overflow-auto",
       "w-full",
       "h-full",
+      "dark:bg-darky",
     );
 
     while (scrollWrap.firstChild) {

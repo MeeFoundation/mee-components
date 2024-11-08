@@ -2,6 +2,8 @@
 import Logo from "./MeeLogo.astro";
 import ButtonLink from "./ButtonLink.astro";
 import IconButton from "./IconButton.astro";
+import ThemeSelect from "./ThemeSelect.astro";
+
 export interface Props {
   className?: string;
   type?: "default" | "docs" | "dark";
@@ -44,7 +46,7 @@ const {
     class:list={[
       "fixed left-0 top-0 z-300 flex h-27 w-screen items-center justify-center transition-all duration-300",
       "group-[.type-docs]:border-b group-[.type-docs]:border-grey-200",
-      "group-[.type-default]:bg-white group-[.type-default]:bg-header-bg group-[.type-default]:backdrop-blur-62.5 group-[.type-default]:transition-all group-[.type-default]:duration-300",
+      "dark:group-[.type-default]:bg-darky dark:group-[.type-default]:bg-gradient-darky group-[.type-default]:bg-white group-[.type-default]:bg-header-bg group-[.type-default]:backdrop-blur-62.5 group-[.type-default]:transition-all group-[.type-default]:duration-300",
       "group-[.type-docs]:bg-white group-[.type-docs]:bg-header-bg group-[.type-docs]:backdrop-blur-62.5 group-[.type-docs]:transition-all group-[.type-docs]:duration-300",
     ]}
     data-type={type}
@@ -117,6 +119,9 @@ const {
           "hidden items-end justify-end gap-3 group-[.type-default]:w-1/3 group-[.type-docs]:w-1/3 md:flex",
         ]}
       >
+        <div class="self-center">
+          <ThemeSelect />
+        </div>
         {
           header.rightLinks.map((link) => (
             <ButtonLink
@@ -183,6 +188,7 @@ const {
               />
             ))
         }
+        <ThemeSelect />
 
         <IconButton
           icon="list"
@@ -201,7 +207,7 @@ const {
   </header>
   <div class="relative" id="mobile-header">
     <div
-      class="fixed right-0 top-0 z-300 h-screen w-0 overflow-hidden bg-white transition-all duration-400 md:hidden"
+      class="dark:bg-darky fixed right-0 top-0 z-300 h-screen w-0 overflow-hidden bg-white transition-all duration-400 md:hidden"
       id="menu"
     >
       <div
