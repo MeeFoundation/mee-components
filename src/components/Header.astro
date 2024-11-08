@@ -91,7 +91,7 @@ const {
           header.links.map((link) => (
             <li
               class:list={[
-                "text-base font-semibold text-brand-950",
+                "text-base font-semibold text-brand-950 dark:text-white/90",
                 "group-[.type-dark]:!text-white/90",
               ]}
             >
@@ -104,7 +104,7 @@ const {
                   "group-[.type-docs]:hover:bg-primary group-[.type-docs]:hover:text-white",
                   "group-[.type-dark]:hover:text-white group-[.type-dark]:hover:underline",
                   activePage === link.id &&
-                    "group-[.type-default]:bg-primary group-[.type-docs]:bg-primary group-[.type-default]:text-white group-[.type-docs]:text-white",
+                    "dark:group-[.type-default]:bg-darkprimary group-[.type-default]:bg-primary group-[.type-docs]:bg-primary group-[.type-default]:text-white group-[.type-docs]:text-white dark:group-[.type-default]:text-black",
                   activePage === link.id && "group-[.type-dark]:text-white",
                 ]}
               >
@@ -195,13 +195,13 @@ const {
           buttonType="tertiary"
           style="transparent"
           size="m"
-          className="border-none group-[.type-dark]:!text-white"
+          className="border-none group-[.type-dark]:!text-white dark:!text-white"
           id="open-menu"
         />
       </div>
     </div>
     <div
-      class="group-[.type-default]:absolute group-[.type-default]:bottom-0 group-[.type-default]:left-0 group-[.type-default]:right-0 group-[.type-default]:h-px group-[.type-default]:w-full group-[.type-default]:bg-header-gradient"
+      class="group-[.type-default]:absolute group-[.type-default]:bottom-0 group-[.type-default]:left-0 group-[.type-default]:right-0 group-[.type-default]:h-px group-[.type-default]:w-full group-[.type-default]:bg-header-gradient dark:group-[.type-default]:border-b dark:group-[.type-default]:border-white/10"
     >
     </div>
   </header>
@@ -211,7 +211,7 @@ const {
       id="menu"
     >
       <div
-        class="flex h-screen w-full flex-col justify-between py-9 text-brand-950"
+        class="flex h-screen w-full flex-col justify-between py-9 text-brand-950 dark:text-white/90"
       >
         <div
           class:list={[
@@ -226,7 +226,7 @@ const {
             size="s"
             buttonType="tertiary"
             style="transparent"
-            className="border-none"
+            className="border-none dark:!text-white"
             id="close-menu"
           />
         </div>
@@ -239,7 +239,8 @@ const {
                   target={link.target}
                   class:list={[
                     "rounded-2xl px-4 py-1.5",
-                    type !== "dark" && "hover:bg-primary hover:text-white",
+                    type !== "dark" &&
+                      "hover:bg-primary hover:text-white dark:text-white",
                     type === "dark" && "hover:text-white hover:underline",
                     type !== "dark" &&
                       activePage === link.id &&
@@ -274,7 +275,7 @@ const {
           </ul>
           <div class="after-border relative h-1"></div>
           <ul
-            class="flex flex-row justify-center gap-7 text-center text-grey-700"
+            class="flex flex-row justify-center gap-7 text-center text-grey-700 dark:text-white/90"
           >
             {
               header.footerLinks.map((link) => (

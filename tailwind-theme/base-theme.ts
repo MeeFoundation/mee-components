@@ -120,6 +120,7 @@ const theme = {
       transparent: "transparent",
       black02: "#00000020",
       primary: "rgb(var(--color-brand-500) / <alpha-value>)",
+      darkprimary: "rgb(var(--color-brand-300) / <alpha-value>)",
       black: {
         DEFAULT: "#000",
       },
@@ -155,6 +156,7 @@ const theme = {
         spicy: "#8E564F",
       },
       darky: "rgba(2, 6, 23, 1)",
+      body: "var(--color-body)",
     },
     boxShadow: {
       ...defaultConfig.theme?.extend?.boxShadow,

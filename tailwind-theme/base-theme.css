@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+    --color-body: 0 0 0;
     --color-brand-50: 243 248 248; /*rgb(243 248 248)*/
     --color-brand-100: 223 236 238; /*rgb(223 236 238)*/
     --color-brand-200: 195 220 222; /*rgb(195 220 222)*/
@@ -302,6 +303,7 @@
     height: 100%;
     font-size: 16px;
     background-color: white;
+    color: rgb(var(--color-body));
   }
 
   body {
@@ -345,4 +347,8 @@
   .scrollbar-none::-webkit-scrollbar {
     display: none;
   }
+}
+
+[data-theme="dark"]:root {
+  --color-body: 255 255 255;
 }

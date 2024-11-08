@@ -106,7 +106,7 @@ export const footer = {
     >
       <Header
         header={header}
-        activePage="faq"
+        activePage="projects"
         location="Private advertision"
       />
       <section
@@ -117,7 +117,7 @@ export const footer = {
         >
           <div class="overflow-hidden">
             <h1
-              class="marker animate-riseIn text-center text-4xl font-semibold text-gray-900 lg:text-5xl"
+              class="marker animate-riseIn text-center text-4xl font-semibold text-gray-900 lg:text-5xl dark:text-white/90"
             >
               Frequently asked questions
             </h1>
@@ -369,6 +369,6 @@ export const footer = {
     main?.classList.remove("bg-purple-950");
     header?.parentElement?.classList.remove("type-dark");
     header?.parentElement?.classList.add("type-default");
-    header?.setAttribute("data-type", "default"); 
+    header?.setAttribute("data-type", "default");
   });
 </script>
