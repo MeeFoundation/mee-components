@@ -30,9 +30,9 @@ const {
     "z-10 box-border flex flex-none grow-0 flex-row items-center justify-center gap-2 rounded-md border border-solid font-semibold",
     `${buttonType}-${style}`,
     "disabled:cursor-default disabled:opacity-60",
-    size === "l" && "size-11",
-    size === "m" && "size-9",
-    size === "s" && "size-7.5",
+    size === "l" && "size-11 text-4xl",
+    size === "m" && "size-9 text-3xl",
+    size === "s" && "size-7.5 text-2xl",
     className,
   ]}
 >
@@ -40,9 +40,6 @@ const {
     class:list={[
       "bi font-thin",
       "bi-" + icon,
-      size === "l" && "text-4xl",
-      size === "m" && "text-3xl",
-      size === "s" && "text-2xl",
     ]}></i>
 </button>
 
