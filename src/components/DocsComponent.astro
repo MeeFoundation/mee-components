@@ -61,12 +61,12 @@ const categories = [
   title && (
     <section class="section z-100 flex h-full w-screen items-center justify-center">
       <div class="flex max-w-192 flex-col items-center justify-center gap-2 px-6 transition-opacity duration-500 md:p-0">
-        <h1 class="marker text-center text-4xl font-semibold text-gray-900 lg:text-7xl lg:tracking-0.02">
+        <h1 class="marker text-center text-4xl font-semibold text-gray-900 lg:text-7xl lg:tracking-0.02 dark:text-gray-50">
           {title}
         </h1>
         {subtitle && (
           <section class="overflow-hidden">
-            <h3 class="text animation-delay-800 px-6 text-center text-xl leading-relaxed text-gray-900 md:text-2xl">
+            <h3 class="text animation-delay-800 px-6 text-center text-xl leading-relaxed text-gray-900 md:text-2xl dark:text-gray-50">
               Everything you need to build a stellar documentation website.
               Fast, accessible, and easy-to-use.
             </h3>
@@ -78,7 +78,7 @@ const categories = [
 }
 
 <section
-  class="flex h-auto max-w-7xl flex-col items-center justify-center bg-white"
+  class="flex h-auto max-w-7xl flex-col items-center justify-center bg-white dark:bg-darky"
 >
   <div class="flex">
     <div class="flex flex-wrap items-stretch justify-center gap-8 p-8">
@@ -97,14 +97,14 @@ const categories = [
                 />
                 <div class="flex h-full flex-col justify-between">
                   <div class="flex flex-col justify-between gap-2 p-8 pb-4 pt-0">
-                    <div class="flex items-center gap-2 text-left text-xl font-semibold text-grey-900 lg:text-2xl">
+                    <div class="flex items-center gap-2 text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-gray-50">
                       {category.title}
                     </div>
-                    <div class="text-sm text-grey-800 lg:text-base">
+                    <div class="text-sm text-grey-800 lg:text-base dark:text-gray-200">
                       {category.description}
                     </div>
                   </div>
-                  <p class="flex cursor-pointer items-center gap-2.5 px-8 py-0.5 text-brand-700">
+                  <p class="flex cursor-pointer items-center gap-2.5 px-8 py-0.5 text-brand-700 dark:text-brand-300">
                     <span class="underline">{category.linkTitle}</span>
                     <i class="bi bi-arrow-right" />
                   </p>

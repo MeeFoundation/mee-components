@@ -4,6 +4,7 @@
 
 @layer base {
   :root {
+    --color-darky: 2, 6, 23;
     --color-body: 0 0 0;
     --color-brand-50: 243 248 248; /*rgb(243 248 248)*/
     --color-brand-100: 223 236 238; /*rgb(223 236 238)*/
@@ -304,6 +305,10 @@
     font-size: 16px;
     background-color: white;
     color: rgb(var(--color-body));
+  }
+
+  html.dark {
+    background-color: rgb(var(--color-darky));
   }
 
   body {

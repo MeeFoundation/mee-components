@@ -155,7 +155,7 @@ const theme = {
       brown: {
         spicy: "#8E564F",
       },
-      darky: "rgba(2, 6, 23, 1)",
+      darky: "var(--color-darky)",
       body: "var(--color-body)",
     },
     boxShadow: {
