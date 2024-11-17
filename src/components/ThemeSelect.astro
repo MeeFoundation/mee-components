@@ -8,7 +8,7 @@ import Icon from "./Icon.astro";
 >
   <Icon
     id="icon-sun"
-    className="text-yellow-strong hidden"
+    className="hidden text-yellow-strong"
     size="xs"
     name="sun-fill"
   />
@@ -42,11 +42,11 @@ import Icon from "./Icon.astro";
     if (newTheme === "dark") {
       iconsSun.forEach((icon) => icon.classList.add("hidden"));
       iconsMoon.forEach((icon) => icon.classList.remove("hidden"));
-      document.documentElement.className = "dark";
+      document.documentElement.classList.add("dark");
     } else {
       iconsSun.forEach((icon) => icon.classList.remove("hidden"));
       iconsMoon.forEach((icon) => icon.classList.add("hidden"));
-      document.documentElement.className = "";
+      document.documentElement.classList.remove("dark");
     }
   };
 
