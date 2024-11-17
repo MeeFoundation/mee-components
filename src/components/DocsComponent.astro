@@ -2,13 +2,18 @@
 import usersImage from "./images/docs/users.png";
 import providersImage from "./images/docs/providers.png";
 import developersImage from "./images/docs/developers.png";
+import usersDarkImage from "./images/docs/users-dark.png";
+import providersDarkImage from "./images/docs/providers-dark.png";
+import developersDarkImage from "./images/docs/developers-dark.png";
+
 interface DataItem {
   enabled?: boolean;
   link?: string;
   title?: string;
   description?: string;
   linkTitle?: string;
-  image?: ImageMetadata;
+  imageLight?: ImageMetadata;
+  imageDark?: ImageMetadata;
 }
 
 interface Props {
@@ -25,7 +30,9 @@ const { data, title, subtitle } = Astro.props;
 
 const categories = [
   {
-    image: data.users.image ?? usersImage,
+    imageLight: data.users.imageLight ?? usersImage,
+    imageDark: data.users.imageDark ?? usersDarkImage,
+
     title: data.users.title ?? "Users",
     description:
       data.users.description ??
@@ -35,7 +42,9 @@ const categories = [
     enabled: data.users.enabled,
   },
   {
-    image: data.publishers?.image ?? providersImage,
+    imageLight: data.publishers?.imageLight ?? providersImage,
+    imageDark: data.publishers?.imageDark ?? providersDarkImage,
+
     title: data.publishers?.title ?? "Publishers",
     description:
       data.publishers?.description ??
@@ -45,7 +54,9 @@ const categories = [
     enabled: data.publishers?.enabled,
   },
   {
-    image: data.developers.image ?? developersImage,
+    imageLight: data.developers?.imageLight ?? developersImage,
+    imageDark: data.developers?.imageDark ?? developersDarkImage,
+
     title: data.developers.title ?? "Developers",
     description:
       data.developers.description ??
@@ -87,14 +98,20 @@ const categories = [
           return (
             category.enabled && (
               <a
-                class="flex max-w-96 flex-col rounded-2xl border border-grey-300 pb-8 transition-all hover:border-brand-300 hover:shadow-3-strong"
+                class="dark:hover:bg-dark-hover-gradient flex max-w-96 flex-col rounded-2xl border border-grey-300 pb-8 transition-all hover:border-brand-300 hover:shadow-3-strong dark:border-gray-600"
                 href={category.link}
               >
                 <img
-                  src={category.image.src}
-                  class="w-full"
+                  src={category.imageLight.src}
+                  class="w-full dark:hidden"
                   alt={`${category.title} Docs`}
                 />
+                <img
+                  src={category.imageDark.src}
+                  class="hidden w-full dark:block"
+                  alt={`${category.title} Docs`}
+                />
+
                 <div class="flex h-full flex-col justify-between">
                   <div class="flex flex-col justify-between gap-2 p-8 pb-4 pt-0">
                     <div class="flex items-center gap-2 text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-gray-50">

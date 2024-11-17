@@ -358,6 +358,8 @@ const theme = {
         "linear-gradient(90.44deg,rgba(255, 255, 255, 0.15) 0%,rgba(255, 255, 255, 0.05) 99.88%)",
       "gradient-darky":
         "linear-gradient(180deg, rgba(2, 6, 23, 0.8) 0%, rgba(2, 6, 23, 0.6) 100%)",
+      "dark-hover-gradient":
+        "linear-gradient(rgba(79, 134, 142, 0.5), rgba(67, 110, 119, 0.2))",
     },
     backdropBlur: {
       12.5: "3.125rem",

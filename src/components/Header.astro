@@ -46,8 +46,10 @@ const {
     class:list={[
       "fixed left-0 top-0 z-300 flex h-27 w-screen items-center justify-center transition-all duration-300",
       "group-[.type-docs]:border-b group-[.type-docs]:border-grey-200",
-      "dark:group-[.type-default]:bg-darky dark:group-[.type-default]:bg-gradient-darky group-[.type-default]:bg-white group-[.type-default]:bg-header-bg group-[.type-default]:backdrop-blur-62.5 group-[.type-default]:transition-all group-[.type-default]:duration-300",
+      "group-[.type-default]:bg-white group-[.type-default]:bg-header-bg group-[.type-default]:backdrop-blur-62.5 group-[.type-default]:transition-all group-[.type-default]:duration-300",
       "group-[.type-docs]:bg-white group-[.type-docs]:bg-header-bg group-[.type-docs]:backdrop-blur-62.5 group-[.type-docs]:transition-all group-[.type-docs]:duration-300",
+      "dark:group-[.type-default]:bg-darky dark:group-[.type-default]:bg-gradient-darky",
+      "dark:group-[.type-docs]:border-b dark:group-[.type-docs]:border-white/10 dark:group-[.type-docs]:bg-darky dark:group-[.type-docs]:bg-gradient-darky",
     ]}
     data-type={type}
   >
@@ -104,7 +106,7 @@ const {
                   "group-[.type-docs]:hover:bg-primary group-[.type-docs]:hover:text-white",
                   "group-[.type-dark]:hover:text-white group-[.type-dark]:hover:underline",
                   activePage === link.id &&
-                    "dark:group-[.type-default]:bg-darkprimary group-[.type-default]:bg-primary group-[.type-docs]:bg-primary group-[.type-default]:text-white group-[.type-docs]:text-white dark:group-[.type-default]:text-black",
+                    "group-[.type-default]:bg-primary group-[.type-docs]:bg-primary group-[.type-default]:text-white group-[.type-docs]:text-white dark:group-[.type-default]:bg-darkprimary dark:group-[.type-default]:text-black",
                   activePage === link.id && "group-[.type-dark]:text-white",
                 ]}
               >
@@ -201,13 +203,16 @@ const {
       </div>
     </div>
     <div
-      class="group-[.type-default]:absolute group-[.type-default]:bottom-0 group-[.type-default]:left-0 group-[.type-default]:right-0 group-[.type-default]:h-px group-[.type-default]:w-full group-[.type-default]:bg-header-gradient dark:group-[.type-default]:border-b dark:group-[.type-default]:border-white/10"
+      class:list={[
+        "group-[.type-default]:absolute group-[.type-default]:bottom-0 group-[.type-default]:left-0 group-[.type-default]:right-0 group-[.type-default]:h-px group-[.type-default]:w-full group-[.type-default]:bg-header-gradient",
+        "dark:group-[.type-default]:border-b dark:group-[.type-default]:border-white/10",
+      ]}
     >
     </div>
   </header>
   <div class="relative" id="mobile-header">
     <div
-      class="dark:bg-darky fixed right-0 top-0 z-300 h-screen w-0 overflow-hidden bg-white transition-all duration-400 md:hidden"
+      class="fixed right-0 top-0 z-300 h-screen w-0 overflow-hidden bg-white transition-all duration-400 md:hidden dark:bg-darky"
       id="menu"
     >
       <div
