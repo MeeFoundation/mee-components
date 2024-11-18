@@ -355,5 +355,23 @@
 }
 
 [data-theme="dark"]:root {
-  --color-body: 255 255 255;
+  --color-body: rgba(255, 255, 255, 0.9);
+  --sl-color-hairline-shade: rgb(255 255 255 / 0.1);
+  --sl-color-white: rgba(255, 255, 255, 0.9);
+}
+
+.dark starlight-toc a {
+  color: var(--color-body) !important;
+}
+
+.dark starlight-toc a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark starlight-toc li {
+  color: var(--color-body);
+}
+
+.dark .sl-markdown-content {
+  color: var(--color-body);
 }
