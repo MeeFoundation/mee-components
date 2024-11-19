@@ -1,0 +1,143 @@
+---
+import privateAdvertising from "./images/projects/private-advertising.svg";
+import smartwalletProduct from "./images/projects/smartwallet.svg";
+import virtualAgentProduct from "./images/projects/virtual-agent.svg";
+import providerWalletProduct from "./images/projects/provider-wallet.svg";
+import meeBrowserProduct from "./images/projects/mee-browser.svg";
+import ButtonLink from "./ButtonLink.astro";
+import MeeLogoSquare from "./MeeLogoSquare.astro";
+export const discord = "https://discord.gg/PB8qxrQXup";
+const projects = [
+  {
+    image: smartwalletProduct,
+    title: "Smartwallet",
+    description:
+      "Local Identity Agent that acts as a digital wallet as well as a “remote control” for the user’s personal data.",
+    linkTitle: "Learn more",
+    link: "https://smartwallet.mee.foundation",
+    imageClass: "smartwallet",
+  },
+  {
+    image: privateAdvertising,
+    title: "Private Advertising",
+    description:
+      "Enable internet advertising that is tailored to the user’s interests while eliminating the surveillance.",
+    linkTitle: "Learn more",
+    link: "https://private-advertising.mee.foundation",
+  },
+  {
+    image: virtualAgentProduct,
+    title: "Mee Data Network",
+    description:
+      "Control your personal data held by digital service providers using  “virtual” Mee Identity Agent.",
+    linkTitle: "Learn more",
+    link: "https://mdn.mee.foundation",
+  },
+  {
+    image: meeBrowserProduct,
+    title: "Mee Browser",
+    description:
+      "Interact with websites without having to sign in/up, fill in forms, or provide any personally identifying information.",
+    comingSoon: true,
+    linkTitle: "Learn more",
+    link: "https://browser.mee.foundation",
+  },
+
+  {
+    image: providerWalletProduct,
+    imageMobi: providerWalletProduct,
+    title: "Agent Service",
+    description:
+      "Internet protocols and an SDK for digital service providers’ apps/sites that will allow the user to control their own personal data.",
+    comingSoon: false,
+    linkTitle: "Learn more",
+    link: "https://mdn.mee.foundation/docs/",
+  },
+];
+---
+
+<div
+  class="flex h-auto w-screen items-center justify-center text-left text-base"
+>
+  <div class="">
+    <div
+      class="flex w-full flex-col items-center justify-center rounded-2xl border border-grey-300 bg-white font-normal text-grey-950"
+    >
+      <div class="p-8">
+        <div class="flex items-center justify-center gap-4">
+          {
+            projects.map((project) =>
+              project.comingSoon ? (
+                <div class="rounded-2xl border border-grey-300 lg:flex">
+                  <div class="relative w-full">
+                    <img src={project.image.src} class="h-full w-full" />
+                    <div class="absolute left-2 top-2 flex w-58 flex-col gap-1 p-2">
+                      <div class="flex w-full items-center gap-4 text-center text-base font-semibold text-grey-900">
+                        {project.title}
+                        <span class="rounded-md border border-grey-200 bg-grey-50 px-2 py-0.5 text-xxs">
+                          Coming soon
+                        </span>
+                      </div>
+                      <div class="w-full text-balance text-sm leading-4 text-grey-700">
+                        {project.description}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ) : (
+                <a
+                  class="rounded-2xl border border-grey-300 lg:flex"
+                  href={project.link}
+                >
+                  <div class="relative w-full">
+                    <img src={project.image.src} class="h-full w-full" />
+                    <div class="absolute left-0 top-0 flex flex-col gap-1 p-4">
+                      <div class="flex w-full items-center gap-1 text-center text-base font-semibold text-grey-900">
+                        {project.title}
+                      </div>
+                      <div class="w-full text-balance text-sm leading-4 text-grey-700">
+                        {project.description}
+                      </div>
+                    </div>
+                    <div class="absolute left-4 top-33 flex items-center gap-2.5 text-xs text-brand-700">
+                      <span class="underline">{project.linkTitle}</span>
+                      <i class="bi bi-arrow-right" />
+                    </div>
+                  </div>
+                </a>
+              )
+            )
+          }
+        </div>
+      </div>
+      <div
+        class="flex w-full items-center justify-between rounded-b-2xl border-t border-grey-300 bg-gray-50 p-8"
+      >
+        <div class="flex gap-4">
+          <MeeLogoSquare />
+          <div class="flex flex-col items-start">
+            <div class="text-base font-semibold">Mee community</div>
+            <div class="text-base font-normal">
+              The place where we meet to discuss the <span class="line-through"
+                >world’s</span
+              > internet’s problems.
+            </div>
+          </div>
+        </div>
+
+        <ButtonLink
+          leftIcon="discord text-lg"
+          buttonType="tertiary"
+          buttonType="tertiary"
+          style="outlined"
+          size="l"
+          href={discord}
+          target="_blank"
+          className="group-[.type-dark]:hidden"
+        >
+          Join community
+        </ButtonLink>
+      </div>
+    </div>
+  </div>
+</div>
