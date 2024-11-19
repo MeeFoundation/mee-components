@@ -7,50 +7,49 @@ import meeBrowserProduct from "./images/projects/mee-browser.svg";
 import ButtonLink from "./ButtonLink.astro";
 import MeeLogoSquare from "./MeeLogoSquare.astro";
 export const discord = "https://discord.gg/PB8qxrQXup";
+
 const projects = [
   {
     image: smartwalletProduct,
     title: "Smartwallet",
     description:
-      "Local Identity Agent that acts as a digital wallet as well as a “remote control” for the user’s personal data.",
-    linkTitle: "Learn more",
+      "Local identity agent app that combines a digital wallet with a “remote control” for your personal data.",
+    linkTitle: "Discover the smartwallet",
     link: "https://smartwallet.mee.foundation",
-    imageClass: "smartwallet",
   },
   {
     image: privateAdvertising,
     title: "Private Advertising",
     description:
-      "Enable internet advertising that is tailored to the user’s interests while eliminating the surveillance.",
+      "Enabling internet advertising that is tailored to your interests without relying on cookies, tracking and surveillance.",
     linkTitle: "Learn more",
     link: "https://private-advertising.mee.foundation",
   },
   {
+    image: meeBrowserProduct,
+    title: "Mee Browser",
+    comingSoon: true,
+    description:
+      "A browser for both traditional websites as well as meesites where you don't have to create accounts, login, or provide any personally identifying information.",
+    linkTitle: "Learn more",
+    link: "https://browser.mee.foundation",
+  },
+  {
     image: virtualAgentProduct,
     title: "Mee Data Network",
+    // description:
+    //   'A data network of compatible apps/sites where the information held by them is controlled by your identity agent. This agent can be either local (Mee Smartwallet app) or virtual (web-based identity agent [soon at itsmee.org]) hosted by the Foundation.',
     description:
       "Control your personal data held by digital service providers using  “virtual” Mee Identity Agent.",
     linkTitle: "Learn more",
     link: "https://mdn.mee.foundation",
   },
   {
-    image: meeBrowserProduct,
-    title: "Mee Browser",
-    description:
-      "Interact with websites without having to sign in/up, fill in forms, or provide any personally identifying information.",
-    comingSoon: true,
-    linkTitle: "Learn more",
-    link: "https://browser.mee.foundation",
-  },
-
-  {
     image: providerWalletProduct,
-    imageMobi: providerWalletProduct,
     title: "Agent Service",
     description:
-      "Internet protocols and an SDK for digital service providers’ apps/sites that will allow the user to control their own personal data.",
-    comingSoon: false,
-    linkTitle: "Learn more",
+      "A web service that websites can integrate to interoperate over the Mee Data Network with Mee-compatible sites and identity agents",
+    linkTitle: "View docs",
     link: "https://mdn.mee.foundation/docs/",
   },
 ];
@@ -68,9 +67,12 @@ const projects = [
           {
             projects.map((project) =>
               project.comingSoon ? (
-                <div class="rounded-2xl border border-grey-300 lg:flex">
+                <div class="rounded-2xl border border-grey-300 lg:flex cursor-default">
                   <div class="relative w-full">
-                    <img src={project.image.src} class="h-full w-full" />
+                    <img
+                      src={project.image.src}
+                      class="h-full w-full rounded-2xl"
+                    />
                     <div class="absolute left-2 top-2 flex w-58 flex-col gap-1 p-2">
                       <div class="flex w-full items-center gap-4 text-center text-base font-semibold text-grey-900">
                         {project.title}
@@ -86,11 +88,14 @@ const projects = [
                 </div>
               ) : (
                 <a
-                  class="rounded-2xl border border-grey-300 lg:flex"
+                  class="rounded-2xl border border-grey-300 lg:flex hover:shadow-3-strong"
                   href={project.link}
                 >
                   <div class="relative w-full">
-                    <img src={project.image.src} class="h-full w-full" />
+                    <img
+                      src={project.image.src}
+                      class="h-full w-full rounded-2xl"
+                    />
                     <div class="absolute left-0 top-0 flex flex-col gap-1 p-4">
                       <div class="flex w-full items-center gap-1 text-center text-base font-semibold text-grey-900">
                         {project.title}
