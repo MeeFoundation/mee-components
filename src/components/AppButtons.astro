@@ -1,0 +1,81 @@
+---
+import downloadAndroid from "./images/download-android-btn.svg";
+import downloadApple from "./images/download-apple-btn.svg";
+export interface Props {
+  class?: string;
+  btnSize?: "normal" | "big" | "medium";
+  noDescription?: boolean;
+}
+
+const {
+  class: className,
+  btnSize = "normal",
+  noDescription = false,
+} = Astro.props;
+---
+
+<section
+  id="app-buttons"
+  class:list={[
+    "flex w-screen flex-col items-center justify-center px-5 md:max-w-140",
+    className,
+    ,
+    { "gap-16": btnSize === "big" },
+    { "gap-12": btnSize === "medium" },
+    { "gap-6": btnSize === "normal" },
+  ]}
+>
+  {
+    !noDescription && (
+      <h6 class="text-center text-2xl font-bold leading-normal">
+        Download the free Mee app and control what businesses can do with your
+        data
+      </h6>
+    )
+  }
+  <div
+    class:list={[
+      "flex flex-row flex-wrap items-center justify-center",
+      { "gap-16": btnSize === "big" },
+      { "gap-12": btnSize === "medium" },
+      { "gap-6": btnSize === "normal" },
+    ]}
+  >
+    <a
+      class="transition-transform duration-400 ease-out"
+      href="https://apps.apple.com/us/app/mee-identity-agent/id1673110845?itsct=apps_box_badge&itscg=30200"
+      target="_blank"
+      rel="nofollow"
+    >
+      <img
+        src={downloadAndroid.src}
+        class:list={[
+          "max-w-71",
+          { "h-21": btnSize === "big" },
+          { "h-16": btnSize === "medium" },
+          { "h-10.5": btnSize === "normal" },
+        ]}
+        alt="Link to Mee application on AppStore"
+      />
+    </a>
+    <a
+      class="transition-transform duration-400 ease-out"
+      href="https://play.google.com/store/apps/details?id=foundation.mee.android_client"
+      target="_blank"
+      rel="nofollow"
+    >
+      <img
+        src={downloadApple.src}
+        class:list={[
+          "max-w-71",
+          { "h-21": btnSize === "big" },
+          { "h-16": btnSize === "medium" },
+          { "h-10.5": btnSize === "normal" },
+        ]}
+        alt="Link to Mee application on Google Play"
+      />
+    </a>
+  </div>
+</section>
+
+<style></style>
