@@ -127,6 +127,13 @@
 
     --color-scrollbar: rgba(2, 6, 23, 0.35);
     --color-modal-overlay: rgba(2, 6, 23, 0.35);
+
+    --footer-gradient: linear-gradient(
+        258.14deg,
+        #4f868e 22.66%,
+        #3b5b63 71.18%
+      )
+      left bottom no-repeat;
   }
 
   input:where(:not([type])):focus,
@@ -358,6 +365,9 @@
   --color-body: rgba(255, 255, 255, 0.9);
   --sl-color-hairline-shade: rgb(255 255 255 / 0.1);
   --sl-color-white: rgba(255, 255, 255, 0.9);
+
+  --footer-gradient: linear-gradient(258deg, #4f868e 22.66%, #9ac2c6 71.18%)
+    left bottom no-repeat;
 }
 
 .dark starlight-toc a {
