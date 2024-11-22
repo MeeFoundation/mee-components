@@ -12,102 +12,88 @@ const projects = [
   {
     image: smartwalletProduct,
     title: "Smartwallet",
-    description:
-      "Local identity agent app that combines a digital wallet with a “remote control” for your personal data.",
-    linkTitle: "Discover the smartwallet",
     link: "https://smartwallet.mee.foundation",
   },
   {
     image: privateAdvertising,
     title: "Private Advertising",
-    description:
-      "Enabling internet advertising that is tailored to your interests without relying on cookies, tracking and surveillance.",
-    linkTitle: "Learn more",
     link: "https://private-advertising.mee.foundation",
   },
   {
     image: meeBrowserProduct,
     title: "Mee Browser",
     comingSoon: true,
-    description:
-      "A browser for both traditional websites as well as meesites where you don't have to create accounts, login, or provide any personally identifying information.",
-    linkTitle: "Learn more",
     link: "https://browser.mee.foundation",
   },
   {
     image: virtualAgentProduct,
     title: "Mee Data Network",
-    // description:
-    //   'A data network of compatible apps/sites where the information held by them is controlled by your identity agent. This agent can be either local (Mee Smartwallet app) or virtual (web-based identity agent [soon at itsmee.org]) hosted by the Foundation.',
-    description:
-      "Control your personal data held by digital service providers using  “virtual” Mee Identity Agent.",
-    linkTitle: "Learn more",
     link: "https://mdn.mee.foundation",
   },
   {
     image: providerWalletProduct,
     title: "Agent Service",
-    description:
-      "A web service that websites can integrate to interoperate over the Mee Data Network with Mee-compatible sites and identity agents",
-    linkTitle: "View docs",
     link: "https://mdn.mee.foundation/docs/",
   },
 ];
 ---
 
 <div
-  class="flex h-auto w-screen items-center justify-center text-left text-base"
+  id="projects-dropdown"
+  class:list={[
+    "top-18 fixed left-0 z-300 hidden origin-top scale-y-0 pt-12 opacity-0 transition-all duration-300 lg:block",
+    "group-[.type-default]:group-hover/projects:scale-y-100 group-[.type-default]:group-hover/projects:opacity-100",
+    "group-[.type-docs]:group-hover/projects:scale-y-100 group-[.type-docs]:group-hover/projects:opacity-100",
+    // "group-[.type-docs]:group-[.projects]:group-hover:scale-y-100 group-[.type-docs]:group-[.projects]:group-hover:opacity-100",
+    "group-hover/projects:scale-y-100 group-hover/projects:opacity-100",
+  ]}
 >
-  <div class="">
+  <div
+    class="flex h-auto w-screen items-center justify-center text-left text-base"
+  >
     <div
-      class="flex w-full flex-col items-center justify-center rounded-2xl border border-grey-300 bg-white font-normal text-grey-950"
+      class:list={[
+        "mx-4 flex w-full flex-col items-center justify-center rounded-2xl border border-grey-300 bg-white test font-normal text-grey-950  transition-all delay-300 duration-0 lg:max-w-5xl xl:max-w-fit",
+        // "group-hover/projects:bg-transparent group-hover/projects:bg-header-bg",
+      ]}
     >
       <div class="p-8">
-        <div class="flex items-center justify-center gap-4">
+        <div class="flex flex-wrap items-stretch justify-center gap-4">
           {
             projects.map((project) =>
               project.comingSoon ? (
-                <div class="rounded-2xl border border-grey-300 lg:flex cursor-default">
-                  <div class="relative w-full">
-                    <img
-                      src={project.image.src}
-                      class="h-full w-full rounded-2xl"
-                    />
-                    <div class="absolute left-2 top-2 flex w-58 flex-col gap-1 p-2">
-                      <div class="flex w-full items-center gap-4 text-center text-base font-semibold text-grey-900">
+                <div class="flex cursor-default rounded-2xl border border-grey-300">
+                  <div class="relative flex w-full flex-col">
+                    <div class="absolute left-4 top-4 flex flex-col gap-1">
+                      <div class="flex w-full flex-wrap items-center gap-2 text-center text-base font-semibold text-grey-900">
                         {project.title}
                         <span class="rounded-md border border-grey-200 bg-grey-50 px-2 py-0.5 text-xxs">
                           Coming soon
                         </span>
                       </div>
-                      <div class="w-full text-balance text-sm leading-4 text-grey-700">
-                        {project.description}
-                      </div>
                     </div>
-                  </div>
-                </div>
-              ) : (
-                <a
-                  class="rounded-2xl border border-grey-300 lg:flex hover:shadow-3-strong"
-                  href={project.link}
-                >
-                  <div class="relative w-full">
+
                     <img
                       src={project.image.src}
                       class="h-full w-full rounded-2xl"
                     />
-                    <div class="absolute left-0 top-0 flex flex-col gap-1 p-4">
-                      <div class="flex w-full items-center gap-1 text-center text-base font-semibold text-grey-900">
+                  </div>
+                </div>
+              ) : (
+                <a
+                  class="flex rounded-2xl border border-grey-300 hover:shadow-3-strong transform-cpu transition-all"
+                  href={project.link}
+                >
+                  <div class="relative flex w-full flex-col justify-between">
+                    <div class="relative flex flex-col">
+                      <div class="absolute left-4 top-4 flex w-full items-center gap-1 text-center text-base font-semibold text-grey-900">
                         {project.title}
                       </div>
-                      <div class="w-full text-balance text-sm leading-4 text-grey-700">
-                        {project.description}
-                      </div>
                     </div>
-                    <div class="absolute left-4 top-33 flex items-center gap-2.5 text-xs text-brand-700">
-                      <span class="underline">{project.linkTitle}</span>
-                      <i class="bi bi-arrow-right" />
-                    </div>
+                    <img
+                      src={project.image.src}
+                      class="h-full w-full rounded-2xl"
+                    />
                   </div>
                 </a>
               )
@@ -123,9 +109,7 @@ const projects = [
           <div class="flex flex-col items-start">
             <div class="text-base font-semibold">Mee community</div>
             <div class="text-base font-normal">
-              The place where we meet to discuss the <span class="line-through"
-                >world’s</span
-              > internet’s problems.
+              The place where we meet to discuss the internet’s problems.
             </div>
           </div>
         </div>
