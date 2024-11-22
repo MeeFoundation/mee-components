@@ -1,19 +1,22 @@
 ---
 import Logo from "./MeeLogo.astro";
-import ButtonLink from "./ButtonLink.astro";
+import ButtonLink, { type ButtonType, type Style } from "./ButtonLink.astro";
 import IconButton from "./IconButton.astro";
 import ThemeSelect from "./ThemeSelect.astro";
+import ProjectDropdown from "./ProjectDropdown.astro";
 
 export interface Props {
   className?: string;
   type?: "default" | "docs" | "dark";
   activePage?: string;
   location?: string;
+  disableMobileMenu?: boolean;
   header: {
     links: Link[];
     rightLinks: RigthLink[];
     footerLinks: Link[];
     logoLink?: string;
+    userLinks?: UserLinks[];
   };
 }
 
@@ -29,7 +32,12 @@ interface RigthLink {
   link: string;
   target?: string;
   id?: string;
-  icon: string;
+  icon?: string;
+  buttonType?: ButtonType;
+  style?: Style;
+}
+interface UserLinks extends RigthLink {
+  className?: string;
 }
 const {
   className,
@@ -37,17 +45,24 @@ const {
   type = "default",
   header,
   location,
+  disableMobileMenu,
 } = Astro.props;
 ---
 
-<div class:list={["group relative transition-all", `type-${type}`]}>
+<div
+  class:list={[
+    "group relative transition-all",
+    `type-${type}`,
+    `group/type-${type}`,
+  ]}
+>
   <header
     id="header"
     class:list={[
       "fixed left-0 top-0 z-300 flex h-27 w-screen items-center justify-center transition-all duration-300",
       "group-[.type-docs]:border-b group-[.type-docs]:border-grey-200",
-      "group-[.type-default]:bg-white group-[.type-default]:bg-header-bg group-[.type-default]:backdrop-blur-62.5 group-[.type-default]:transition-all group-[.type-default]:duration-300",
-      "group-[.type-docs]:bg-white group-[.type-docs]:bg-header-bg group-[.type-docs]:backdrop-blur-62.5 group-[.type-docs]:transition-all group-[.type-docs]:duration-300",
+      "group-[.type-default]:bg-header-bg group-[.type-default]:transition-all group-[.type-default]:duration-300",
+      "group-[.type-docs]:bg-header-bg group-[.type-docs]:transition-all group-[.type-docs]:duration-300",
       "dark:group-[.type-default]:bg-darky dark:group-[.type-default]:bg-gradient-darky",
       "dark:group-[.type-docs]:border-b dark:group-[.type-docs]:border-white/10 dark:group-[.type-docs]:bg-darky dark:group-[.type-docs]:bg-gradient-darky",
     ]}
@@ -55,10 +70,10 @@ const {
   >
     <div
       class:list={[
-        "header mx-auto flex max-w-7xl items-center justify-between px-5",
+        "header relative mx-auto flex max-w-7xl items-center justify-between px-5",
         "group-[.type-default]:w-full group-[.type-default]:flex-wrap",
         "group-[.type-docs]:w-full group-[.type-docs]:flex-wrap",
-        "group-[.type-dark]:gap-10 group-[.type-dark]:rounded-2.5xl group-[.type-dark]:border group-[.type-dark]:border-white/15 group-[.type-dark]:bg-header-bg-dark group-[.type-dark]:py-2 group-[.type-dark]:shadow-header group-[.type-dark]:backdrop-blur-12.5",
+        "group-[.type-dark]:gap-10 group-[.type-dark]:rounded-2.5xl group-[.type-dark]:border group-[.type-dark]:border-white/15 group-[.type-dark]:bg-header-bg-dark group-[.type-dark]:py-2 group-[.type-dark]:shadow-header",
         className,
       ]}
     >
@@ -93,25 +108,26 @@ const {
           header.links.map((link) => (
             <li
               class:list={[
-                "text-base font-semibold text-brand-950 dark:text-white/90",
-                "group-[.type-dark]:!text-white/90",
+                "text-base font-semibold text-brand-950 group-[.type-dark]:!text-white/90 dark:text-white/90",
+                "rounded-2xl px-4 py-1.5",
+                "group-[.type-default]:hover:bg-gray-200 dark:group-[.type-default]:hover:text-brand-950",
+                "group-[.type-docs]:hover:bg-gray-200 dark:group-[.type-docs]:hover:text-brand-950",
+                "group-[.type-dark]:hover:text-white group-[.type-dark]:hover:underline",
+                activePage === link.id &&
+                  "group-[.type-default]:bg-primary group-[.type-docs]:bg-primary group-[.type-default]:text-white group-[.type-docs]:text-white group-[.type-default]:hover:text-brand-950 group-[.type-docs]:hover:text-brand-950",
+                activePage === link.id && "group-[.type-dark]:text-white",
+                link.id === "projects" && "group/projects",
               ]}
             >
-              <a
-                href={link.link}
-                target={link.target}
-                class:list={[
-                  "rounded-2xl px-4 py-1.5",
-                  "group-[.type-default]:hover:bg-primary group-[.type-default]:hover:text-white",
-                  "group-[.type-docs]:hover:bg-primary group-[.type-docs]:hover:text-white",
-                  "group-[.type-dark]:hover:text-white group-[.type-dark]:hover:underline",
-                  activePage === link.id &&
-                    "group-[.type-default]:bg-primary group-[.type-docs]:bg-primary group-[.type-default]:text-white group-[.type-docs]:text-white dark:group-[.type-default]:bg-darkprimary dark:group-[.type-default]:text-black",
-                  activePage === link.id && "group-[.type-dark]:text-white",
-                ]}
-              >
+              <a href={link.link} target={link.target} class="flex gap-1.5">
                 {link.name}
+                {link.id === "projects" && (
+                  <span class="hidden transition-all group-hover/projects:rotate-180 lg:group-[.type-dark]:inline-block lg:group-[.type-default]:inline-block lg:group-[.type-docs]:inline-block">
+                    <i class="bi bi-chevron-down" />
+                  </span>
+                )}
               </a>
+              {link.id === "projects" && <ProjectDropdown />}
             </li>
           ))
         }
@@ -154,6 +170,21 @@ const {
             />
           ))
         }
+        {
+          header.userLinks?.map((link) => (
+            <ButtonLink
+              leftIcon={link.icon && `${link.icon} text-lg`}
+              buttonType={link.buttonType ?? "tertiary"}
+              style={link.style ?? "outlined"}
+              size="l"
+              href={link.link}
+              target={link.target}
+              className={link.className}
+            >
+              {link.name}
+            </ButtonLink>
+          ))
+        }
       </div>
       <div
         class:list={[
@@ -190,16 +221,34 @@ const {
               />
             ))
         }
+        {
+          header.userLinks?.map((link) => (
+            <ButtonLink
+              leftIcon={link.icon && `${link.icon} text-lg`}
+              buttonType={link.buttonType ?? "tertiary"}
+              style={link.style ?? "outlined"}
+              size="l"
+              href={link.link}
+              target={link.target}
+              className={link.className}
+            >
+              {link.name}
+            </ButtonLink>
+          ))
+        }
         <ThemeSelect />
-
-        <IconButton
-          icon="list"
-          buttonType="tertiary"
-          style="transparent"
-          size="m"
-          className="border-none group-[.type-dark]:!text-white dark:!text-white"
-          id="open-menu"
-        />
+        {
+          !disableMobileMenu && (
+            <IconButton
+              icon="list"
+              buttonType="tertiary"
+              style="transparent"
+              size="m"
+              className="border-none group-[.type-dark]:!text-white dark:!text-white"
+              id="open-menu"
+            />
+          )
+        }
       </div>
     </div>
     <div
@@ -302,6 +351,21 @@ const {
   .after-border:after {
     @apply absolute bottom-0 left-0 right-0 h-px w-full bg-header-gradient content-[''];
   }
+  .type-docs #header::before,
+  .type-default #header::before {
+    content: "";
+    backdrop-filter: blur(250px);
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
+  .type-dark .header::before {
+    content: "";
+    backdrop-filter: blur(250px);
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+  }
 </style>
 
 <script>
@@ -309,14 +373,19 @@ const {
   const menu = document.getElementById("menu") as HTMLElement;
   const openMenu = document.getElementById("open-menu") as HTMLButtonElement;
   const closeMenu = document.getElementById("close-menu") as HTMLButtonElement;
+  const projectsDropdown = document.getElementById("projects-dropdown");
   document.addEventListener("scroll", () => {
     if (header.dataset.type !== "dark") {
       if (window.scrollY > 50) {
         header.classList.remove("h-27");
         header.classList.add("h-17");
+        projectsDropdown?.classList.remove("pt-12", "top-18");
+        projectsDropdown?.classList.add("top-13.25", "pt-7");
       } else {
         header.classList.remove("h-17");
         header.classList.add("h-27");
+        projectsDropdown?.classList.remove("top-13.25", "pt-7");
+        projectsDropdown?.classList.add("pt-12", "top-18");
       }
     }
   });
