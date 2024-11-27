@@ -1,0 +1,155 @@
+---
+import privateAdvertising from "./images/projects/private-advertising.png";
+import smartwalletProduct from "./images/projects/smartwallet.png";
+import virtualAgentProduct from "./images/projects/virtual-agent.png";
+import providerWalletProduct from "./images/projects/provider-wallet.png";
+import meeBrowserProduct from "./images/projects/mee-browser.png";
+import privateAdvertisingDark from "./images/projects/private-advertising-dark.png";
+import smartwalletProductDark from "./images/projects/smartwallet-dark.png";
+import virtualAgentProductDark from "./images/projects/virtual-agent-dark.png";
+import providerWalletProductDark from "./images/projects/provider-wallet-dark.png";
+import meeBrowserProductDark from "./images/projects/mee-browser-dark.png";
+import ButtonLink from "./ButtonLink.astro";
+import MeeLogoSquare from "./MeeLogoSquare.astro";
+export const discord = "https://discord.gg/PB8qxrQXup";
+
+const projects = [
+  {
+    image: smartwalletProduct,
+    imageDark: smartwalletProductDark,
+    title: "Smartwallet",
+    link: "https://smartwallet.mee.foundation",
+  },
+  {
+    image: privateAdvertising,
+    imageDark: privateAdvertisingDark,
+    title: "Private Advertising",
+    link: "https://private-advertising.mee.foundation",
+  },
+  {
+    image: meeBrowserProduct,
+    imageDark: meeBrowserProductDark,
+    title: "Mee Browser",
+    comingSoon: true,
+    link: "https://browser.mee.foundation",
+  },
+  {
+    image: virtualAgentProduct,
+    imageDark: virtualAgentProductDark,
+    title: "Mee Data Network",
+    link: "https://mdn.mee.foundation",
+  },
+  {
+    image: providerWalletProduct,
+    imageDark: providerWalletProductDark,
+    title: "Agent Service",
+    link: "https://mdn.mee.foundation/docs/",
+  },
+];
+---
+
+<div
+  id="projects-dropdown"
+  class:list={[
+    "fixed left-0 top-18 z-300 hidden origin-top scale-y-0 pt-12 opacity-0 transition-all duration-300 lg:block",
+    "group-hover/projects:scale-y-100 group-hover/projects:opacity-100",
+  ]}
+>
+  <div
+    class="flex h-auto w-screen items-center justify-center text-left text-base"
+  >
+    <div
+      class="mx-4 flex w-full flex-col items-center justify-center rounded-2xl border border-grey-300 bg-white font-normal text-grey-950 transition-all delay-300 duration-0 lg:max-w-5xl xl:max-w-fit dark:border-grey-700 dark:bg-grey-800"
+    >
+      <div class="p-8">
+        <div class="flex flex-wrap items-stretch justify-center gap-4">
+          {
+            projects.map((project) =>
+              project.comingSoon ? (
+                <div class="flex cursor-default rounded-2xl border border-grey-300 dark:border-grey-700">
+                  <div class="relative flex w-full flex-col">
+                    <div class="absolute left-4 top-4 flex flex-col gap-1">
+                      <div class="flex w-full flex-wrap items-center gap-2 text-center text-base font-semibold text-grey-900 dark:text-grey-50">
+                        {project.title}
+                        <span class="rounded-md border border-grey-200 dark:border-grey-700 dark:text-grey-50 bg-grey-50 dark:bg-grey-900 px-2 py-0.5 text-xxs">
+                          Coming soon
+                        </span>
+                      </div>
+                    </div>
+
+                    <img
+                      src={project.image.src}
+                      width="233"
+                      height="215"
+                      class="rounded-2xl dark:hidden"
+                      alt={project.title}
+                    />
+                    <img
+                      src={project.imageDark.src}
+                      width="233"
+                      height="215"
+                      class="hidden rounded-2xl dark:block"
+                      alt={project.title}
+                    />
+                  </div>
+                </div>
+              ) : (
+                <a
+                  class="flex transform-cpu rounded-2xl border border-grey-300 transition-all hover:shadow-3-strong dark:border-grey-700 dark:hover:bg-dark-hover-gradient"
+                  href={project.link}
+                >
+                  <div class="relative flex w-full flex-col justify-between">
+                    <div class="relative flex flex-col">
+                      <div class="absolute left-4 top-4 flex w-full items-center gap-1 text-center text-base font-semibold text-grey-900 dark:text-grey-50">
+                        {project.title}
+                      </div>
+                    </div>
+                    <img
+                      src={project.image.src}
+                      class="rounded-2xl dark:hidden"
+                      width="233"
+                      height="215"
+                      alt={project.title}
+                    />
+                    <img
+                      src={project.imageDark.src}
+                      class="hidden rounded-2xl dark:block"
+                      width="233"
+                      height="215"
+                      alt={project.title}
+                    />
+                  </div>
+                </a>
+              )
+            )
+          }
+        </div>
+      </div>
+      <div
+        class="flex w-full items-center justify-between rounded-b-2xl border-t border-grey-300 bg-grey-50 dark:bg-grey-900 p-8 dark:border-grey-700"
+      >
+        <div class="flex gap-4">
+          <MeeLogoSquare />
+          <div class="flex flex-col items-start">
+            <div class="text-base font-semibold dark:text-grey-50">Mee community</div>
+            <div class="text-base font-normal dark:text-grey-400">
+              The place where we meet to discuss the internet’s problems.
+            </div>
+          </div>
+        </div>
+
+        <ButtonLink
+          leftIcon="discord text-lg"
+          buttonType="tertiary"
+          buttonType="tertiary"
+          style="outlined"
+          size="l"
+          href={discord}
+          target="_blank"
+        >
+          Join community
+        </ButtonLink>
+      </div>
+    </div>
+  </div>
+</div>

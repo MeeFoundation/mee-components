@@ -5813,6 +5813,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
+  rehype-recma@1.0.0:
+    dependencies:
+      '@types/estree': 1.0.5
+      '@types/hast': 3.0.4
+      hast-util-to-estree: 3.1.0
+    transitivePeerDependencies:
+      - supports-color
+
   rehype-stringify@10.0.0:
     dependencies:
       '@types/hast': 3.0.4

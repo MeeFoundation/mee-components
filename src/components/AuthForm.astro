@@ -23,21 +23,16 @@ const { title, id, subtitle, formId, className } = Astro.props;
     <MeeLogo />
   </a>
   <div class="flex flex-col items-center gap-2">
-    <div class="overflow-hidden">
-      <h2
-        class="marker animate-riseIn text-center text-3xl font-bold text-gray-900"
-        set:html={title}
-      />
-    </div>
-    <div class="overflow-hidden">
-      <h3
-        class="animate-riseIn text-center text-xl font-normal not-italic tracking-0.02 text-gray-800"
-        set:html={subtitle}
-      />
-    </div>
+    <h2
+      class="marker text-center text-3xl font-bold text-gray-900"
+      set:html={title}
+    />
+    <h3
+      class="text-center text-xl font-normal not-italic tracking-0.02 text-gray-800"
+      set:html={subtitle}
+    />
   </div>
 
-  <hr class="w-full border-gray-300" />
   <form
     class="mx-auto flex w-full flex-col items-center gap-4"
     id={formId}
