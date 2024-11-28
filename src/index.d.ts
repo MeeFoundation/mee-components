@@ -20,6 +20,7 @@ export { default as Scroll } from "./components/Scroll.astro";
 export { default as ScrollHelper } from "./helpers/scroll";
 export { default as Breadcrumbs } from "./components/Breadcrumbs.astro";
 export { default as Avatar } from "./components/Avatar.astro";
+export { default as AvatarHelper } from "./helpers/avatar";
 export { default as Table } from "./components/Table.astro";
 export { default as SortHelper } from "./helpers/sort";
 export { default as TableHelper } from "./helpers/table";

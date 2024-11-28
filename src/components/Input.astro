@@ -134,7 +134,7 @@ const {
 
 <div
   class:list={[
-    "Input-container group relative w-full",
+    "input-container group relative w-full",
     labelPosition === "outside" && "mt-2",
     error && "error",
     className,
@@ -212,7 +212,11 @@ const {
     }
   </div>
   <div class="flex">
-    <div id=`${id}_error` class="mt-1 text-xs text-error-700">{error}</div>
-    <div id=`${id}_helper` class="mt-1 text-xs text-grey-500">{helperText}</div>
+    <div id=`${id}_error` class="error-message mt-1 text-xs text-error-700">
+      {error}
+    </div>
+    <div id=`${id}_helper` class="helper-message mt-1 text-xs text-grey-500">
+      {helperText}
+    </div>
   </div>
 </div>
