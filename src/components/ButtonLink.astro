@@ -1,6 +1,4 @@
 ---
-export type ButtonType = "primary" | "secondary" | "tertiary" | "danger";
-export type Style = "filled" | "outlined" | "transparent";
 interface Props {
   className?: string;
   href: string;
@@ -8,8 +6,8 @@ interface Props {
   id?: string;
   type?: "submit" | "reset" | "button" | undefined | null;
   size?: "l" | "m" | "s";
-  buttonType?: ButtonType;
-  style?: Style;
+  buttonType?: "primary" | "secondary" | "tertiary" | "danger";
+  style?:  "filled" | "outlined" | "transparent";
   leftIcon?: string;
   rightIcon?: string;
   disabled?: boolean;

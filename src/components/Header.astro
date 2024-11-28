@@ -1,6 +1,6 @@
 ---
 import Logo from "./MeeLogo.astro";
-import ButtonLink, { type ButtonType, type Style } from "./ButtonLink.astro";
+import ButtonLink from "./ButtonLink.astro";
 import IconButton from "./IconButton.astro";
 import ProjectDropdown from "./ProjectDropdown.astro";
 export interface Props {
@@ -14,16 +14,7 @@ export interface Props {
     rightLinks: RightLink[];
     footerLinks: Link[];
     logoLink?: string;
-    userLinks?: {
-      name: string;
-      link: string;
-      target?: string;
-      id?: string;
-      icon?: string;
-      className?: string;
-      buttonType?: ButtonType;
-      style?: Style;
-    }[];
+    userLinks?: boolean;
   };
 }
 
@@ -41,11 +32,7 @@ interface RightLink {
   id?: string;
   icon?: string;
 }
-// interface UserLinks extends RightLink {
-//   className?: string;
-//   buttonType?: ButtonType;
-//   style?: Style;
-// }
+
 const {
   className,
   activePage,
@@ -174,19 +161,29 @@ const {
           ))
         }
         {
-          header.userLinks?.map((link) => (
-            <ButtonLink
-              leftIcon={link.icon && `${link.icon} text-lg`}
-              buttonType={link.buttonType ?? "tertiary"}
-              style={link.style ?? "outlined"}
-              size="l"
-              href={link.link}
-              target={link.target}
-              className={link.className}
-            >
-              {link.name}
-            </ButtonLink>
-          ))
+          header.userLinks && (
+            <>
+              <ButtonLink
+                buttonType="primary"
+                style="outlined"
+                size="l"
+                href="/sign-in"
+                id="sign-in"
+              >
+                Log in
+              </ButtonLink>
+              <ButtonLink
+                buttonType="primary"
+                style="filled"
+                size="l"
+                href="/sign-up"
+                id="sign-up"
+                className="hidden md:flex"
+              >
+                Sign up
+              </ButtonLink>
+            </>
+          )
         }
       </div>
       <div
@@ -225,19 +222,29 @@ const {
             ))
         }
         {
-          header.userLinks?.map((link) => (
-            <ButtonLink
-              leftIcon={link.icon && `${link.icon} text-lg`}
-              buttonType={link.buttonType ?? "tertiary"}
-              style={link.style ?? "outlined"}
-              size="l"
-              href={link.link}
-              target={link.target}
-              className={link.className}
-            >
-              {link.name}
-            </ButtonLink>
-          ))
+          header.userLinks && (
+            <>
+              <ButtonLink
+                buttonType="primary"
+                style="outlined"
+                size="l"
+                href="/sign-in"
+                id="sign-in"
+              >
+                Log in
+              </ButtonLink>
+              <ButtonLink
+                buttonType="primary"
+                style="filled"
+                size="l"
+                href="/sign-up"
+                id="sign-up"
+                className="hidden md:flex"
+              >
+                Sign up
+              </ButtonLink>
+            </>
+          )
         }
 
         {
