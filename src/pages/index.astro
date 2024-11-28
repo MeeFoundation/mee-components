@@ -21,7 +21,7 @@ import Tables from "@components/showcase/Tables.astro";
 
 <Layout title="Showcase">
   <main class="flex flex-col gap-3 p-10">
-    <Accordion title="Buttons" icon="menu-button-wide" collapse={false}>
+    <Accordion title="Buttons" icon="menu-button-wide">
       <Buttons />
     </Accordion>
     <Accordion title="Icon Buttons" icon="menu-button-wide">
@@ -30,7 +30,7 @@ import Tables from "@components/showcase/Tables.astro";
     <Accordion title="Shadows" icon="shadows">
       <Shadows />
     </Accordion>
-    <Accordion title="Password Inputs" icon="eye-slash"
+    <Accordion title="Password Inputs" icon="eye-slash" collapse={false}
       ><PasswordInputs /></Accordion
     >
     <Accordion title="Inputs" icon="input-cursor-text"><Inputs /></Accordion>

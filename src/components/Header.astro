@@ -10,11 +10,20 @@ export interface Props {
   location?: string;
   disableMobileMenu?: boolean;
   header: {
-    links: Link[];
-    rightLinks: RigthLink[];
+    links?: Link[];
+    rightLinks: RightLink[];
     footerLinks: Link[];
     logoLink?: string;
-    userLinks?: UserLinks[];
+    userLinks?: {
+      name: string;
+      link: string;
+      target?: string;
+      id?: string;
+      icon?: string;
+      className?: string;
+      buttonType?: ButtonType;
+      style?: Style;
+    }[];
   };
 }
 
@@ -25,18 +34,18 @@ interface Link {
   target?: string;
 }
 
-interface RigthLink {
+interface RightLink {
   name: string;
   link: string;
   target?: string;
   id?: string;
   icon?: string;
-  buttonType?: ButtonType;
-  style?: Style;
 }
-interface UserLinks extends RigthLink {
-  className?: string;
-}
+// interface UserLinks extends RightLink {
+//   className?: string;
+//   buttonType?: ButtonType;
+//   style?: Style;
+// }
 const {
   className,
   activePage,
@@ -101,31 +110,32 @@ const {
         ]}
       >
         {
-          header.links.map((link) => (
-            <li
-              class:list={[
-                "text-base font-semibold text-brand-950 group-[.type-dark]:!text-white/90",
-                "rounded-2xl px-4 py-1.5",
-                "group-[.type-default]:hover:bg-gray-200",
-                "group-[.type-docs]:hover:bg-gray-200",
-                "group-[.type-dark]:hover:text-white group-[.type-dark]:hover:underline",
-                activePage === link.id &&
-                  "group-[.type-default]:bg-primary group-[.type-docs]:bg-primary group-[.type-default]:text-white group-[.type-docs]:text-white group-[.type-default]:hover:text-brand-950 group-[.type-docs]:hover:text-brand-950",
-                activePage === link.id && "group-[.type-dark]:text-white",
-                link.id === "projects" && "group/projects",
-              ]}
-            >
-              <a href={link.link} target={link.target} class="flex gap-1.5">
-                {link.name}
-                {link.id === "projects" && (
-                  <span class="hidden transition-all group-hover/projects:rotate-180 lg:group-[.type-dark]:inline-block lg:group-[.type-default]:inline-block lg:group-[.type-docs]:inline-block">
-                    <i class="bi bi-chevron-down" />
-                  </span>
-                )}
-              </a>
-              {link.id === "projects" && <ProjectDropdown />}
-            </li>
-          ))
+          header.links &&
+            header.links.map((link) => (
+              <li
+                class:list={[
+                  "text-base font-semibold text-brand-950 group-[.type-dark]:!text-white/90",
+                  "rounded-2xl px-4 py-1.5",
+                  "group-[.type-default]:hover:bg-gray-200",
+                  "group-[.type-docs]:hover:bg-gray-200",
+                  "group-[.type-dark]:hover:text-white group-[.type-dark]:hover:underline",
+                  activePage === link.id &&
+                    "group-[.type-default]:bg-primary group-[.type-docs]:bg-primary group-[.type-default]:text-white group-[.type-docs]:text-white group-[.type-default]:hover:text-brand-950 group-[.type-docs]:hover:text-brand-950",
+                  activePage === link.id && "group-[.type-dark]:text-white",
+                  link.id === "projects" && "group/projects",
+                ]}
+              >
+                <a href={link.link} target={link.target} class="flex gap-1.5">
+                  {link.name}
+                  {link.id === "projects" && (
+                    <span class="hidden transition-all group-hover/projects:rotate-180 lg:group-[.type-dark]:inline-block lg:group-[.type-default]:inline-block lg:group-[.type-docs]:inline-block">
+                      <i class="bi bi-chevron-down" />
+                    </span>
+                  )}
+                </a>
+                {link.id === "projects" && <ProjectDropdown />}
+              </li>
+            ))
         }
       </ul>
       <div
@@ -276,25 +286,26 @@ const {
         </div>
         <ul class="items-right flex flex-col justify-center gap-4 text-center">
           {
-            header.links.map((link) => (
-              <li class="text-lg font-semibold">
-                <a
-                  href={link.link}
-                  target={link.target}
-                  class:list={[
-                    "rounded-2xl px-4 py-1.5",
-                    type !== "dark" && "hover:bg-primary hover:text-white",
-                    type === "dark" && "hover:text-white hover:underline",
-                    type !== "dark" &&
-                      activePage === link.id &&
-                      "bg-primary text-white",
-                    type === "dark" && activePage === link.id && "text-white",
-                  ]}
-                >
-                  {link.name}
-                </a>
-              </li>
-            ))
+            header.links &&
+              header.links.map((link) => (
+                <li class="text-lg font-semibold">
+                  <a
+                    href={link.link}
+                    target={link.target}
+                    class:list={[
+                      "rounded-2xl px-4 py-1.5",
+                      type !== "dark" && "hover:bg-primary hover:text-white",
+                      type === "dark" && "hover:text-white hover:underline",
+                      type !== "dark" &&
+                        activePage === link.id &&
+                        "bg-primary text-white",
+                      type === "dark" && activePage === link.id && "text-white",
+                    ]}
+                  >
+                    {link.name}
+                  </a>
+                </li>
+              ))
           }
         </ul>
         <div class="flex flex-col gap-3">
