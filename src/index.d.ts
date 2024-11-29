@@ -26,3 +26,4 @@ export { default as SortHelper } from "./helpers/sort";
 export { default as TableHelper } from "./helpers/table";
 export { default as Accordion } from "./components/Accordion.astro";
 export { default as AppButtons } from "./components/AppButtons.astro";
+export { default as ThemeSelect } from "./components/ThemeSelect.astro";

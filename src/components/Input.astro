@@ -145,7 +145,7 @@ const {
       leftIcon && (
         <i
           class:list={[
-            "bi pointer-events-none absolute left-3 z-20 text-grey-500 group-[.error]:text-error-700",
+            "bi pointer-events-none absolute left-3 z-20 text-grey-500 group-[.error]:text-error-700 dark:text-grey-300",
             "bi-" + leftIcon,
             iconSizeStyles[size],
             iconPosition[labelPosition][size],
@@ -160,8 +160,8 @@ const {
       placeholder={label}
       autocomplete={autocomplete}
       class:list={[
-        "peer w-full text-grey-800 outline-0 transition-all placeholder:text-transparent",
-        "relative z-10 flex items-center justify-between rounded-xl border border-grey-300 px-3 transition-all focus:border-brand-500 group-[.error]:border-error-700",
+        "peer w-full bg-white text-grey-800 outline-0 transition-all placeholder:text-transparent dark:bg-grey-950 dark:text-grey-100",
+        "relative z-10 flex items-center justify-between rounded-xl border border-grey-300 px-3 transition-all focus:border-brand-500 group-[.error]:border-error-700 dark:border-grey-600",
         labelPosition === "inside" && "pt-4",
         leftIcon && leftIconPadding[size],
         rightIcon && rightIconPadding[size],
@@ -174,12 +174,12 @@ const {
         <label
           for={id}
           class:list={[
-            "pointer-events-none absolute z-10 origin-[0_0] font-sans text-grey-500 transition-transform peer-focus:text-grey-800",
+            "pointer-events-none absolute z-10 origin-[0_0] font-sans text-grey-500 transition-transform peer-focus:text-brand-500 dark:peer-focus:text-brand-300",
             "group-[.error]:text-error-700 group-[.error]:peer-focus:text-error-700",
             labelPosition === "inside" &&
-              "left-4 top-4 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2.5 peer-focus:scale-80 peer-focus:text-brand-500 peer-[:not(:placeholder-shown)]:-translate-y-2.5 peer-[:not(:placeholder-shown)]:scale-80 motion-reduce:transition-none",
+              "left-4 top-4 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2.5 peer-focus:scale-80 peer-focus:text-brand-500 peer-[:not(:placeholder-shown)]:-translate-y-2.5 peer-[:not(:placeholder-shown)]:scale-80 motion-reduce:transition-none dark:peer-focus:text-brand-300",
             labelPosition === "edge" &&
-              "left-0 top-0 transition-all duration-200 ease-linear peer-focus:translate-x-3 peer-focus:bg-white peer-focus:text-brand-500 peer-[:not(:placeholder-shown)]:translate-x-3 peer-[:not(:placeholder-shown)]:bg-white motion-reduce:transition-none",
+              "left-0 top-0 bg-white transition-all duration-200 ease-linear peer-focus:translate-x-3 peer-focus:bg-white peer-focus:text-brand-500 peer-[:not(:placeholder-shown)]:translate-x-3 peer-[:not(:placeholder-shown)]:bg-white motion-reduce:transition-none dark:bg-grey-950 dark:peer-focus:bg-grey-950 dark:peer-focus:text-brand-300 dark:peer-[:not(:placeholder-shown)]:bg-grey-950",
             labelClassByPositionAndSize[labelPosition][size],
             leftIcon &&
               labelClassByPositionAndSizeLeftIcon[labelPosition][size],
@@ -202,7 +202,7 @@ const {
       rightIcon && (
         <i
           class:list={[
-            "bi pointer-events-none absolute right-0 z-10 mr-4 text-grey-500 group-[.error]:text-error-700",
+            "bi pointer-events-none absolute right-0 z-10 mr-4 text-grey-500 group-[.error]:text-error-700 dark:text-grey-100",
             "bi-" + rightIcon,
             iconSizeStyles[size],
             rightIconPosition[labelPosition][size],
@@ -215,7 +215,10 @@ const {
     <div id=`${id}_error` class="error-message mt-1 text-xs text-error-700">
       {error}
     </div>
-    <div id=`${id}_helper` class="helper-message mt-1 text-xs text-grey-500">
+    <div
+      id=`${id}_helper`
+      class="helper-message mt-1 text-xs text-grey-500 dark:text-grey-100"
+    >
       {helperText}
     </div>
   </div>

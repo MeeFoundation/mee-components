@@ -118,11 +118,19 @@
 
     --primary-gradient: linear-gradient(92.42deg, #3b5b63 0%, #4f868e 100%);
     --primary-gradient-hover: linear-gradient(0deg, #374e53 0%, #374e53 100%);
+    --primary-gradient-dark: linear-gradient(92.42deg, #9AC2C6 0%, #4F868E 100%);
+    --primary-gradient-hover-dark: linear-gradient(92.42deg, #9AC2C6 0%, #9AC2C6 100%);
 
     --auth-gradient: radial-gradient(
       50% 50% at 50% 50%,
       #f1f5f9 0%,
       #f8fafc 100%
+    );
+
+    --auth-gradient-dark: radial-gradient(
+      50% 50% at 50% 50%,
+      #1e293b 0%,
+      #0f172a 100%
     );
 
     --color-scrollbar: rgba(2, 6, 23, 0.35);

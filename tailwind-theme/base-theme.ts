@@ -353,8 +353,11 @@ const theme = {
     backgroundImage: {
       ...defaultConfig.theme?.extend?.backgroundImage,
       "primary-gradient": "var(--primary-gradient)",
+      "primary-gradient-dark": "var(--primary-gradient-dark)",
       "primary-gradient-hover": "var(--primary-gradient-hover)",
+      "primary-gradient-hover-dark": "var(--primary-gradient-hover-dark)",
       "auth-gradient": "var(--auth-gradient)",
+      "auth-gradient-dark": "var(--auth-gradient-dark)",
       "header-gradient":
         "linear-gradient(90deg,rgba(255, 255, 255, 0) 0%, rgb(231, 232, 233) 50%,rgba(255, 255, 255, 0) 100%)",
       "header-bg":
