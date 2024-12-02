@@ -2,40 +2,54 @@
 import Icon from "./Icon.astro";
 ---
 
-<button
-  class="flex h-[30px] w-[30px] items-center justify-center"
-  id="theme-select"
->
-  <Icon
-    id="icon-sun"
-    className="hidden text-yellow-strong"
-    size="xs"
-    name="sun-fill"
-  />
-  <Icon
-    id="icon-moon"
-    className="hidden text-purple-600"
-    size="xs"
-    name="moon-fill"
-  />
-</button>
+<>
+  <button
+    class="flex h-[30px] w-[30px] items-center justify-center"
+    id="theme-select"
+  >
+    <Icon
+      id="icon-sun"
+      className="hidden text-yellow-strong"
+      size="xs"
+      name="sun-fill"
+    />
+    <Icon
+      id="icon-moon"
+      className="hidden text-purple-600"
+      size="xs"
+      name="moon-fill"
+    />
+  </button><iframe
+    style="width:0;height:0;border:none;position:absolute;"
+    id="storage"
+    src="https://mee.foundation/storage/index.html?var=1"></iframe>
+</>
 
 <script>
   type Theme = "dark" | "light";
-  const storageKey = "theme";
-
+  const frame = document.getElementById("storage") as HTMLIFrameElement;
+  interface StorageMessage {
+    method: "getTheme" | "setTheme";
+    theme?: Theme;
+  }
   const systemValue = window.matchMedia("(prefers-color-scheme: dark)").matches
     ? "dark"
     : "light";
 
-  let theme: Theme = (localStorage.getItem(storageKey) as Theme) || systemValue;
+  let theme: Theme = systemValue;
 
   const buttons = document.querySelectorAll("#theme-select");
   const iconsSun = document.querySelectorAll("#icon-sun");
   const iconsMoon = document.querySelectorAll("#icon-moon");
 
-  const setTheme = (newTheme: Theme) => {
-    localStorage.setItem(storageKey, newTheme);
+  const setTheme = (newTheme: Theme, withoutSave = false) => {
+    if (!withoutSave) {
+      frame.contentWindow?.postMessage(
+        { method: "setTheme", theme: newTheme },
+        "https://mee.foundation"
+      );
+    }
+
     document.documentElement.dataset.theme = newTheme;
     theme = newTheme;
 
@@ -50,12 +64,35 @@ import Icon from "./Icon.astro";
     }
   };
 
-  setTheme(theme);
+  window.addEventListener(
+    "message",
+    (event) => {
+      const message: StorageMessage = event.data;
+
+      if (message.method === "getTheme") {
+        if (message.theme) {
+          setTheme(message.theme);
+        }
+      }
+    },
+    false
+  );
+
+  if (frame) {
+    frame.onload = () => {
+      frame.contentWindow?.postMessage(
+        { method: "getTheme" },
+        "https://mee.foundation"
+      );
+    };
+  }
+
+  setTheme(theme, true);
 
   buttons.forEach((x) =>
     x.addEventListener("click", () => {
       theme = theme === "dark" ? "light" : "dark";
       setTheme(theme);
-    }),
+    })
   );
 </script>
