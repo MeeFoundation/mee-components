@@ -4,6 +4,8 @@
 
 @layer base {
   :root {
+    --color-darky: 2, 6, 23;
+    --color-body: 0 0 0;
     --color-brand-50: 243 248 248; /*rgb(243 248 248)*/
     --color-brand-100: 223 236 238; /*rgb(223 236 238)*/
     --color-brand-200: 195 220 222; /*rgb(195 220 222)*/
@@ -116,6 +118,8 @@
 
     --primary-gradient: linear-gradient(92.42deg, #3b5b63 0%, #4f868e 100%);
     --primary-gradient-hover: linear-gradient(0deg, #374e53 0%, #374e53 100%);
+    --primary-gradient-dark: linear-gradient(92.42deg, #9AC2C6 0%, #4F868E 100%);
+    --primary-gradient-hover-dark: linear-gradient(92.42deg, #9AC2C6 0%, #9AC2C6 100%);
 
     --auth-gradient: radial-gradient(
       50% 50% at 50% 50%,
@@ -123,8 +127,21 @@
       #f8fafc 100%
     );
 
+    --auth-gradient-dark: radial-gradient(
+      50% 50% at 50% 50%,
+      #1e293b 0%,
+      #0f172a 100%
+    );
+
     --color-scrollbar: rgba(2, 6, 23, 0.35);
     --color-modal-overlay: rgba(2, 6, 23, 0.35);
+
+    --footer-gradient: linear-gradient(
+        258.14deg,
+        #4f868e 22.66%,
+        #3b5b63 71.18%
+      )
+      left bottom no-repeat;
   }
 
   input:where(:not([type])):focus,
@@ -302,6 +319,11 @@
     height: 100%;
     font-size: 16px;
     background-color: white;
+    color: rgb(var(--color-body));
+  }
+
+  html.dark {
+    background-color: rgb(var(--color-darky));
   }
 
   body {
@@ -384,4 +406,29 @@
     transition-timing-function: linear;
     width: 100%;
   }
+}
+
+[data-theme="dark"]:root {
+  --color-body: rgba(255, 255, 255, 0.9);
+  --sl-color-hairline-shade: rgb(255 255 255 / 0.1);
+  --sl-color-white: rgba(255, 255, 255, 0.9);
+
+  --footer-gradient: linear-gradient(258deg, #4f868e 22.66%, #9ac2c6 71.18%)
+    left bottom no-repeat;
+}
+
+.dark starlight-toc a {
+  color: var(--color-body) !important;
+}
+
+.dark starlight-toc a:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark starlight-toc li {
+  color: var(--color-body);
+}
+
+.dark .sl-markdown-content {
+  color: var(--color-body);
 }

@@ -1,5 +1,6 @@
 ---
 export interface Props {
+  // DEPRECATED
   mode: "dark" | "light";
   footer: {
     links: Link[];
@@ -14,24 +15,15 @@ interface Link {
   icon?: string;
 }
 
-const { mode, footer } = Astro.props;
+const { footer } = Astro.props;
 ---
 
 <footer
   id="footer"
-  class:list={[
-    "footer z-200 flex w-[200vw] flex-col items-center justify-center pt-16 md:w-[120vw]",
-    {
-      "footer--fill text-white": mode === "dark",
-      "text-blue": mode === "light",
-    },
-  ]}
+  class="footer footer--fill z-200 flex w-[200vw] flex-col items-center justify-center pt-16 text-white md:w-[120vw] dark:text-grey-950"
 >
   <div
-    class:list={[
-      "flex w-screen max-w-7xl flex-col items-center justify-between gap-7 px-5 pb-10 text-sm font-medium leading-none tracking-wider xl:flex-row",
-      { "text-white": mode === "dark", "text-gray": mode === "light" },
-    ]}
+    class="flex w-screen max-w-7xl flex-col items-center justify-between gap-7 px-5 pb-10 text-sm font-medium leading-none tracking-wider text-white xl:flex-row dark:text-grey-950"
   >
     <span class="hidden whitespace-nowrap xl:inline xl:w-1/3"
       >© {new Date().getFullYear()} The Mee Foundation, Inc.</span
@@ -87,9 +79,9 @@ const { mode, footer } = Astro.props;
     background-color: white;
   }
   .footer--fill {
-    background: linear-gradient(258.14deg, #4f868e 22.66%, #3b5b63 71.18%) left
-      bottom no-repeat;
+    background: var(--footer-gradient);
   }
+
   .link::after {
     content: "";
     mask: url("/images/arrow-right.svg") no-repeat center;

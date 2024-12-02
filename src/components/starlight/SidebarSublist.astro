@@ -30,7 +30,7 @@ const { sublist, nested } = Astro.props;
 
 <ul
   class:list={[
-    "flex flex-col text-base text-brand-950",
+    "flex flex-col text-base text-brand-950 dark:text-white/90",
     !nested ? "gap-4" : "mt-3",
   ]}
 >
@@ -47,7 +47,7 @@ const { sublist, nested } = Astro.props;
             nested && "border-s py-2 pl-4",
             nested &&
               entry.type === "link" &&
-              "border-s hover:border-s-grey-300 hover:bg-grey-100",
+              "border-s hover:border-s-grey-300 hover:bg-grey-100 dark:hover:bg-grey-800",
             nested &&
               isCurrent &&
               "border-s-[var(--sl-mee-accent)] bg-transparent hover:border-s-[var(--sl-mee-accent)] hover:bg-transparent",
@@ -58,7 +58,7 @@ const { sublist, nested } = Astro.props;
               href={entry.href}
               class=""
               class:list={[
-                "relative bg-transparent text-black",
+                "relative bg-transparent text-black dark:text-white/90",
                 entry.isCurrent && "font-semibold",
                 nested && "text-sm",
                 // !nested && "p-2"

@@ -39,7 +39,7 @@ const {
   >
     <thead>
       <tr
-        class="flex h-auto w-full items-center justify-between border-b border-gray-200"
+        class="flex h-auto w-full items-center justify-between border-b border-grey-200"
       >
         {
           withCheckbox && (
@@ -51,7 +51,9 @@ const {
         {
           columns.map(({ name, title, sorted = false }) => (
             <th class="flex w-full p-4">
-              <div class="text-start text-grey-800">{title}</div>
+              <div class="text-start text-grey-800 dark:text-white/90">
+                {title}
+              </div>
               {sorted && (
                 <div
                   class="arrow-icon flex h-5 w-5 transform items-center justify-center transition-transform duration-300 ease-in-out"

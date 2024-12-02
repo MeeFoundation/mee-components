@@ -5,10 +5,10 @@ import type { Props } from "@astrojs/starlight/props";
 const { hasSidebar, labels } = Astro.props;
 ---
 
-<div class="page flex flex-col min-h-screen w-full items-center">
+<div class="page flex min-h-screen w-full flex-col items-center">
   <header class="header"><slot name="header" /></header>
 
-  <div class="max-w-7xl w-full">
+  <div class="w-full max-w-7xl">
     {
       hasSidebar && (
         <nav class="sidebar" aria-label={labels["sidebarNav.accessibleLabel"]}>
@@ -43,6 +43,10 @@ const { hasSidebar, labels } = Astro.props;
     width: 100%;
     background-color: var(--sl-color-black);
     overflow-y: auto;
+  }
+
+  .dark .sidebar-pane {
+    border-inline-end-color: rgb(var(--color-darky));
   }
 
   :global([aria-expanded="true"]) ~ .sidebar-pane {

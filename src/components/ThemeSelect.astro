@@ -1,0 +1,61 @@
+---
+import Icon from "./Icon.astro";
+---
+
+<button
+  class="flex h-[30px] w-[30px] items-center justify-center"
+  id="theme-select"
+>
+  <Icon
+    id="icon-sun"
+    className="hidden text-yellow-strong"
+    size="xs"
+    name="sun-fill"
+  />
+  <Icon
+    id="icon-moon"
+    className="hidden text-purple-600"
+    size="xs"
+    name="moon-fill"
+  />
+</button>
+
+<script>
+  type Theme = "dark" | "light";
+  const storageKey = "theme";
+
+  const systemValue = window.matchMedia("(prefers-color-scheme: dark)").matches
+    ? "dark"
+    : "light";
+
+  let theme: Theme = (localStorage.getItem(storageKey) as Theme) || systemValue;
+
+  const buttons = document.querySelectorAll("#theme-select");
+  const iconsSun = document.querySelectorAll("#icon-sun");
+  const iconsMoon = document.querySelectorAll("#icon-moon");
+
+  const setTheme = (newTheme: Theme) => {
+    localStorage.setItem(storageKey, newTheme);
+    document.documentElement.dataset.theme = newTheme;
+    theme = newTheme;
+
+    if (newTheme === "dark") {
+      iconsSun.forEach((icon) => icon.classList.add("hidden"));
+      iconsMoon.forEach((icon) => icon.classList.remove("hidden"));
+      document.documentElement.classList.add("dark");
+    } else {
+      iconsSun.forEach((icon) => icon.classList.remove("hidden"));
+      iconsMoon.forEach((icon) => icon.classList.add("hidden"));
+      document.documentElement.classList.remove("dark");
+    }
+  };
+
+  setTheme(theme);
+
+  buttons.forEach((x) =>
+    x.addEventListener("click", () => {
+      theme = theme === "dark" ? "light" : "dark";
+      setTheme(theme);
+    }),
+  );
+</script>

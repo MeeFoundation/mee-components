@@ -120,6 +120,7 @@ const theme = {
       transparent: "transparent",
       black02: "#00000020",
       primary: "rgb(var(--color-brand-500) / <alpha-value>)",
+      darkprimary: "rgb(var(--color-brand-300) / <alpha-value>)",
       black: {
         DEFAULT: "#000",
       },
@@ -145,6 +146,7 @@ const theme = {
         light: "#F9DF89",
         DEFAULT: "#FFDF80",
         dark: "#C5C05C",
+        strong: "#F4B62B",
       },
       green: {
         moss: "#858E4F",
@@ -153,6 +155,8 @@ const theme = {
       brown: {
         spicy: "#8E564F",
       },
+      darky: "rgb(var(--color-darky))",
+      body: "var(--color-body)",
     },
     boxShadow: {
       ...defaultConfig.theme?.extend?.boxShadow,
@@ -213,13 +217,13 @@ const theme = {
       2.25: "0.563rem",
       3.25: "0.813rem",
       3.75: "0.938rem",
-      5.5: '1.375rem',
+      5.5: "1.375rem",
       6.5: "1.625rem",
       7.5: "1.875rem",
       10.5: "2.625rem",
       12.5: "3.125rem",
       13: "3.25rem",
-      13.25: '3.313rem',
+      13.25: "3.313rem",
       13.5: "3.375rem",
       14.5: "3.625rem",
       15: "3.75rem",
@@ -349,12 +353,23 @@ const theme = {
     backgroundImage: {
       ...defaultConfig.theme?.extend?.backgroundImage,
       "primary-gradient": "var(--primary-gradient)",
+      "primary-gradient-dark": "var(--primary-gradient-dark)",
       "primary-gradient-hover": "var(--primary-gradient-hover)",
+      "primary-gradient-hover-dark": "var(--primary-gradient-hover-dark)",
       "auth-gradient": "var(--auth-gradient)",
+      "auth-gradient-dark": "var(--auth-gradient-dark)",
       "header-gradient":
         "linear-gradient(90deg,rgba(255, 255, 255, 0) 0%, rgb(231, 232, 233) 50%,rgba(255, 255, 255, 0) 100%)",
-      "header-bg": "linear-gradient(180deg,rgba(255, 255, 255, 0.8) 0%,rgba(255, 255, 255, 0.6) 100%)",
-      "header-bg-dark": "linear-gradient(90.44deg,rgba(255, 255, 255, 0.15) 0%,rgba(255, 255, 255, 0.05) 99.88%)",
+      "header-bg":
+        "linear-gradient(180deg,rgba(255, 255, 255, 0.8) 0%,rgba(255, 255, 255, 0.6) 100%)",
+      "header-bg-dark":
+        "linear-gradient(90.44deg,rgba(255, 255, 255, 0.15) 0%,rgba(255, 255, 255, 0.05) 99.88%)",
+      "gradient-darky":
+        "linear-gradient(180deg, rgba(2, 6, 23, 0.8) 0%, rgba(2, 6, 23, 0.6) 100%)",
+      "dark-hover-gradient":
+        "linear-gradient(rgba(79, 134, 142, 0.5), rgba(67, 110, 119, 0.2))",
+      "dark-line-gradient":
+        "linear-gradient(90deg, rgba(2, 6, 23, 0.00) 0%, #334155 50%, rgba(2, 6, 23, 0.00) 100%)",
     },
     backdropBlur: {
       12.5: "3.125rem",

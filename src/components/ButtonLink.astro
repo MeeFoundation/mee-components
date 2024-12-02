@@ -7,7 +7,7 @@ interface Props {
   type?: "submit" | "reset" | "button" | undefined | null;
   size?: "l" | "m" | "s";
   buttonType?: "primary" | "secondary" | "tertiary" | "danger";
-  style?:  "filled" | "outlined" | "transparent";
+  style?: "filled" | "outlined" | "transparent";
   leftIcon?: string;
   rightIcon?: string;
   disabled?: boolean;
@@ -74,11 +74,11 @@ const {
 
 <style>
   .primary-filled {
-    @apply border-brand-600 bg-primary-gradient text-white hover:border-brand-800 hover:bg-primary-gradient-hover focus:shadow-button disabled:hover:border-brand-600 disabled:hover:bg-primary-gradient;
+    @apply dark:bg-primary-gradient-dark dark:disabled:hover:bg-primary-gradient-dark dark:hover:bg-primary-gradient-hover-dark border-brand-600 bg-primary-gradient text-white hover:border-brand-800 hover:bg-primary-gradient-hover focus:shadow-button disabled:hover:border-brand-600 disabled:hover:bg-primary-gradient dark:text-brand-900;
   }
 
   .primary-transparent {
-    @apply border-0 bg-transparent text-brand-700 hover:text-brand-800 focus:border focus:border-brand-700 focus:text-brand-800 focus:shadow-button;
+    @apply border-0 bg-transparent text-brand-700 hover:text-brand-800 focus:border focus:border-brand-700 focus:text-brand-800 focus:shadow-button dark:text-brand-300 dark:hover:text-brand-200;
   }
 
   .primary-outlined {
@@ -98,15 +98,15 @@ const {
   }
 
   .tertiary-filled {
-    @apply border-gray-300 bg-gray-50 text-gray-700 hover:bg-gray-100 focus:shadow-button-tertiary disabled:hover:bg-gray-50;
+    @apply border-grey-300 bg-grey-50 text-grey-700 hover:bg-grey-100 focus:shadow-button-tertiary disabled:hover:bg-grey-50;
   }
 
   .tertiary-outlined {
-    @apply border-gray-300 bg-transparent text-gray-700 hover:bg-grey-50 focus:shadow-button-tertiary disabled:hover:bg-transparent;
+    @apply border-grey-300 bg-transparent text-grey-700 hover:bg-grey-500 focus:shadow-button-tertiary disabled:hover:bg-transparent dark:text-grey-300 dark:hover:bg-white/25;
   }
 
   .tertiary-transparent {
-    @apply border-none bg-transparent text-gray-700 hover:text-gray-800 focus:text-gray-800 focus:shadow-button-tertiary;
+    @apply border-none bg-transparent text-grey-700 hover:text-grey-800 focus:text-grey-800 focus:shadow-button-tertiary dark:text-grey-300;
   }
 
   .danger-filled {

@@ -1,0 +1,22 @@
+---
+interface Props {
+  className?: string;
+  size?: "l" | "m" | "s" | "xs";
+  name: string;
+  id?: string;
+}
+
+const { className, size = "l", name, id } = Astro.props;
+---
+
+<i
+  id={id}
+  class:list={[
+    "bi font-thin",
+    "bi-" + name,
+    size === "l" && "text-4xl",
+    size === "m" && "text-3xl",
+    size === "s" && "text-2xl",
+    size === "xs" && "text-base leading-none",
+    className,
+  ]}></i>

@@ -17,10 +17,14 @@ import Scrollbars from "@components/showcase/Scrollbars.astro";
 import Accordions from "@components/showcase/Accordions.astro";
 import Avatars from "@components/showcase/Avatars.astro";
 import Tables from "@components/showcase/Tables.astro";
+import ThemeSelect from "@components/ThemeSelect.astro";
 ---
 
 <Layout title="Showcase">
   <main class="flex flex-col gap-3 p-10">
+    <Accordion title="Theme Select" icon="menu-button-wide" collapse={false}>
+      <ThemeSelect />
+    </Accordion>
     <Accordion title="Buttons" icon="menu-button-wide">
       <Buttons />
     </Accordion>
