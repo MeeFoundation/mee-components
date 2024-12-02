@@ -62,7 +62,7 @@ const init = () => {
             "justify-between",
             "items-center",
             "border-b",
-            "border-gray-200",
+            "border-grey-200",
             "last:border-b-0",
             "hover:bg-grey-50",
             "dark:hover:bg-grey-800",

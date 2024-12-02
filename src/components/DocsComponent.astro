@@ -72,12 +72,12 @@ const categories = [
   title && (
     <section class="section z-100 flex h-full w-screen items-center justify-center">
       <div class="flex max-w-192 flex-col items-center justify-center gap-2 px-6 transition-opacity duration-500 md:p-0">
-        <h1 class="marker text-center text-4xl font-semibold text-gray-900 lg:text-7xl lg:tracking-0.02 dark:text-gray-50">
+        <h1 class="marker text-center text-4xl font-semibold text-grey-900 lg:text-7xl lg:tracking-0.02 dark:text-grey-50">
           {title}
         </h1>
         {subtitle && (
           <section class="overflow-hidden">
-            <h3 class="text animation-delay-800 px-6 text-center text-xl leading-relaxed text-gray-900 md:text-2xl dark:text-gray-50">
+            <h3 class="text animation-delay-800 px-6 text-center text-xl leading-relaxed text-grey-900 md:text-2xl dark:text-grey-50">
               Everything you need to build a stellar documentation website.
               Fast, accessible, and easy-to-use.
             </h3>
@@ -98,26 +98,26 @@ const categories = [
           return (
             category.enabled && (
               <a
-                class="dark:hover:bg-dark-hover-gradient flex max-w-96 flex-col rounded-2xl border border-grey-300 pb-8 transition-all hover:border-brand-300 hover:shadow-3-strong dark:border-gray-600"
+                class="flex max-w-96 flex-col rounded-2xl border border-grey-300 pb-8 transition-all hover:border-brand-300 hover:shadow-3-strong dark:border-grey-600 dark:hover:bg-dark-hover-gradient"
                 href={category.link}
               >
                 <img
                   src={category.imageLight.src}
-                  class="w-full dark:hidden"
+                  class="w-full rounded-t-2xl dark:hidden"
                   alt={`${category.title} Docs`}
                 />
                 <img
                   src={category.imageDark.src}
-                  class="hidden w-full dark:block"
+                  class="hidden w-full rounded-t-2xl dark:block"
                   alt={`${category.title} Docs`}
                 />
 
                 <div class="flex h-full flex-col justify-between">
                   <div class="flex flex-col justify-between gap-2 p-8 pb-4 pt-0">
-                    <div class="flex items-center gap-2 text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-gray-50">
+                    <div class="flex items-center gap-2 text-left text-xl font-semibold text-grey-900 lg:text-2xl dark:text-grey-50">
                       {category.title}
                     </div>
-                    <div class="text-sm text-grey-800 lg:text-base dark:text-gray-200">
+                    <div class="text-sm text-grey-800 lg:text-base dark:text-grey-200">
                       {category.description}
                     </div>
                   </div>
