@@ -118,8 +118,16 @@
 
     --primary-gradient: linear-gradient(92.42deg, #3b5b63 0%, #4f868e 100%);
     --primary-gradient-hover: linear-gradient(0deg, #374e53 0%, #374e53 100%);
-    --primary-gradient-dark: linear-gradient(92.42deg, #9AC2C6 0%, #4F868E 100%);
-    --primary-gradient-hover-dark: linear-gradient(92.42deg, #9AC2C6 0%, #9AC2C6 100%);
+    --primary-gradient-dark: linear-gradient(
+      92.42deg,
+      #9ac2c6 0%,
+      #4f868e 100%
+    );
+    --primary-gradient-hover-dark: linear-gradient(
+      92.42deg,
+      #9ac2c6 0%,
+      #9ac2c6 100%
+    );
 
     --auth-gradient: radial-gradient(
       50% 50% at 50% 50%,
@@ -397,6 +405,19 @@
   select:-webkit-autofill:hover,
   select:-webkit-autofill:focus {
     -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+  }
+
+  .dark input:-webkit-autofill,
+  .dark input:-webkit-autofill:hover,
+  .dark input:-webkit-autofill:focus,
+  .dark textarea:-webkit-autofill,
+  .dark textarea:-webkit-autofill:hover,
+  .dark textarea:-webkit-autofill:focus,
+  .dark select:-webkit-autofill,
+  .dark select:-webkit-autofill:hover,
+  .dark select:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0px 1000px rgb(var(--color-grey-950)) inset;
+    -webkit-text-fill-color: rgb(var(--color-grey-100));
   }
 
   .logo > svg {

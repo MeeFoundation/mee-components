@@ -41,7 +41,7 @@ const {
 
 <style>
   .primary-filled {
-    @apply dark:bg-primary-gradient-dark dark:disabled:hover:bg-primary-gradient-dark dark:hover:bg-primary-gradient-hover-dark border-brand-600 bg-primary-gradient text-white hover:border-brand-800 hover:bg-primary-gradient-hover focus:shadow-button disabled:hover:border-brand-600 disabled:hover:bg-primary-gradient dark:text-brand-900;
+    @apply border-brand-600 bg-primary-gradient text-white hover:border-brand-800 hover:bg-primary-gradient-hover focus:shadow-button disabled:hover:border-brand-600 disabled:hover:bg-primary-gradient dark:bg-primary-gradient-dark dark:text-brand-900 dark:hover:bg-primary-gradient-hover-dark dark:disabled:hover:bg-primary-gradient-dark;
   }
 
   .primary-transparent {
@@ -49,7 +49,7 @@ const {
   }
 
   .primary-outlined {
-    @apply border-brand-700 bg-transparent text-brand-700 hover:bg-brand-50 focus:shadow-button disabled:hover:bg-transparent;
+    @apply border-brand-700 bg-transparent text-brand-700 hover:bg-brand-50 focus:shadow-button disabled:hover:bg-transparent dark:border-brand-300 dark:text-brand-300 dark:hover:bg-white/25 dark:disabled:hover:bg-transparent;
   }
 
   .secondary-filled {
@@ -69,7 +69,7 @@ const {
   }
 
   .tertiary-outlined {
-    @apply border-grey-300 bg-transparent text-grey-700 hover:bg-grey-500 focus:shadow-button-tertiary disabled:hover:bg-transparent dark:text-grey-300 dark:hover:bg-white/25;
+    @apply border-grey-300 bg-transparent text-grey-700 hover:bg-grey-100 focus:shadow-button-tertiary disabled:hover:bg-transparent dark:text-grey-300 dark:hover:bg-white/25;
   }
 
   .tertiary-transparent {
