@@ -384,21 +384,21 @@ const {
 </style>
 
 <script>
-  const header = document.getElementById("header") as HTMLElement;
+  const header = document.getElementById("header");
   const menu = document.getElementById("menu") as HTMLElement;
   const openMenu = document.getElementById("open-menu") as HTMLButtonElement;
   const closeMenu = document.getElementById("close-menu") as HTMLButtonElement;
   const projectsDropdown = document.getElementById("projects-dropdown");
   document.addEventListener("scroll", () => {
-    if (header.dataset.type !== "dark") {
+    if (!header?.dataset.type || header?.dataset.type !== "dark") {
       if (window.scrollY > 50) {
-        header.classList.remove("h-27");
-        header.classList.add("h-17");
+        header?.classList.remove("h-27");
+        header?.classList.add("h-17");
         projectsDropdown?.classList.remove("pt-12", "top-18");
         projectsDropdown?.classList.add("top-13.25", "pt-7");
       } else {
-        header.classList.remove("h-17");
-        header.classList.add("h-27");
+        header?.classList.remove("h-17");
+        header?.classList.add("h-27");
         projectsDropdown?.classList.remove("top-13.25", "pt-7");
         projectsDropdown?.classList.add("pt-12", "top-18");
       }
