@@ -27,3 +27,5 @@ export { default as TableHelper } from "./helpers/table";
 export { default as Accordion } from "./components/Accordion.astro";
 export { default as AppButtons } from "./components/AppButtons.astro";
 export { default as ThemeSelect } from "./components/ThemeSelect.astro";
+export { default as Route } from "./components/Route.astro";
+export { default as HashRouter } from "./helpers/hashRouter";

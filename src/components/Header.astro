@@ -1,6 +1,9 @@
 ---
 import Logo from "./MeeLogo.astro";
-import ButtonLink from "./ButtonLink.astro";
+import ButtonLink, {
+  type ButtonType,
+  type ButtonStyle,
+} from "./ButtonLink.astro";
 import IconButton from "./IconButton.astro";
 import ThemeSelect from "./ThemeSelect.astro";
 import ProjectDropdown from "./ProjectDropdown.astro";
@@ -15,9 +18,19 @@ export interface Props {
     links?: Link[];
     rightLinks: RightLink[];
     footerLinks: Link[];
+    authLinks?: AuthLinks[];
     logoLink?: string;
-    userLinks?: boolean;
   };
+}
+
+interface AuthLinks {
+  name: string;
+  link: string;
+  target?: string;
+  id?: string;
+  type?: string;
+  style: string;
+  className?: string;
 }
 
 interface Link {
@@ -166,29 +179,23 @@ const {
           ))
         }
         {
-          header.userLinks && (
-            <>
-              <ButtonLink
-                buttonType="primary"
-                style="outlined"
-                size="l"
-                href="/sign-in"
-                id="sign-in"
-              >
-                Log in
-              </ButtonLink>
-              <ButtonLink
-                buttonType="primary"
-                style="filled"
-                size="l"
-                href="/sign-up"
-                id="sign-up"
-                className="hidden md:flex"
-              >
-                Sign up
-              </ButtonLink>
-            </>
-          )
+          header.authLinks &&
+            header.authLinks.map((userLink) => {
+              const buttonType = userLink.type as ButtonType;
+              const style = userLink.style as ButtonStyle;
+              return (
+                <ButtonLink
+                  buttonType={buttonType}
+                  style={style}
+                  size="l"
+                  href={userLink.link}
+                  id={userLink.id}
+                  className={userLink.className}
+                >
+                  {userLink.name}
+                </ButtonLink>
+              );
+            })
         }
       </div>
       <div
@@ -196,6 +203,7 @@ const {
           "flex items-center justify-end gap-1 group-[.type-default]:w-1/3 group-[.type-docs]:w-1/3 md:hidden",
         ]}
       >
+        <ThemeSelect />
         {
           !location &&
             header.rightLinks.map((link) => (
@@ -226,32 +234,26 @@ const {
               />
             ))
         }
+
         {
-          header.userLinks && (
-            <>
-              <ButtonLink
-                buttonType="primary"
-                style="outlined"
-                size="l"
-                href="/sign-in"
-                id="sign-in"
-              >
-                Log in
-              </ButtonLink>
-              <ButtonLink
-                buttonType="primary"
-                style="filled"
-                size="l"
-                href="/sign-up"
-                id="sign-up"
-                className="hidden md:flex"
-              >
-                Sign up
-              </ButtonLink>
-            </>
-          )
+          header.authLinks &&
+            header.authLinks.map((userLink) => {
+              const buttonType = userLink.type as ButtonType;
+              const style = userLink.style as ButtonStyle;
+              return (
+                <ButtonLink
+                  buttonType={buttonType}
+                  style={style}
+                  size="l"
+                  href={userLink.link}
+                  id={userLink.id}
+                  className={userLink.className}
+                >
+                  {userLink.name}
+                </ButtonLink>
+              );
+            })
         }
-        <ThemeSelect />
         {
           !disableMobileMenu && (
             <IconButton

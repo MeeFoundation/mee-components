@@ -80,23 +80,23 @@ const {
 </div>
 
 <script>
-  const setAccordionHeight = (parrentAccordion: HTMLElement | Element) => {
-    const body = parrentAccordion.querySelector(".a-body") as HTMLElement;
-    const data = parrentAccordion.querySelector(".data") as HTMLElement;
+  const setAccordionHeight = (parentAccordion: HTMLElement | Element) => {
+    const body = parentAccordion.querySelector(".a-body") as HTMLElement;
+    const data = parentAccordion.querySelector(".data") as HTMLElement;
     if (!body.classList.contains("h-0")) {
       const dataHeight = data.offsetHeight + "px";
       body.style.height = dataHeight;
-      const parent = parrentAccordion.parentElement as HTMLElement;
+      const parent = parentAccordion.parentElement as HTMLElement;
       checkParentAccordionHeight(parent);
     }
   };
   const checkParentAccordionHeight = (parent: HTMLElement | null) => {
     if (parent) {
-      const parrentAccordion = parent.closest(
-        ".a-container",
+      const parentAccordion = parent.closest(
+        ".a-container"
       ) as HTMLElement | null;
-      if (parrentAccordion) {
-        setTimeout(() => setAccordionHeight(parrentAccordion), 200);
+      if (parentAccordion) {
+        setTimeout(() => setAccordionHeight(parentAccordion), 200);
       }
     }
   };
@@ -107,7 +107,7 @@ const {
     const header = accordionContainer.querySelector(".a-header") as HTMLElement;
     const body = accordionContainer.querySelector(".a-body") as HTMLElement;
     const chevron = accordionContainer.querySelector(
-      ".a-chevron",
+      ".a-chevron"
     ) as HTMLElement;
     const data = accordionContainer.querySelector(".data") as HTMLElement;
 
