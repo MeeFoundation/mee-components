@@ -144,6 +144,18 @@
     --color-scrollbar: rgba(2, 6, 23, 0.35);
     --color-modal-overlay: rgba(2, 6, 23, 0.35);
 
+    --project-item-gradient: linear-gradient(
+      319.57deg,
+      #ffffff 35.85%,
+      #f3f8f8 72.21%
+    );
+
+    --project-item-gradient-dark: linear-gradient(
+      319.57deg,
+      #020617 35.85%,
+      #1d2a2f 72.21%
+    );
+
     --footer-gradient: linear-gradient(
         258.14deg,
         #4f868e 22.66%,

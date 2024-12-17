@@ -182,7 +182,7 @@ const {
             labelPosition === "inside" &&
               "left-4 top-4 transition-[opacity,_transform] duration-200 ease-linear peer-focus:-translate-y-2.5 peer-focus:scale-80 peer-focus:text-brand-500 peer-[:not(:placeholder-shown)]:-translate-y-2.5 peer-[:not(:placeholder-shown)]:scale-80 motion-reduce:transition-none dark:peer-focus:text-brand-300",
             labelPosition === "edge" &&
-              "left-0 top-0 bg-white transition-all duration-200 ease-linear peer-focus:translate-x-3 peer-focus:bg-white peer-focus:text-brand-500 peer-[:not(:placeholder-shown)]:translate-x-3 peer-[:not(:placeholder-shown)]:bg-white motion-reduce:transition-none dark:bg-grey-950 dark:peer-focus:bg-grey-950 dark:peer-focus:text-brand-300 dark:peer-[:not(:placeholder-shown)]:bg-grey-950",
+              "left-0 top-0 transition-all duration-200 ease-linear peer-focus:translate-x-3 peer-focus:text-brand-500 peer-[:not(:placeholder-shown)]:translate-x-3 motion-reduce:transition-none dark:peer-focus:text-brand-300",
             labelClassByPositionAndSize[labelPosition][size],
             leftIcon &&
               labelClassByPositionAndSizeLeftIcon[labelPosition][size],
@@ -190,6 +190,9 @@ const {
           ]}
         >
           {label}
+          {labelPosition === "edge" && (
+            <span class="absolute bottom-0 left-0 -z-1 h-1/2 w-full bg-white dark:bg-grey-950" />
+          )}
         </label>
       )
     }

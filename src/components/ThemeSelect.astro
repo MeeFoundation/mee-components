@@ -19,15 +19,25 @@ import Icon from "./Icon.astro";
       size="xs"
       name="moon-fill"
     />
-  </button><iframe
-    style="width:0;height:0;border:none;position:absolute;"
-    id="storage"
-    src="https://mee.foundation/storage/index.html?var=1"></iframe>
+  </button>
+  <div id="iframe-container" class="absolute h-0 w-0 border-none"></div>
 </>
 
 <script>
   type Theme = "dark" | "light";
-  const frame = document.getElementById("storage") as HTMLIFrameElement;
+  const iframeContainer = document.getElementById("iframe-container");
+  const version = new Date().valueOf();
+  const iframe = document.createElement("iframe");
+  iframe.setAttribute(
+    "src",
+    "https://mee.foundation/storage/index.html?ver=" + version
+  );
+  iframe.style.width = "0px";
+  iframe.style.height = "0px";
+  if (iframeContainer) {
+    iframeContainer.appendChild(iframe);
+  }
+
   interface StorageMessage {
     method: "getTheme" | "setTheme";
     theme?: Theme;
@@ -44,7 +54,7 @@ import Icon from "./Icon.astro";
 
   const setTheme = (newTheme: Theme, withoutSave = false) => {
     if (!withoutSave) {
-      frame.contentWindow?.postMessage(
+      iframe.contentWindow?.postMessage(
         { method: "setTheme", theme: newTheme },
         "https://mee.foundation"
       );
@@ -78,9 +88,9 @@ import Icon from "./Icon.astro";
     false
   );
 
-  if (frame) {
-    frame.onload = () => {
-      frame.contentWindow?.postMessage(
+  if (iframe) {
+    iframe.onload = () => {
+      iframe.contentWindow?.postMessage(
         { method: "getTheme" },
         "https://mee.foundation"
       );

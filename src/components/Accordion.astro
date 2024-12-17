@@ -5,6 +5,7 @@ interface Props {
   icon?: string;
   title: string;
   className?: string;
+  headerClassName?: string;
   style?: "box" | "boxed-list" | "simple-list";
   size?: "lg" | "md" | "sm";
 }
@@ -15,6 +16,7 @@ const {
   icon,
   title,
   className,
+  headerClassName,
   style = "box",
   size = "md",
 } = Astro.props;
@@ -23,7 +25,7 @@ const {
 <div
   id={id}
   class:list={[
-    "a-container text-grey-950 dark:text-white/90",
+    "a-container text-grey-950 dark:text-grey-50",
     className,
     style === "box" && "border border-grey-200",
     style === "box" && size === "lg" && "rounded-lg",
@@ -31,7 +33,10 @@ const {
     style === "box" && size === "sm" && "rounded",
   ]}
 >
-  <h2 id={id + "-heading"} class="a-header w-full">
+  <h2
+    id={id ? `${id}-heading` : undefined}
+    class:list={["a-header w-full", headerClassName]}
+  >
     <div
       class:list={[
         "flex cursor-pointer select-none items-center justify-between px-6",
@@ -67,7 +72,7 @@ const {
     </div>
   </h2>
   <div
-    id={id + "-body"}
+    id={id ? `${id}-body` : undefined}
     class:list={[
       "a-body overflow-hidden transition-all duration-400 ease-in-out",
       collapse && "h-0",

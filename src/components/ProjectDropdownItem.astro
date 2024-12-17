@@ -1,0 +1,44 @@
+---
+interface Props {
+  project: {
+    title: string;
+    image: ImageMetadata;
+    imageDark: ImageMetadata;
+    comingSoon?: boolean;
+  };
+}
+
+const { project } = Astro.props;
+---
+
+<div class="relative flex w-full flex-col">
+  <div class="relative flex flex-col">
+    <div
+      class="absolute left-4 top-4 flex w-full items-center gap-1 text-center text-base font-semibold text-grey-900 dark:text-grey-50"
+    >
+      {project.title}
+      {
+        project.comingSoon && (
+          <span class="rounded-md border border-grey-200 bg-grey-50 px-2 py-0.5 text-xxs dark:border-grey-700 dark:bg-grey-900 dark:text-grey-50">
+            Coming soon
+          </span>
+        )
+      }
+    </div>
+  </div>
+
+  <img
+    src={project.image.src}
+    width="258"
+    height="215"
+    class="rounded-2xl dark:hidden"
+    alt={project.title}
+  />
+  <img
+    src={project.imageDark.src}
+    width="258"
+    height="215"
+    class="hidden rounded-2xl dark:block"
+    alt={project.title}
+  />
+</div>

@@ -358,6 +358,8 @@ const theme = {
       "primary-gradient-hover-dark": "var(--primary-gradient-hover-dark)",
       "auth-gradient": "var(--auth-gradient)",
       "auth-gradient-dark": "var(--auth-gradient-dark)",
+      "project-item-gradient": "var(--project-item-gradient)",
+      "project-item-gradient-dark": "var(--project-item-gradient-dark)",
       "header-gradient":
         "linear-gradient(90deg,rgba(255, 255, 255, 0) 0%, rgb(231, 232, 233) 50%,rgba(255, 255, 255, 0) 100%)",
       "header-bg":
