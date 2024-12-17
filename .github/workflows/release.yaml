@@ -24,7 +24,7 @@ jobs:
         run: pnpm install
       - name: Login to npm
         run: |
-          pnpm login
+          pnpm login --progress=true
           pnpm config set registry https://registry.npmjs.org
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
