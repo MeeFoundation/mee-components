@@ -18,6 +18,7 @@ export const initRouter = () => {
     const cleanHash = hash[hash.length - 1] === "/" ? hash.slice(0, -1) : hash;
     const routes = document.querySelectorAll(".route-item");
     routeContent.innerHTML = "";
+    let foundRoute = false;
     routes.forEach((page) => {
       if (page instanceof HTMLTemplateElement) {
         const route = page?.dataset.route;
@@ -31,6 +32,7 @@ export const initRouter = () => {
           const found = getFound(cleanHash, route, regexRoute);
 
           if (found) {
+            foundRoute = true;
             const clone = page.content.cloneNode(true);
             routeContent.appendChild(clone);
             document.documentElement.setAttribute("data-page_id", page.id);
@@ -53,6 +55,21 @@ export const initRouter = () => {
         }
       }
     });
+    if (!foundRoute) {
+      routes.forEach((page) => {
+        if (page instanceof HTMLTemplateElement) {
+          const route = page?.dataset.route;
+          if (route === "404") {
+            const clone = page.content.cloneNode(true);
+            routeContent.appendChild(clone);
+            document.documentElement.setAttribute("data-page_id", page.id);
+
+            const event = new CustomEvent("change-route");
+            setTimeout(() => document.dispatchEvent(event), 100);
+          }
+        }
+      });
+    }
   };
   checkHash();
 
