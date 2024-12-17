@@ -21,7 +21,7 @@ jobs:
           registry-url: "https://registry.npmjs.org"
           cache: 'pnpm'
       - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+        run: pnpm install
       - name: Login to npm
         run: |
           pnpm login
