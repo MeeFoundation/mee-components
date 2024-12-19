@@ -29,3 +29,4 @@ export { default as AppButtons } from "./components/AppButtons.astro";
 export { default as ThemeSelect } from "./components/ThemeSelect.astro";
 export { default as Route } from "./components/Route.astro";
 export { default as HashRouter } from "./helpers/hashRouter";
+export { default as Validation } from "./helpers/validation";
