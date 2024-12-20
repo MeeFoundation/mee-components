@@ -25,6 +25,7 @@ import Icon from "./Icon.astro";
 
 <script>
   type Theme = "dark" | "light";
+  const storageKey = "theme";
   const iframeContainer = document.getElementById("iframe-container");
   const version = new Date().valueOf();
   const iframe = document.createElement("iframe");
@@ -46,13 +47,14 @@ import Icon from "./Icon.astro";
     ? "dark"
     : "light";
 
-  let theme: Theme = systemValue;
+  let theme: Theme = (localStorage.getItem(storageKey) as Theme) || systemValue;
 
   const buttons = document.querySelectorAll("#theme-select");
   const iconsSun = document.querySelectorAll("#icon-sun");
   const iconsMoon = document.querySelectorAll("#icon-moon");
 
   const setTheme = (newTheme: Theme, withoutSave = false) => {
+    localStorage.setItem(storageKey, newTheme);
     if (!withoutSave) {
       iframe.contentWindow?.postMessage(
         { method: "setTheme", theme: newTheme },
@@ -82,6 +84,7 @@ import Icon from "./Icon.astro";
       if (message.method === "getTheme") {
         if (message.theme) {
           setTheme(message.theme);
+          localStorage.setItem(storageKey, message.theme);
         }
       }
     },
