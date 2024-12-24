@@ -1,0 +1,59 @@
+---
+import Button from "./Button.astro";
+interface Props {
+  className?: string;
+  url: string;
+}
+
+const { className, url } = Astro.props;
+---
+
+<span class:list={["relative", className]} data-url={url}>
+  <div
+    id="tooltip-default"
+    role="tooltip"
+    class="tooltip invisible absolute bottom-11 z-10 inline-block rounded-lg bg-grey-900 px-3 py-2 text-sm font-medium text-white opacity-0 shadow-sm transition-opacity duration-300 dark:bg-grey-700"
+  >
+    Copied to clipboard
+  </div>
+  <Button
+    leftIcon="share-fill text-xl"
+    style="outlined"
+    buttonType="tertiary"
+    size="m"
+    className="share-button"
+  >
+    <slot />
+  </Button>
+</span>
+
+<script>
+  const shareButtons = document.querySelectorAll(".share-button");
+  shareButtons.forEach((shareButton) => {
+    shareButton.addEventListener("click", async () => {
+      const link = shareButton.parentElement?.dataset.url;
+      if (link) {
+        const url = window.location.origin + link;
+        const shareData = {
+          url: url,
+        };
+        if ("canShare" in navigator && navigator.canShare(shareData)) {
+          try {
+            await navigator.share(shareData);
+          } catch (err) {
+            console.error(err);
+          }
+        } else {
+          navigator.clipboard.writeText(url);
+          const tooltip = shareButton.parentElement?.querySelector(".tooltip");
+          tooltip?.classList.remove("invisible", "opacity-0");
+          tooltip?.classList.add("visible", "opacity-100");
+          setTimeout(() => {
+            tooltip?.classList.remove("visible", "opacity-100");
+            tooltip?.classList.add("invisible", "opacity-0");
+          }, 3000);
+        }
+      }
+    });
+  });
+</script>
