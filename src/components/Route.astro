@@ -2,21 +2,19 @@
 interface Props {
   id: string;
   route: string;
-  paramsKey?: string;
-  paramsIndex?: number;
+  params?: string[]
   withoutDarkTheme?: boolean;
   regexRoute?: boolean;
 }
 
-const { route, id, paramsKey, paramsIndex, withoutDarkTheme, regexRoute } =
+const { route, id, params, withoutDarkTheme, regexRoute } =
   Astro.props;
 ---
 
 <template
   id={id}
   data-route={route}
-  data-params_key={paramsKey}
-  data-params_index={paramsIndex}
+  data-params={params?.join("|")}
   data-without_dark_theme={withoutDarkTheme ? 1 : 0}
   data-regex_route={regexRoute ? 1 : 0}
   class="route-item"

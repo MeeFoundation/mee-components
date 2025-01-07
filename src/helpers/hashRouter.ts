@@ -22,9 +22,7 @@ export const initRouter = () => {
     routes.forEach((page) => {
       if (page instanceof HTMLTemplateElement) {
         const route = page?.dataset.route;
-
-        const paramsKey = page?.dataset.params_key;
-        const paramsIndex = page?.dataset.params_index;
+        const params = page?.dataset.params?.split("|");
         const withoutDarkTheme = page?.dataset.without_dark_theme;
         const regexRoute = page?.dataset.regex_route;
 
@@ -36,11 +34,16 @@ export const initRouter = () => {
             const clone = page.content.cloneNode(true);
             routeContent.appendChild(clone);
             document.documentElement.setAttribute("data-page_id", page.id);
-            if (paramsKey && paramsIndex && Array.isArray(found)) {
-              document.documentElement.setAttribute(
-                "data-" + paramsKey,
-                found[Number(paramsIndex)],
-              );
+
+            if (params && Array.isArray(found)) {
+              params.map((param, index) => {
+                if (found[Number(index + 1)] !== undefined) {
+                  document.documentElement.setAttribute(
+                    "data-" + param,
+                    found[Number(index + 1)],
+                  );
+                }
+              });
             }
             const event = new CustomEvent("change-route");
             setTimeout(() => document.dispatchEvent(event), 100);
