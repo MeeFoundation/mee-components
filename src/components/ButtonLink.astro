@@ -37,13 +37,13 @@ const {
   href={href}
   target={target}
   class:list={[
-    "z-10 box-border flex h-11 flex-none grow-0 flex-row items-center justify-center gap-2 rounded-xl border border-solid font-semibold",
+    "z-10 box-border flex h-11 flex-none grow-0 flex-row items-center justify-center gap-1.5 rounded-xl border border-solid font-semibold",
     `${buttonType}-${style}`,
     disabled && "pointer-events-none cursor-default opacity-60",
-    size === "xxl" && "h-14 px-6 py-3 text-xl",
-    size === "l" && "h-11 px-4 py-2.5 text-base",
-    size === "m" && "h-9 px-3.5 py-2 text-sm",
-    size === "s" && "h-7.5 px-3 py-1.75 text-xs",
+    size === "xxl" && "h-14 px-6.5 py-3 text-xl",
+    size === "l" && "px-4.5 h-11 py-2.5 text-base",
+    size === "m" && "h-9 px-4 py-2 text-sm",
+    size === "s" && "h-7.5 px-3.5 py-1.75 text-xs",
     className,
   ]}
 >
@@ -61,7 +61,14 @@ const {
       />
     )
   }
-  <slot />
+  {
+    Astro.slots.has("default") && (
+      <label class="px-2">
+        <slot />
+      </label>
+    )
+  }
+
   {
     rightIcon && (
       <i
