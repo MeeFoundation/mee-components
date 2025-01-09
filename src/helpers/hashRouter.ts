@@ -30,10 +30,10 @@ export const initRouter = () => {
           const found = getFound(cleanHash, route, regexRoute);
 
           if (found) {
+            document.documentElement.setAttribute("data-page_id", page.id);
             foundRoute = true;
             const clone = page.content.cloneNode(true);
             routeContent.appendChild(clone);
-            document.documentElement.setAttribute("data-page_id", page.id);
 
             if (params && Array.isArray(found)) {
               params.map((param, index) => {
@@ -46,7 +46,7 @@ export const initRouter = () => {
               });
             }
             const event = new CustomEvent("change-route");
-            setTimeout(() => document.dispatchEvent(event), 100);
+            setTimeout(() => document.dispatchEvent(event), 150);
 
             if (withoutDarkTheme) {
               setInterval(() => {
@@ -63,12 +63,11 @@ export const initRouter = () => {
         if (page instanceof HTMLTemplateElement) {
           const route = page?.dataset.route;
           if (route === "404") {
+            document.documentElement.setAttribute("data-page_id", page.id);
             const clone = page.content.cloneNode(true);
             routeContent.appendChild(clone);
-            document.documentElement.setAttribute("data-page_id", page.id);
-
             const event = new CustomEvent("change-route");
-            setTimeout(() => document.dispatchEvent(event), 100);
+            setTimeout(() => document.dispatchEvent(event), 150);
           }
         }
       });
@@ -102,6 +101,7 @@ export const initPageListeners = (
   document.addEventListener("change-route", () => {
     checkIsCurrentPage(id, listener, title);
   });
+  checkIsCurrentPage(id, listener, title);
 };
 
 export default { initRouter, initPageListeners };
