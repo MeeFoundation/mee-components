@@ -83,11 +83,11 @@ export const initRouter = () => {
 const checkIsCurrentPage = (
   id: string,
   listener: () => void,
-  title: string,
+  title?: string,
 ) => {
   const pageId = document.documentElement.dataset.page_id;
 
-  if (pageId === id) {
+  if (pageId === id && title) {
     document.title = title;
     listener();
   }
@@ -96,7 +96,7 @@ const checkIsCurrentPage = (
 export const initPageListeners = (
   id: string,
   listener: () => void,
-  title: string,
+  title?: string,
 ) => {
   document.addEventListener("change-route", () => {
     checkIsCurrentPage(id, listener, title);

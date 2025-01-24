@@ -1,0 +1,36 @@
+---
+interface Props {
+  id?: string;
+  className?: string;
+}
+const { id, className } = Astro.props;
+---
+
+<div class="relative w-full">
+  <div
+    id={id}
+    class:list={[
+      "absolute left-0 top-1 z-100 hidden w-full origin-top scale-y-0 opacity-0 transition-all duration-300 lg:block",
+      className,
+    ]}
+  >
+    <div
+      class="flex h-auto w-full items-center justify-center text-left text-base"
+    >
+      <div
+        class="flex w-full flex-col items-start justify-center rounded-2xl border border-grey-300 bg-white font-normal text-grey-950 transition-all delay-300 duration-0 dark:border-grey-700 dark:bg-grey-800"
+      >
+        <div class="flex flex-wrap items-stretch justify-center gap-4">
+          <slot />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .active {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+</style>

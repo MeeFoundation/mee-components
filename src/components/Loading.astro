@@ -2,7 +2,7 @@
 interface Props {
   id?: string;
   height?: "full" | "auto";
-  descriprion?: string;
+  description?: string;
   percent?: string;
   size?: "xxs" | "xs" | "sm" | "md" | "lg";
 }
@@ -10,7 +10,7 @@ interface Props {
 const {
   id = "loading",
   height = "full",
-  descriprion,
+  description,
   percent,
   size = "xs",
 } = Astro.props;
@@ -64,7 +64,7 @@ const {
     Loading...
   </div>
   {
-    descriprion && (
+    description && (
       <div
         class=""
         class:list={[
@@ -76,7 +76,7 @@ const {
           size === "lg" && "text-base",
         ]}
       >
-        {descriprion}
+        {description}
       </div>
     )
   }

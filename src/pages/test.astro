@@ -3,6 +3,9 @@ import Layout from "@layouts/Layout.astro";
 import Header from "@components/Header.astro";
 import Footer from "@components/Footer.astro";
 import Accordion from "@components/Accordion.astro";
+import Input from "@components/Input.astro";
+import Checkbox from "@components/Checkbox.astro";
+import DropdownSelect from "@components/DropdownSelect.astro";
 export const meeFoundation = "https://mee.foundation/";
 export const github =
   "https://github.com/MeeFoundation/private-advertising-website";
@@ -123,6 +126,20 @@ export const footer = {
             </h1>
           </div>
         </div>
+      </section>
+      <section>
+        <DropdownSelect label="Countries">
+          <div class="flex flex-col gap-1 p-2">
+            <Input label="Search" leftIcon="search" />
+            <ul>
+              <li><Checkbox label="Item label" /></li>
+              <li><Checkbox label="Item label" /></li>
+              <li><Checkbox label="Item label" /></li>
+              <li><Checkbox label="Item label" /></li>
+              <li><Checkbox label="Item label" /></li>
+            </ul>
+          </div>
+        </DropdownSelect>
       </section>
       <section class="faq-content flex w-full max-w-7xl flex-col gap-4 px-6">
         {
@@ -363,6 +380,8 @@ export const footer = {
 <script>
   const changeHeader = document.getElementById("change-header");
   const header = document.getElementById("header");
+  const showDropdown = document.getElementById("show-dropdown");
+  const dropdownTest = document.getElementById("dropdown-test");
   const main = document.getElementById("main");
   changeHeader?.addEventListener("click", () => {
     console.log(header?.parentElement);
@@ -370,5 +389,9 @@ export const footer = {
     header?.parentElement?.classList.remove("type-dark");
     header?.parentElement?.classList.add("type-default");
     header?.setAttribute("data-type", "default");
+  });
+  showDropdown?.addEventListener("click", () => {
+    console.log("showDropdown");
+    dropdownTest?.classList.toggle("active");
   });
 </script>

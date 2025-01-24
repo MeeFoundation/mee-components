@@ -1,0 +1,64 @@
+---
+
+import Dropdown from "./Dropdown.astro";
+import Input, { type Size } from "./Input.astro";
+export interface Props {
+  size?: Size;
+  label?: string;
+}
+const { size, label } = Astro.props;
+---
+
+<div class="dropdown-select-container">
+  <Input
+    size={size}
+    label={label}
+    rightIcon="chevron-down pointer-events-auto cursor-pointer right-icon-chevron"
+  />
+  <Dropdown className="dropdown-container">
+    <slot/>
+  </Dropdown>
+</div>
+<script>
+  const dropdownSelectContainer = document.querySelector(
+    ".dropdown-select-container"
+  ) as HTMLElement;
+  const rightIconChevron = document.querySelector(
+    ".right-icon-chevron"
+  ) as HTMLElement;
+
+  const dropdownInput = dropdownSelectContainer.querySelector(
+    "input"
+  ) as HTMLInputElement;
+  const dropdown = document.querySelector(
+    ".dropdown-container"
+  ) as HTMLDivElement;
+  dropdownInput?.addEventListener("focus", () => {
+    console.log("focus");
+    dropdown.classList.add("active");
+  });
+
+  function assertIsNode(e: EventTarget | null): asserts e is Node {
+    if (!e || !("nodeType" in e)) {
+      throw new Error(`Node expected`);
+    }
+  }
+
+  const outsideClickListener = (event: MouseEvent) => {
+    const target = event.target;
+    assertIsNode(target);
+    if (event.target && !dropdownSelectContainer.contains(target)) {
+      dropdown.classList.remove("active");
+      //   removeClickListener();
+    }
+  };
+
+  //   const removeClickListener = () => {
+  //     document.removeEventListener("click", outsideClickListener);
+  //   };
+
+  document.addEventListener("click", outsideClickListener);
+  rightIconChevron.addEventListener("click", () => {
+    dropdown.classList.toggle("active");
+  });
+</script>
