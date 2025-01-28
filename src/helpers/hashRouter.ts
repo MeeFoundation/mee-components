@@ -46,6 +46,7 @@ export const initRouter = () => {
               });
             }
             const event = new CustomEvent("change-route");
+            window.scrollTo(0, 0);
             setTimeout(() => document.dispatchEvent(event), 150);
 
             if (withoutDarkTheme) {
@@ -67,6 +68,7 @@ export const initRouter = () => {
             const clone = page.content.cloneNode(true);
             routeContent.appendChild(clone);
             const event = new CustomEvent("change-route");
+            window.scrollTo(0, 0);
             setTimeout(() => document.dispatchEvent(event), 150);
           }
         }

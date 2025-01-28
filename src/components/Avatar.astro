@@ -1,6 +1,7 @@
 ---
 interface Props {
   isRounded?: boolean;
+  className?: string;
   size?: "xs" | "sm" | "md" | "base" | "lg" | "xl";
   isActive?: boolean;
   count?: number;
@@ -13,6 +14,7 @@ const {
   isRounded = true,
   size = "base",
   isActive = false,
+  className,
   count,
   initials,
   iconUrl,
@@ -101,7 +103,7 @@ const defaultAvatarSize = {
 };
 ---
 
-<div class:list={["relative cursor-pointer", sizes[size]]} id={id}>
+<div class:list={["relative cursor-pointer", sizes[size], className]} id={id}>
   <div
     class:list={[
       sizes[size],

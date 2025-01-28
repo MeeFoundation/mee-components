@@ -1,6 +1,6 @@
-const setAvatar = (avatarId: string, name?: string, imageSrc?: string) => {
-    const avatar = document.getElementById(avatarId);
-    if (avatar) {
+const setAvatar = (avatarQuerySelector: string, name?: string, imageSrc?: string) => {
+    const avatars = document.querySelectorAll(avatarQuerySelector);
+    avatars.forEach((avatar) => {
       const avatarImage = avatar.querySelector(
         ".avatar-image",
       ) as HTMLImageElement;
@@ -31,6 +31,6 @@ const setAvatar = (avatarId: string, name?: string, imageSrc?: string) => {
         avatarInitials.classList.add("hidden");
         avatarDefault.classList.remove("hidden");
       }
-    }
+    })
   };
 export default { setAvatar };
