@@ -1,14 +1,16 @@
 ---
 interface Props {
+  id?: string;
   columns: { title: string; name: string; sorted?: boolean }[];
   withCheckbox?: boolean;
+  className?: string;
   labels?: {
     text: string;
     bgColor: string;
     color: string;
     borderColor: string;
   }[];
-  actions?: { text: string; icon: string; color: string }[];
+  actions?: {actionType: string; text: string; icon: string; className: string }[];
 
   // small data for small tables
   tableData?: { [K: string]: number | string | undefined }[];
@@ -24,11 +26,13 @@ const {
   labels,
   tableData,
   actions,
+  className,
   url,
+  id,
 } = Astro.props;
 ---
 
-<div class="w-full rounded-lg border border-grey-300">
+<div class:list={["w-full rounded-lg border border-grey-300 overflow-x-auto", className]}>
   <table
     class="w-full text-sm"
     data-url={url}
@@ -36,11 +40,10 @@ const {
     data-columns={JSON.stringify(columns)}
     data-labels={JSON.stringify(labels)}
     data-actions={JSON.stringify(actions)}
+    id={id}
   >
     <thead>
-      <tr
-        class="flex h-auto w-full items-center justify-between border-b border-grey-200"
-      >
+      <tr class="border-b border-grey-200">
         {
           withCheckbox && (
             <th class="th-checkbox flex p-4">
@@ -50,7 +53,12 @@ const {
         }
         {
           columns.map(({ name, title, sorted = false }) => (
-            <th class="flex w-full p-4">
+            <th
+              class:list={[
+                "px-6 py-4",
+                name === "actions" && "flex items-center justify-center",
+              ]}
+            >
               <div class="text-start text-grey-800 dark:text-white/90">
                 {title}
               </div>
