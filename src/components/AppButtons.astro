@@ -3,6 +3,7 @@ import downloadAndroid from "./images/download-android-btn.svg";
 import downloadApple from "./images/download-apple-btn.svg";
 export interface Props {
   class?: string;
+  buttonsClass?: string;
   btnSize?: "normal" | "big" | "medium";
   noDescription?: boolean;
 }
@@ -11,6 +12,7 @@ const {
   class: className,
   btnSize = "normal",
   noDescription = false,
+  buttonsClass,
 } = Astro.props;
 ---
 
@@ -39,6 +41,7 @@ const {
       { "gap-16": btnSize === "big" },
       { "gap-12": btnSize === "medium" },
       { "gap-6": btnSize === "normal" },
+      buttonsClass,
     ]}
   >
     <a
