@@ -32,3 +32,4 @@ export { default as HashRouter } from "./helpers/hashRouter";
 export { default as Cookie } from "./helpers/cookie";
 export { default as Validation } from "./helpers/validation";
 export { default as ShareButton } from "./components/ShareButton.astro";
+export { default as VerificationCode } from "./components/VerificationCode.astro";

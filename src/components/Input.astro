@@ -23,6 +23,7 @@ export interface Props {
   leftIcon?: string;
   rightIcon?: string;
   className?: string;
+  inputClassName?: string;
   autocomplete?: string;
 }
 
@@ -129,6 +130,7 @@ const {
   leftIcon,
   rightIcon,
   className,
+  inputClassName,
   type = "text",
   autocomplete,
 } = Astro.props;
@@ -170,6 +172,7 @@ const {
         rightIcon && rightIconPadding[size],
         inputTextStyles[size],
         heightSizeStyles[labelPosition][size],
+        inputClassName
       ]}
     />
     {

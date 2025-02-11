@@ -1,0 +1,131 @@
+---
+interface Props {
+  id?: string;
+  size?: "l" | "m" | "s";
+}
+
+const { size = "l", id } = Astro.props;
+
+const inputSize = {
+  l: " h-24 w-20 text-7xl",
+  m: " h-20 w-16 text-5xl",
+  s: " h-16 w-14 text-4xl",
+};
+---
+
+<div
+  class="verification-code flex flex-col items-center justify-center md:flex-row"
+  id={id}
+>
+  <div class="flex items-center justify-center gap-2">
+    <input type="text" class="code-input" class:list={[inputSize[size]]} />
+    <input type="text" class="code-input" class:list={[inputSize[size]]} />
+    <input type="text" class="code-input" class:list={[inputSize[size]]} />
+  </div>
+  <div
+    class="flex items-center justify-center text-center font-thin leading-3"
+    class:list={[inputSize[size]]}
+  >
+    —
+  </div>
+  <div class="flex items-center justify-center gap-2">
+    <input type="text" class="code-input" class:list={[inputSize[size]]} />
+    <input type="text" class="code-input" class:list={[inputSize[size]]} />
+    <input type="text" class="code-input" class:list={[inputSize[size]]} />
+  </div>
+</div>
+
+<style>
+  .code-input {
+    @apply rounded-md border border-grey-300 text-center font-bold focus:border-brand-700 focus:ring focus:ring-brand-500/40;
+  }
+  .code-input.error {
+    @apply border-error-300 focus:border-error-700 focus:ring focus:ring-error-500/40;
+  }
+</style>
+
+<script>
+  const initListeners = () => {
+    const inputs = document.querySelectorAll(
+      ".code-input"
+    ) as NodeListOf<HTMLInputElement>;
+    document.addEventListener("paste", (event) => {
+      const target = event.target as HTMLElement;
+      if (target.closest(".verification-code")) {
+        event.preventDefault();
+        const pasteData = (
+          event.clipboardData || (window as any).clipboardData
+        ).getData("text");
+        const chars = pasteData.split("");
+        if (chars.length > 0) {
+          inputs.forEach((input, index) => {
+            (input as HTMLInputElement).value = chars[index] || "";
+          });
+          const lastFilled = Math.min(chars.length, inputs.length) - 1;
+          (inputs[lastFilled] as HTMLInputElement).focus();
+        }
+      }
+    });
+
+    const removeError = () => {
+      inputs.forEach((input) => {
+        input.classList.remove("error");
+      });
+    };
+    inputs.forEach((input, index) => {
+      input.addEventListener("keydown", (event) => {
+        const keyboardEvent = event as KeyboardEvent;
+        const target = event.target as HTMLInputElement;
+        if (!target) return;
+        if (keyboardEvent.key === "Backspace") {
+          target.value = "";
+          event.stopPropagation();
+          event.preventDefault();
+          inputs[Math.max(0, index - 1)].focus();
+        }
+        if (event.key === "ArrowLeft" && index > 0) {
+          (inputs[index - 1] as HTMLInputElement).focus();
+          setTimeout(() => {
+            (inputs[index - 1] as HTMLInputElement).setSelectionRange(0, 0);
+          });
+        }
+        if (event.key === "ArrowRight" && index < inputs.length - 1) {
+          (inputs[index + 1] as HTMLInputElement).focus();
+          setTimeout(() => {
+            (inputs[index + 1] as HTMLInputElement).setSelectionRange(0, 0);
+          });
+        }
+      });
+
+      input.addEventListener("focus", () => {
+        setTimeout(() => {
+          input.setSelectionRange(0, 0);
+        });
+      });
+      input.addEventListener("click", () => {
+        setTimeout(() => {
+          input.setSelectionRange(0, 0);
+        });
+      });
+
+      input.addEventListener("input", (event) => {
+        const target = event.target as HTMLInputElement;
+        if (!target) return;
+        const [first] = target.value;
+        target.value = first ?? "";
+        const lastInputBox = index === inputs.length - 1;
+        const didInsertContent = first !== undefined;
+        if (didInsertContent && !lastInputBox) {
+          inputs[index + 1].focus();
+        }
+        removeError();
+      });
+    });
+  };
+
+  initListeners();
+
+  document.addEventListener("change-route", function () {
+    initListeners();
+  });
+</script>

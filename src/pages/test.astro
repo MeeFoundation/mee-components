@@ -6,6 +6,7 @@ import Accordion from "@components/Accordion.astro";
 import Input from "@components/Input.astro";
 import Checkbox from "@components/Checkbox.astro";
 import DropdownSelect from "@components/DropdownSelect.astro";
+import VerificationCode from "@components/VerificationCode.astro";
 export const meeFoundation = "https://mee.foundation/";
 export const github =
   "https://github.com/MeeFoundation/private-advertising-website";
@@ -127,6 +128,11 @@ export const footer = {
           </div>
         </div>
       </section>
+      <!-- <TestCode/> -->
+      <VerificationCode />
+      <VerificationCode size="m" />
+      <VerificationCode size="s" />
+     
       <section>
         <DropdownSelect label="Countries">
           <div class="flex flex-col gap-1 p-2">
@@ -384,14 +390,12 @@ export const footer = {
   const dropdownTest = document.getElementById("dropdown-test");
   const main = document.getElementById("main");
   changeHeader?.addEventListener("click", () => {
-    console.log(header?.parentElement);
     main?.classList.remove("bg-purple-950");
     header?.parentElement?.classList.remove("type-dark");
     header?.parentElement?.classList.add("type-default");
     header?.setAttribute("data-type", "default");
   });
   showDropdown?.addEventListener("click", () => {
-    console.log("showDropdown");
     dropdownTest?.classList.toggle("active");
   });
 </script>

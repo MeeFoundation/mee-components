@@ -34,7 +34,6 @@ const { size, label } = Astro.props;
     ".dropdown-container"
   ) as HTMLDivElement;
   dropdownInput?.addEventListener("focus", () => {
-    console.log("focus");
     dropdown.classList.add("active");
   });
 
