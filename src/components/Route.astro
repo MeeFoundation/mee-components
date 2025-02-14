@@ -5,9 +5,10 @@ interface Props {
   params?: string[]
   withoutDarkTheme?: boolean;
   regexRoute?: boolean;
+  isUserPage?: boolean;
 }
 
-const { route, id, params, withoutDarkTheme, regexRoute } =
+const { route, id, params, withoutDarkTheme, regexRoute, isUserPage} =
   Astro.props;
 ---
 
@@ -17,6 +18,7 @@ const { route, id, params, withoutDarkTheme, regexRoute } =
   data-params={params?.join("|")}
   data-without_dark_theme={withoutDarkTheme ? 1 : 0}
   data-regex_route={regexRoute ? 1 : 0}
+  data-is_users_page={isUserPage ? 1 : 0}
   class="route-item"
 >
   <slot />

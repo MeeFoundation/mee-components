@@ -25,12 +25,17 @@ export const initRouter = () => {
         const params = page?.dataset.params?.split("|");
         const withoutDarkTheme = page?.dataset.without_dark_theme;
         const regexRoute = page?.dataset.regex_route;
+        const isUserPage = page?.dataset.is_users_page;
 
         if (route !== undefined) {
           const found = getFound(cleanHash, route, regexRoute);
 
           if (found) {
             document.documentElement.setAttribute("data-page_id", page.id);
+            document.documentElement.setAttribute(
+              "data-user_page",
+              isUserPage ?? "0",
+            );
             foundRoute = true;
             const clone = page.content.cloneNode(true);
             routeContent.appendChild(clone);
@@ -65,6 +70,7 @@ export const initRouter = () => {
           const route = page?.dataset.route;
           if (route === "404") {
             document.documentElement.setAttribute("data-page_id", page.id);
+            document.documentElement.setAttribute("data-user_page", "0");
             const clone = page.content.cloneNode(true);
             routeContent.appendChild(clone);
             const event = new CustomEvent("change-route");
