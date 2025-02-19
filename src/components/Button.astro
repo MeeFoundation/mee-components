@@ -9,6 +9,7 @@ interface Props {
   leftIcon?: string;
   rightIcon?: string;
   disabled?: boolean;
+  labelFor?:string;
 }
 
 const {
@@ -21,6 +22,7 @@ const {
   leftIcon,
   rightIcon,
   disabled,
+  labelFor,
 } = Astro.props;
 ---
 
@@ -47,15 +49,15 @@ const {
           "bi-" + leftIcon,
           size === "xxl" && "text-2xl",
           size === "l" && "text-2xl",
-          size === "m" && "text-3xl",
-          size === "s" && "text-2xl",
+          size === "m" && "text-xl",
+          size === "s" && "text-lg",
         ]}
       />
     )
   }
   {
     Astro.slots.has("default") && (
-      <label class="flex flex-none grow-0 cursor-pointer group-disabled:cursor-default flex-row items-center justify-center gap-1.5 px-2">
+      <label for={labelFor} class="flex flex-none grow-0 cursor-pointer group-disabled:cursor-default flex-row items-center justify-center gap-1.5 px-2">
         <slot />
       </label>
     )

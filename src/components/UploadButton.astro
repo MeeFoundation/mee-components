@@ -1,0 +1,21 @@
+---
+import Button from "./Button.astro";
+
+interface Props {
+  className?: string;
+  id?: string;
+  type?: "submit" | "reset" | "button" | undefined | null;
+  size?: "xxl" | "l" | "m" | "s";
+  buttonType?: "primary" | "secondary" | "tertiary" | "danger";
+  style?: "filled" | "outlined" | "transparent";
+  leftIcon?: string;
+  rightIcon?: string;
+  disabled?: boolean;
+  uploadId?: string;
+  accept?: string;
+}
+const { uploadId = "upload", accept } = Astro.props;
+---
+
+<input type="file" id={uploadId} hidden accept={accept} />
+<Button {...Astro.props} labelFor={uploadId}><slot /></Button>

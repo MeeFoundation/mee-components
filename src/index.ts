@@ -33,3 +33,5 @@ export { default as Cookie } from "./helpers/cookie";
 export { default as Validation } from "./helpers/validation";
 export { default as ShareButton } from "./components/ShareButton.astro";
 export { default as VerificationCode } from "./components/VerificationCode.astro";
+export { default as Badge } from "./components/Badge.astro";
+export { default as UploadButton } from "./components/UploadButton.astro";

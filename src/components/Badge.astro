@@ -1,0 +1,93 @@
+---
+interface Props {
+  id?: string;
+  leftIcon?: string;
+  rightIcon?: string;
+  type?: "primary" | "secondary" | "success" | "danger" | "warning";
+  style?: "solid" | "light";
+  size?: "xxs" | "xs" | "s" | "m";
+  shape?: "rounded" | "pill";
+  hidden?: boolean;
+}
+
+const {
+  id,
+  leftIcon,
+  rightIcon,
+  type = "primary",
+  style = "solid",
+  size = "m",
+  shape = "rounded",
+  hidden,
+} = Astro.props;
+---
+
+<div
+  id={id}
+  class:list={[
+    "box-border flex w-fit justify-between border border-solid",
+    hidden && "hidden",
+    `${type}-${style}`,
+    shape === "rounded" && "rounded-lg",
+    shape === "pill" && "rounded-full",
+    size === "xxs" && "px-1 py-0.5 text-xxs",
+    size === "xs" && "px-1 py-0.5 text-xs",
+    size === "s" && "px-1.5 py-0.5 text-sm",
+    size === "m" && "px-2 py-0.5 text-base",
+  ]}
+>
+  <div class="flex items-start justify-start gap-1.5">
+    {leftIcon && <i class:list={["bi font-thin", "bi-" + leftIcon]} />}
+
+    <div
+      class="flex w-full flex-col items-start justify-center md:flex-row md:items-center md:gap-1"
+    >
+      <div class="font-semibold">
+        <slot />
+      </div>
+    </div>
+    {rightIcon && <i class:list={["bi font-thin", "bi-" + rightIcon]} />}
+  </div>
+</div>
+
+<style>
+  .primary-solid {
+    @apply border-brand-700 bg-brand-700 text-white;
+  }
+
+  .primary-light {
+    @apply border-brand-300 bg-brand-50 text-brand-700;
+  }
+
+  .secondary-solid {
+    @apply border-grey-700 bg-brand-700 text-white;
+  }
+
+  .secondary-light {
+    @apply border-grey-200 bg-white text-grey-700;
+  }
+
+  .success-solid {
+    @apply border-success-700 bg-success-700 text-white;
+  }
+
+  .success-light {
+    @apply border-success-300 bg-success-50 text-success-700;
+  }
+
+  .danger-solid {
+    @apply border-error-700 bg-error-700 text-white;
+  }
+
+  .danger-light {
+    @apply border-error-300 bg-error-50 text-error-700;
+  }
+
+  .warning-solid {
+    @apply border-warning-700 bg-warning-700 text-white;
+  }
+
+  .warning-light {
+    @apply border-warning-300 bg-warning-50 text-warning-700;
+  }
+</style>

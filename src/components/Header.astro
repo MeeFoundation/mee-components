@@ -78,7 +78,7 @@ const {
       "group-[.type-docs]:bg-header-bg group-[.type-docs]:transition-all group-[.type-docs]:duration-300",
       "dark:group-[.type-default]:bg-darky dark:group-[.type-default]:bg-gradient-darky",
       "dark:group-[.type-docs]:border-b dark:group-[.type-docs]:border-white/10 dark:group-[.type-docs]:bg-darky dark:group-[.type-docs]:bg-gradient-darky",
-      baseClassName
+      baseClassName,
     ]}
     data-type={type}
   >
@@ -121,20 +121,22 @@ const {
         {
           header.links &&
             header.links.map((link) => (
-              <li
-                class:list={[
-                  "text-base font-semibold text-brand-950 group-[.type-dark]:!text-white/90 dark:text-white/90",
-                  "rounded-2xl px-4 py-1.5",
-                  "group-[.type-default]:hover:bg-grey-200 dark:group-[.type-default]:hover:text-brand-950",
-                  "group-[.type-docs]:hover:bg-grey-200 dark:group-[.type-docs]:hover:text-brand-950",
-                  "group-[.type-dark]:hover:text-white group-[.type-dark]:hover:underline",
-                  activePage === link.id &&
-                    "group-[.type-default]:bg-primary group-[.type-docs]:bg-primary group-[.type-default]:text-white group-[.type-docs]:text-white group-[.type-default]:hover:text-brand-950 group-[.type-docs]:hover:text-brand-950",
-                  activePage === link.id && "group-[.type-dark]:text-white",
-                  link.id === "projects" && "group/projects",
-                ]}
-              >
-                <a href={link.link} target={link.target} class="flex gap-1.5">
+              <li class:list={[link.id === "projects" && "group/projects"]}>
+                <a
+                  href={link.link}
+                  target={link.target}
+                  class="flex gap-1.5"
+                  class:list={[
+                    "text-base font-semibold text-brand-950 group-[.type-dark]:!text-white/90 dark:text-white/90",
+                    "rounded-2xl px-4 py-1.5",
+                    "group-[.type-default]:hover:bg-grey-200 dark:group-[.type-default]:hover:text-brand-950",
+                    "group-[.type-docs]:hover:bg-grey-200 dark:group-[.type-docs]:hover:text-brand-950",
+                    "group-[.type-dark]:hover:text-white group-[.type-dark]:hover:underline",
+                    activePage === link.id &&
+                      "group-[.type-default]:bg-grey-700 group-[.type-docs]:bg-grey-700 group-[.type-default]:text-white group-[.type-docs]:text-white group-[.type-default]:hover:text-brand-950 group-[.type-docs]:hover:text-brand-950",
+                    activePage === link.id && "group-[.type-dark]:text-white",
+                  ]}
+                >
                   {link.name}
                   {link.id === "projects" && (
                     <span class="hidden transition-all group-hover/projects:rotate-180 lg:group-[.type-dark]:inline-block lg:group-[.type-default]:inline-block lg:group-[.type-docs]:inline-block">
@@ -321,12 +323,12 @@ const {
                     href={link.link}
                     target={link.target}
                     class:list={[
-                      "rounded-2xl px-4 py-1.5",
-                      type !== "dark" && "hover:bg-primary hover:text-white",
+                      "rounded-2xl",
+                      type !== "dark" && "hover:bg-grey-700 hover:text-white",
                       type === "dark" && "hover:text-white hover:underline",
                       type !== "dark" &&
                         activePage === link.id &&
-                        "bg-primary text-white",
+                        "bg-grey-700 text-white",
                       type === "dark" && activePage === link.id && "text-white",
                     ]}
                   >

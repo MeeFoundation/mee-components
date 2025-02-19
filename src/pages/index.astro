@@ -19,11 +19,12 @@ import Accordions from "@components/showcase/Accordions.astro";
 import Avatars from "@components/showcase/Avatars.astro";
 import Tables from "@components/showcase/Tables.astro";
 import ThemeSelect from "@components/ThemeSelect.astro";
+import Badges from "@components/showcase/Badges.astro";
 ---
 
 <Layout title="Showcase">
   <main class="flex flex-col gap-3 p-10">
-    <Accordion title="Theme Select" icon="menu-button-wide" collapse={false}>
+    <Accordion title="Theme Select" icon="menu-button-wide" >
       <ThemeSelect />
     </Accordion>
     <Accordion title="Buttons" icon="menu-button-wide">
@@ -31,6 +32,9 @@ import ThemeSelect from "@components/ThemeSelect.astro";
     </Accordion>
     <Accordion title="Icon Buttons" icon="menu-button-wide">
       <IconButtons />
+    </Accordion>
+    <Accordion title="Badges" icon="patch-check" collapse={false}>
+      <Badges />
     </Accordion>
     <Accordion title="Shadows" icon="shadows">
       <Shadows />
