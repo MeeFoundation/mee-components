@@ -8,6 +8,7 @@ interface Props {
   style?: "filled" | "outlined" | "transparent";
   icon: string;
   disabled?: boolean;
+  ariaLabel?: string;
 }
 
 const {
@@ -19,6 +20,7 @@ const {
   size = "l",
   icon,
   disabled,
+  ariaLabel
 } = Astro.props;
 ---
 
@@ -26,6 +28,7 @@ const {
   id={id}
   type={type}
   disabled={disabled}
+  aria-label={ariaLabel}
   class:list={[
     "z-10 box-border flex flex-none grow-0 flex-row items-center justify-center gap-2 rounded-md border border-solid font-semibold",
     `${buttonType}-${style}`,

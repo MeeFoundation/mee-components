@@ -6,6 +6,7 @@ import Icon from "./Icon.astro";
   <button
     class="flex h-[30px] w-[30px] items-center justify-center"
     id="theme-select"
+    aria-label="Change Theme"
   >
     <Icon
       id="icon-sun"
@@ -35,6 +36,7 @@ import Icon from "./Icon.astro";
   );
   iframe.style.width = "0px";
   iframe.style.height = "0px";
+  iframe.title = "Color Theme"
   if (iframeContainer) {
     iframeContainer.appendChild(iframe);
   }

@@ -32,13 +32,13 @@ const { project } = Astro.props;
     width="258"
     height="215"
     class="rounded-2xl dark:hidden"
-    alt={project.title}
+    alt={project.title.split(" ").join("_")}
   />
   <img
     src={project.imageDark.src}
     width="258"
     height="215"
     class="hidden rounded-2xl dark:block"
-    alt={project.title}
+    alt={project.title.split(" ").join("_")}
   />
 </div>

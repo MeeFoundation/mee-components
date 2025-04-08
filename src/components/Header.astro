@@ -33,6 +33,7 @@ interface AuthLinks {
   type?: string;
   style: string;
   className?: string;
+  ariaLabel?: string;
 }
 
 interface Link {
@@ -40,6 +41,7 @@ interface Link {
   link: string;
   id: string;
   target?: string;
+  ariaLabel?: string;
 }
 
 interface RightLink {
@@ -48,6 +50,7 @@ interface RightLink {
   target?: string;
   id?: string;
   icon?: string;
+  ariaLabel?: string;
 }
 
 const {
@@ -100,6 +103,7 @@ const {
           <a
             id="mainLogo"
             href={header.logoLink ? header.logoLink : "/"}
+            aria-label="Mee logo"
             class="logo flex h-6 w-20 items-center justify-center"
           >
             <Logo className="group-[.type-dark]:!fill-white" />
@@ -169,6 +173,7 @@ const {
               style="outlined"
               size="l"
               href={link.link}
+              ariaLabel={link.ariaLabel}
               target={link.target}
               className="group-[.type-dark]:hidden"
             >
@@ -185,6 +190,7 @@ const {
               size="l"
               href={link.link}
               target={link.target}
+              ariaLabel={link.ariaLabel}
               className="group-[.type-default]:hidden group-[.type-docs]:hidden border-none !text-white/90"
             />
           ))
@@ -201,6 +207,7 @@ const {
                   size="l"
                   href={userLink.link}
                   id={userLink.id}
+                  ariaLabel={userLink.ariaLabel}
                   className={userLink.className}
                 >
                   {userLink.name}
@@ -226,6 +233,7 @@ const {
                 style="transparent"
                 size="l"
                 href={link.link}
+                ariaLabel={link.ariaLabel}
                 target={link.target}
                 className="border-none  group-[.type-dark]:hidden"
               />
@@ -241,6 +249,7 @@ const {
                 style="transparent"
                 size="l"
                 href={link.link}
+                ariaLabel={link.ariaLabel}
                 target={link.target}
                 className="border-none !text-white/90 group-[.type-default]:hidden group-[.type-docs]:hidden"
               />
@@ -260,6 +269,7 @@ const {
                   href={userLink.link}
                   id={userLink.id}
                   className={userLink.className}
+                  ariaLabel={userLink.ariaLabel}
                 >
                   {userLink.name}
                 </ButtonLink>
@@ -271,6 +281,7 @@ const {
             <IconButton
               icon="list"
               buttonType="tertiary"
+              ariaLabel="Open Menu"
               style="transparent"
               size="m"
               className="border-none group-[.type-dark]:!text-white dark:!text-white"
@@ -302,10 +313,16 @@ const {
             "mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between px-5",
           ]}
         >
-          <a id="mainLogo" href="/" class="logo block h-6 w-20">
+          <a
+            id="mainLogo"
+            aria-label="Mee logo"
+            href="/"
+            class="logo block h-6 w-20"
+          >
             <Logo />
           </a>
           <IconButton
+            ariaLabel="Close"
             icon="x-lg"
             size="s"
             buttonType="tertiary"
@@ -322,6 +339,7 @@ const {
                   <a
                     href={link.link}
                     target={link.target}
+                    aria-label={link.ariaLabel}
                     class:list={[
                       "rounded-2xl px-4 py-1.5",
                       type !== "dark" && "hover:bg-grey-700 hover:text-white",
@@ -343,7 +361,11 @@ const {
             {
               header.rightLinks.map((link) => (
                 <li>
-                  <a href={link.link} target={link.target}>
+                  <a
+                    href={link.link}
+                    target={link.target}
+                    aria-label={link.ariaLabel}
+                  >
                     {link.icon && (
                       <i
                         class:list={[
@@ -364,7 +386,11 @@ const {
             {
               header.footerLinks.map((link) => (
                 <li class="text-sm">
-                  <a href={link.link} target={link.target}>
+                  <a
+                    href={link.link}
+                    target={link.target}
+                    aria-label={link.ariaLabel}
+                  >
                     {link.name}
                   </a>
                 </li>

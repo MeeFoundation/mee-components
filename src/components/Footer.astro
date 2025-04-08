@@ -13,6 +13,7 @@ interface Link {
   target?: string;
   name?: string;
   icon?: string;
+  ariaLabel?: string;
 }
 
 const { footer } = Astro.props;
@@ -36,6 +37,7 @@ const { footer } = Astro.props;
           <li>
             <a
               href={link.link}
+              aria-label={link.ariaLabel}
               target={link.target}
               class="flex items-center gap-2"
             >
@@ -56,6 +58,7 @@ const { footer } = Astro.props;
           <a
             href={link.link}
             target={link.target}
+            aria-label={link.ariaLabel}
             class="flex items-center gap-2"
           >
             {link.icon && (
