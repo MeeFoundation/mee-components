@@ -2,6 +2,8 @@
 interface Props {
   project: {
     title: string;
+    label: string;
+    description: string;
     image: ImageMetadata;
     imageDark: ImageMetadata;
     comingSoon?: boolean;
@@ -11,19 +13,14 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-<div class="relative flex w-full flex-col">
+<div class="relative flex w-full flex-col h-[260px] justify-between">
   <div class="relative flex flex-col">
     <div
-      class="absolute left-4 top-4 flex w-full items-center gap-1 text-center text-base font-semibold text-grey-900 dark:text-grey-50"
+      class="absolute left-4 top-4 flex flex-col w-[calc(100%-32px)] justify-center text-base font-semibold text-grey-900 dark:text-grey-200"
     >
+      <div class="text-success-700 dark:text-success-300 text-xs -mb-1 uppercase">{project.label}</div>
       {project.title}
-      {
-        project.comingSoon && (
-          <span class="rounded-md border border-grey-200 bg-grey-50 px-2 py-0.5 text-xxs dark:border-grey-700 dark:bg-grey-900 dark:text-grey-50">
-            Coming soon
-          </span>
-        )
-      }
+      <div class="text-xs font-normal whitespace-normal mt-1 text-gray-600 dark:text-gray-400">{project.description}</div>
     </div>
   </div>
 

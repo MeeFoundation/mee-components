@@ -1,9 +1,11 @@
 ---
-import mdnProduct from "./images/projects/mdn.png";
-import mdnProductDark from "./images/projects/mdn-dark.png";
 import meeBrowserProduct from "./images/projects/mee-browser.png";
 import meeBrowserProductDark from "./images/projects/mee-browser-dark.png";
 import privateAdvertising from "./images/projects/private-advertising.png";
+import webAppImage from "./images/projects/web-app.png";
+import webAppDarkImage from "./images/projects/web-app-dark.png";
+import smartwalletImage from "./images/projects/smartwallet.png";
+import smartwalletDarkImage from "./images/projects/smartwallet-dark.png";
 import privateAdvertisingDark from "./images/projects/private-advertising-dark.png";
 import ButtonLink from "./ButtonLink.astro";
 import MeeLogoSquare from "./MeeLogoSquare.astro";
@@ -11,22 +13,36 @@ import ProjectDropdownItem from "./ProjectDropdownItem.astro";
 export const discord = "https://discord.gg/PB8qxrQXup";
 
 const projects = [
-  {
-    image: mdnProduct,
-    imageDark: mdnProductDark,
-    title: "Profile Sharing",
-    link: "https://mdn.mee.foundation",
-  },
-  {
+    {
     image: privateAdvertising,
     imageDark: privateAdvertisingDark,
-    title: "Private Advertising",
+    title: "Browser Extension",
+    label: "v1.2 released",
+    description: "Working in conjunction with a Mee-compatible advertising network implements private advertising.",
     link: "https://private-advertising.mee.foundation",
+  },
+  {
+    image: webAppImage,
+    imageDark: webAppDarkImage,
+    title: "Web App",
+    label: "Under development",
+    description: "Mee puts you in control of your profile sharing connections to companies and other people.",
+    link: "https://mdn.mee.foundation/"
+  },
+  {
+    image: smartwalletImage,
+    imageDark: smartwalletDarkImage,
+    title: "Smartwallet",
+    label: "Under development",
+    description: "Bring the convenience of profile sharing to your phone. Nothing is ever shared without your explicit consent.",
+    link: "https://smartwallet.mee.foundation/",
   },
   {
     image: meeBrowserProduct,
     imageDark: meeBrowserProductDark,
     title: "Mee Browser",
+    label: "Coming Soon",
+    description: "Browser that combines the functionality of a traditional web browser with a smartwallet.",
     comingSoon: true,
     link: "https://browser.mee.foundation",
   },
@@ -51,7 +67,7 @@ const projects = [
           {
             projects.map((project) =>
               project.comingSoon ? (
-                <div class="dark:bg-project-item-gradient-dark bg-project-item-gradient flex cursor-default rounded-2xl border border-grey-300 dark:border-grey-700">
+                <div class="dark:bg-gray-800 bg-gray-100 flex cursor-default rounded-2xl border border-grey-300 dark:border-grey-700">
                   <ProjectDropdownItem project={project} />
                 </div>
               ) : (

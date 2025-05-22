@@ -16,6 +16,9 @@ function withOpacity(variableName: string) {
 
 const theme = {
   extend: merge({
+    screens: {
+      xs: "480px",
+    },
     colors: {
       ...defaultConfig.theme?.extend?.colors,
       brand: {
