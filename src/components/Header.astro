@@ -6,7 +6,6 @@ import ButtonLink, {
 } from "./ButtonLink.astro";
 import IconButton from "./IconButton.astro";
 import ThemeSelect from "./ThemeSelect.astro";
-import ProjectDropdown from "./ProjectDropdown.astro";
 
 export interface Props {
   className?: string;
@@ -125,7 +124,7 @@ const {
         {
           header.links &&
             header.links.map((link) => (
-              <li class:list={[link.id === "projects" && "group/projects"]}>
+              <li>
                 <a
                   href={link.link}
                   target={link.target}
@@ -142,13 +141,7 @@ const {
                   ]}
                 >
                   {link.name}
-                  {link.id === "projects" && (
-                    <span class="hidden transition-all group-hover/projects:rotate-180 lg:group-[.type-dark]:inline-block lg:group-[.type-default]:inline-block lg:group-[.type-docs]:inline-block">
-                      <i class="bi bi-chevron-down" />
-                    </span>
-                  )}
                 </a>
-                {link.id === "projects" && <ProjectDropdown />}
               </li>
             ))
         }
