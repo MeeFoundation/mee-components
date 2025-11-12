@@ -99,14 +99,20 @@ const {
         ]}
       >
         <div>
-          <a
-            id="mainLogo"
-            href={header.logoLink ? header.logoLink : "/"}
-            aria-label="Mee logo"
-            class="logo flex h-6 w-20 items-center justify-center"
-          >
-            <Logo className="group-[.type-dark]:!fill-white" />
-          </a>
+          {
+            Astro.slots.has("logo") ? (
+              <slot name="logo" />
+            ) : (
+              <a
+                id="mainLogo"
+                href={header.logoLink ? header.logoLink : "/"}
+                aria-label="Mee logo"
+                class="logo flex h-6 w-20 items-center justify-center"
+              >
+                <Logo className="group-[.type-dark]:!fill-white" />
+              </a>
+            )
+          }
         </div>
         {
           location && (
@@ -306,14 +312,20 @@ const {
             "mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between px-5",
           ]}
         >
-          <a
-            id="mainLogo"
-            aria-label="Mee logo"
-            href="/"
-            class="logo block h-6 w-20"
-          >
-            <Logo />
-          </a>
+          {
+            Astro.slots.has("logo") ? (
+              <slot name="logo" />
+            ) : (
+              <a
+                id="mainLogo"
+                aria-label="Mee logo"
+                href="/"
+                class="logo block h-6 w-20"
+              >
+                <Logo />
+              </a>
+            )
+          }
           <IconButton
             ariaLabel="Close"
             icon="x-lg"
