@@ -62,6 +62,8 @@ const {
   disableMobileMenu,
   disableThemeSelector,
 } = Astro.props;
+
+const hasBanner = Astro.slots.has("banner");
 ---
 
 <div
@@ -71,288 +73,93 @@ const {
     `group/type-${type}`,
   ]}
 >
-  <header
-    id="header"
-    class:list={[
-      "fixed left-0 top-0 z-300 flex h-27 w-screen items-center justify-center transition-all duration-300",
-      "group-[.type-docs]:border-b group-[.type-docs]:border-grey-200",
-      "group-[.type-default]:bg-header-bg group-[.type-default]:transition-all group-[.type-default]:duration-300",
-      "group-[.type-docs]:bg-header-bg group-[.type-docs]:transition-all group-[.type-docs]:duration-300",
-      "dark:group-[.type-default]:bg-darky dark:group-[.type-default]:bg-gradient-darky",
-      "dark:group-[.type-docs]:border-b dark:group-[.type-docs]:border-white/10 dark:group-[.type-docs]:bg-darky dark:group-[.type-docs]:bg-gradient-darky",
-      baseClassName,
-    ]}
-    data-type={type}
-  >
-    <div
-      class:list={[
-        "header relative mx-auto flex max-w-7xl items-center justify-between px-5",
-        "group-[.type-default]:w-full group-[.type-default]:flex-wrap",
-        "group-[.type-docs]:w-full group-[.type-docs]:flex-wrap",
-        "group-[.type-dark]:gap-10 group-[.type-dark]:rounded-2.5xl group-[.type-dark]:border group-[.type-dark]:border-white/15 group-[.type-dark]:bg-header-bg-dark group-[.type-dark]:py-2 group-[.type-dark]:shadow-header",
-        className,
-      ]}
-    >
-      <div
-        class:list={[
-          "flex items-center gap-2 group-[.type-default]:w-1/3 group-[.type-docs]:w-1/3",
-        ]}
-      >
-        <div>
-          {
-            Astro.slots.has("logo") ? (
-              <slot name="logo" />
-            ) : (
-              <a
-                id="mainLogo"
-                href={header.logoLink ? header.logoLink : "/"}
-                aria-label="Mee logo"
-                class="logo flex h-6 w-20 items-center justify-center"
-              >
-                <Logo className="group-[.type-dark]:!fill-white" />
-              </a>
-            )
-          }
+  <header id="header" class="flex flex-col">
+    {
+      hasBanner && (
+        <div
+          id="banner"
+          class="relative z-[99999] bg-brand-50 px-4 py-[14px] font-semibold text-brand-900 dark:bg-brand-950 dark:text-white"
+        >
+          <div class="mx-auto max-w-7xl px-5">
+            <slot name="banner" />
+          </div>
         </div>
-        {
-          location && (
-            <div class="flex whitespace-nowrap text-nowrap rounded-full border border-brand-300 bg-brand-50 px-1.5 py-0.5 text-sm font-semibold text-brand-700 md:hidden">
-              {location}
-            </div>
-          )
-        }
-      </div>
-      <ul
-        class:list={[
-          "items-right hidden justify-center gap-2 whitespace-nowrap text-center group-[.type-default]:w-1/3 group-[.type-docs]:w-1/3 md:flex",
-        ]}
-      >
-        {
-          header.links &&
-            header.links.map((link) => (
-              <li>
-                <a
-                  href={link.link}
-                  target={link.target}
-                  class="flex gap-1.5"
-                  class:list={[
-                    "text-base font-semibold text-brand-950 group-[.type-dark]:!text-white/90 dark:text-white/90",
-                    "rounded-2xl px-4 py-1.5",
-                    "group-[.type-default]:hover:bg-grey-200 dark:group-[.type-default]:hover:text-brand-950",
-                    "group-[.type-docs]:hover:bg-grey-200 dark:group-[.type-docs]:hover:text-brand-950",
-                    "group-[.type-dark]:hover:text-white group-[.type-dark]:hover:underline",
-                    activePage === link.id &&
-                      "group-[.type-default]:bg-grey-700 group-[.type-docs]:bg-grey-700 group-[.type-default]:text-white group-[.type-docs]:text-white group-[.type-default]:hover:text-brand-950 group-[.type-docs]:hover:text-brand-950",
-                    activePage === link.id && "group-[.type-dark]:text-white",
-                  ]}
-                >
-                  {link.name}
-                </a>
-              </li>
-            ))
-        }
-      </ul>
-      <div
-        class:list={[
-          "hidden items-end justify-end gap-3 group-[.type-default]:w-1/3 group-[.type-docs]:w-1/3 md:flex",
-        ]}
-      >
-        {
-          !disableThemeSelector && (
-            <div class="self-center">
-              <ThemeSelect />
-            </div>
-          )
-        }
-        {
-          header.rightLinks.map((link) => (
-            <ButtonLink
-              leftIcon={`${link.icon} text-lg`}
-              buttonType="tertiary"
-              style="outlined"
-              size="l"
-              href={link.link}
-              ariaLabel={link.ariaLabel}
-              target={link.target}
-              className="group-[.type-dark]:hidden"
-            >
-              {link.name}
-            </ButtonLink>
-          ))
-        }
-        {
-          header.rightLinks.map((link) => (
-            <ButtonLink
-              leftIcon={`${link.icon} text-lg`}
-              buttonType={"primary"}
-              style={"transparent"}
-              size="l"
-              href={link.link}
-              target={link.target}
-              ariaLabel={link.ariaLabel}
-              className="group-[.type-default]:hidden group-[.type-docs]:hidden border-none !text-white/90"
-            />
-          ))
-        }
-        {
-          header.authLinks &&
-            header.authLinks.map((userLink) => {
-              const buttonType = userLink.type as ButtonType;
-              const style = userLink.style as ButtonStyle;
-              return (
-                <ButtonLink
-                  buttonType={buttonType}
-                  style={style}
-                  size="l"
-                  href={userLink.link}
-                  id={userLink.id}
-                  ariaLabel={userLink.ariaLabel}
-                  className={userLink.className}
-                >
-                  {userLink.name}
-                </ButtonLink>
-              );
-            })
-        }
-        {Astro.slots.has("additional") && <slot name="additional" />}
-      </div>
-      <div
-        class:list={[
-          "flex items-center justify-end gap-1 group-[.type-default]:w-1/3 group-[.type-docs]:w-1/3 md:hidden",
-        ]}
-      >
-        {!disableThemeSelector && <ThemeSelect />}
-        {
-          !location &&
-            header.rightLinks.map((link) => (
-              <ButtonLink
-                leftIcon={`${link.icon} text-lg`}
-                buttonType="tertiary"
-                buttonType={"tertiary"}
-                style="transparent"
-                size="l"
-                href={link.link}
-                ariaLabel={link.ariaLabel}
-                target={link.target}
-                className="border-none  group-[.type-dark]:hidden"
-              />
-            ))
-        }
-        {
-          !location &&
-            header.rightLinks.map((link) => (
-              <ButtonLink
-                leftIcon={`${link.icon} text-lg`}
-                buttonType="tertiary"
-                buttonType={"primary"}
-                style="transparent"
-                size="l"
-                href={link.link}
-                ariaLabel={link.ariaLabel}
-                target={link.target}
-                className="border-none !text-white/90 group-[.type-default]:hidden group-[.type-docs]:hidden"
-              />
-            ))
-        }
+      )
+    }
 
-        {
-          header.authLinks &&
-            header.authLinks.map((userLink) => {
-              const buttonType = userLink.type as ButtonType;
-              const style = userLink.style as ButtonStyle;
-              return (
-                <ButtonLink
-                  buttonType={buttonType}
-                  style={style}
-                  size="l"
-                  href={userLink.link}
-                  id={userLink.id}
-                  className={userLink.className}
-                  ariaLabel={userLink.ariaLabel}
-                >
-                  {userLink.name}
-                </ButtonLink>
-              );
-            })
-        }
-        {
-          !disableMobileMenu && (
-            <IconButton
-              icon="list"
-              buttonType="tertiary"
-              ariaLabel="Open Menu"
-              style="transparent"
-              size="m"
-              className="border-none group-[.type-dark]:!text-white dark:!text-white"
-              id="open-menu"
-            />
-          )
-        }
-        {Astro.slots.has("additional") && <slot name="additional" />}
-      </div>
-    </div>
     <div
+      id="header-desktop"
       class:list={[
-        "group-[.type-default]:absolute group-[.type-default]:bottom-0 group-[.type-default]:left-0 group-[.type-default]:right-0 group-[.type-default]:h-px group-[.type-default]:w-full group-[.type-default]:bg-header-gradient",
-        "dark:group-[.type-default]:border-b dark:group-[.type-default]:border-white/10",
+        "fixed left-0 top-0 z-300 flex h-27 w-screen flex-col items-center justify-center transition-all duration-300",
+        "group-[.type-docs]:border-b group-[.type-docs]:border-grey-200",
+        "group-[.type-default]:bg-header-bg group-[.type-default]:transition-all group-[.type-default]:duration-300",
+        "group-[.type-docs]:bg-header-bg group-[.type-docs]:transition-all group-[.type-docs]:duration-300",
+        "dark:group-[.type-default]:bg-darky dark:group-[.type-default]:bg-gradient-darky",
+        "dark:group-[.type-docs]:border-b dark:group-[.type-docs]:border-white/10 dark:group-[.type-docs]:bg-darky dark:group-[.type-docs]:bg-gradient-darky",
+        baseClassName,
       ]}
-    >
-    </div>
-  </header>
-  <div class="relative" id="mobile-header">
-    <div
-      class="fixed right-0 top-0 z-300 h-screen w-0 overflow-hidden bg-white transition-all duration-400 md:hidden dark:bg-darky"
-      id="menu"
+      data-type={type}
     >
       <div
-        class="flex h-screen w-full flex-col justify-between py-9 text-brand-950 dark:text-white/90"
+        class:list={[
+          "header relative mx-auto flex max-w-7xl items-center justify-between px-5",
+          "group-[.type-default]:w-full group-[.type-default]:flex-wrap",
+          "group-[.type-docs]:w-full group-[.type-docs]:flex-wrap",
+          "group-[.type-dark]:gap-10 group-[.type-dark]:rounded-2.5xl group-[.type-dark]:border group-[.type-dark]:border-white/15 group-[.type-dark]:bg-header-bg-dark group-[.type-dark]:py-2 group-[.type-dark]:shadow-header",
+          className,
+        ]}
       >
         <div
           class:list={[
-            "mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between px-5",
+            "flex items-center gap-2 group-[.type-default]:w-1/3 group-[.type-docs]:w-1/3",
+          ]}
+        >
+          <div>
+            {
+              Astro.slots.has("logo") ? (
+                <slot name="logo" />
+              ) : (
+                <a
+                  id="mainLogo"
+                  href={header.logoLink ? header.logoLink : "/"}
+                  aria-label="Mee logo"
+                  class="logo flex h-6 w-20 items-center justify-center"
+                >
+                  <Logo className="group-[.type-dark]:!fill-white" />
+                </a>
+              )
+            }
+          </div>
+          {
+            location && (
+              <div class="flex whitespace-nowrap text-nowrap rounded-full border border-brand-300 bg-brand-50 px-1.5 py-0.5 text-sm font-semibold text-brand-700 md:hidden">
+                {location}
+              </div>
+            )
+          }
+        </div>
+        <ul
+          class:list={[
+            "items-right hidden justify-center gap-2 whitespace-nowrap text-center group-[.type-default]:w-1/3 group-[.type-docs]:w-1/3 md:flex",
           ]}
         >
           {
-            Astro.slots.has("logo") ? (
-              <slot name="logo" />
-            ) : (
-              <a
-                id="mainLogo"
-                aria-label="Mee logo"
-                href="/"
-                class="logo block h-6 w-20"
-              >
-                <Logo />
-              </a>
-            )
-          }
-          <IconButton
-            ariaLabel="Close"
-            icon="x-lg"
-            size="s"
-            buttonType="tertiary"
-            style="transparent"
-            className="border-none dark:!text-white"
-            id="close-menu"
-          />
-        </div>
-        <ul class="items-right flex flex-col justify-center gap-4 text-center">
-          {
             header.links &&
               header.links.map((link) => (
-                <li class="text-lg font-semibold">
+                <li>
                   <a
                     href={link.link}
                     target={link.target}
-                    aria-label={link.ariaLabel}
+                    class="flex gap-1.5"
                     class:list={[
+                      "text-base font-semibold text-brand-950 group-[.type-dark]:!text-white/90 dark:text-white/90",
                       "rounded-2xl px-4 py-1.5",
-                      type !== "dark" && "hover:bg-grey-700 hover:text-white",
-                      type === "dark" && "hover:text-white hover:underline",
-                      type !== "dark" &&
-                        activePage === link.id &&
-                        "bg-grey-700 text-white",
-                      type === "dark" && activePage === link.id && "text-white",
+                      "group-[.type-default]:hover:bg-grey-200 dark:group-[.type-default]:hover:text-brand-950",
+                      "group-[.type-docs]:hover:bg-grey-200 dark:group-[.type-docs]:hover:text-brand-950",
+                      "group-[.type-dark]:hover:text-white group-[.type-dark]:hover:underline",
+                      activePage === link.id &&
+                        "group-[.type-default]:bg-grey-700 group-[.type-docs]:bg-grey-700 group-[.type-default]:text-white group-[.type-docs]:text-white group-[.type-default]:hover:text-brand-950 group-[.type-docs]:hover:text-brand-950",
+                      activePage === link.id && "group-[.type-dark]:text-white",
                     ]}
                   >
                     {link.name}
@@ -361,51 +168,265 @@ const {
               ))
           }
         </ul>
-        <div class="flex flex-col gap-3">
-          <ul class="flex flex-row justify-center gap-7 text-center">
-            {
-              header.rightLinks.map((link) => (
-                <li>
-                  <a
-                    href={link.link}
-                    target={link.target}
-                    aria-label={link.ariaLabel}
+        <div
+          class:list={[
+            "hidden items-end justify-end gap-3 group-[.type-default]:w-1/3 group-[.type-docs]:w-1/3 md:flex",
+          ]}
+        >
+          {
+            !disableThemeSelector && (
+              <div class="self-center">
+                <ThemeSelect />
+              </div>
+            )
+          }
+          {
+            header.rightLinks.map((link) => (
+              <ButtonLink
+                leftIcon={`${link.icon} text-lg`}
+                buttonType="tertiary"
+                style="outlined"
+                size="l"
+                href={link.link}
+                ariaLabel={link.ariaLabel}
+                target={link.target}
+                className="group-[.type-dark]:hidden"
+              >
+                {link.name}
+              </ButtonLink>
+            ))
+          }
+          {
+            header.rightLinks.map((link) => (
+              <ButtonLink
+                leftIcon={`${link.icon} text-lg`}
+                buttonType={"primary"}
+                style={"transparent"}
+                size="l"
+                href={link.link}
+                target={link.target}
+                ariaLabel={link.ariaLabel}
+                className="group-[.type-default]:hidden group-[.type-docs]:hidden border-none !text-white/90"
+              />
+            ))
+          }
+          {
+            header.authLinks &&
+              header.authLinks.map((userLink) => {
+                const buttonType = userLink.type as ButtonType;
+                const style = userLink.style as ButtonStyle;
+                return (
+                  <ButtonLink
+                    buttonType={buttonType}
+                    style={style}
+                    size="l"
+                    href={userLink.link}
+                    id={userLink.id}
+                    ariaLabel={userLink.ariaLabel}
+                    className={userLink.className}
                   >
-                    {link.icon && (
-                      <i
-                        class:list={[
-                          "bi text-3xl font-thin",
-                          "bi-" + link.icon,
-                        ]}
-                      />
-                    )}
-                  </a>
-                </li>
+                    {userLink.name}
+                  </ButtonLink>
+                );
+              })
+          }
+          {Astro.slots.has("additional") && <slot name="additional" />}
+        </div>
+        <div
+          class:list={[
+            "flex items-center justify-end gap-1 group-[.type-default]:w-1/3 group-[.type-docs]:w-1/3 md:hidden",
+          ]}
+        >
+          {!disableThemeSelector && <ThemeSelect />}
+          {
+            !location &&
+              header.rightLinks.map((link) => (
+                <ButtonLink
+                  leftIcon={`${link.icon} text-lg`}
+                  buttonType="tertiary"
+                  buttonType={"tertiary"}
+                  style="transparent"
+                  size="l"
+                  href={link.link}
+                  ariaLabel={link.ariaLabel}
+                  target={link.target}
+                  className="border-none  group-[.type-dark]:hidden"
+                />
               ))
-            }
-          </ul>
-          <div class="after-border relative h-1"></div>
-          <ul
-            class="flex flex-row justify-center gap-7 text-center text-grey-700 dark:text-white/90"
+          }
+          {
+            !location &&
+              header.rightLinks.map((link) => (
+                <ButtonLink
+                  leftIcon={`${link.icon} text-lg`}
+                  buttonType="tertiary"
+                  buttonType={"primary"}
+                  style="transparent"
+                  size="l"
+                  href={link.link}
+                  ariaLabel={link.ariaLabel}
+                  target={link.target}
+                  className="border-none !text-white/90 group-[.type-default]:hidden group-[.type-docs]:hidden"
+                />
+              ))
+          }
+
+          {
+            header.authLinks &&
+              header.authLinks.map((userLink) => {
+                const buttonType = userLink.type as ButtonType;
+                const style = userLink.style as ButtonStyle;
+                return (
+                  <ButtonLink
+                    buttonType={buttonType}
+                    style={style}
+                    size="l"
+                    href={userLink.link}
+                    id={userLink.id}
+                    className={userLink.className}
+                    ariaLabel={userLink.ariaLabel}
+                  >
+                    {userLink.name}
+                  </ButtonLink>
+                );
+              })
+          }
+          {
+            !disableMobileMenu && (
+              <IconButton
+                icon="list"
+                buttonType="tertiary"
+                ariaLabel="Open Menu"
+                style="transparent"
+                size="m"
+                className="border-none group-[.type-dark]:!text-white dark:!text-white"
+                id="open-menu"
+              />
+            )
+          }
+          {Astro.slots.has("additional") && <slot name="additional" />}
+        </div>
+      </div>
+      <div
+        class:list={[
+          "group-[.type-default]:absolute group-[.type-default]:bottom-0 group-[.type-default]:left-0 group-[.type-default]:right-0 group-[.type-default]:h-px group-[.type-default]:w-full group-[.type-default]:bg-header-gradient",
+          "dark:group-[.type-default]:border-b dark:group-[.type-default]:border-white/10",
+        ]}
+      >
+      </div>
+    </div>
+    <div class="relative" id="mobile-header">
+      <div
+        class="fixed right-0 top-0 z-300 h-screen w-0 overflow-hidden bg-white transition-all duration-400 md:hidden dark:bg-darky"
+        id="menu"
+      >
+        <div
+          class="flex h-screen w-full flex-col justify-between py-9 text-brand-950 dark:text-white/90"
+        >
+          <div
+            class:list={[
+              "mx-auto flex w-full max-w-7xl flex-wrap items-center justify-between px-5",
+            ]}
           >
             {
-              header.footerLinks.map((link) => (
-                <li class="text-sm">
-                  <a
-                    href={link.link}
-                    target={link.target}
-                    aria-label={link.ariaLabel}
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))
+              Astro.slots.has("logo") ? (
+                <slot name="logo" />
+              ) : (
+                <a
+                  id="mainLogo"
+                  aria-label="Mee logo"
+                  href="/"
+                  class="logo block h-6 w-20"
+                >
+                  <Logo />
+                </a>
+              )
+            }
+            <IconButton
+              ariaLabel="Close"
+              icon="x-lg"
+              size="s"
+              buttonType="tertiary"
+              style="transparent"
+              className="border-none dark:!text-white"
+              id="close-menu"
+            />
+          </div>
+          <ul
+            class="items-right flex flex-col justify-center gap-4 text-center"
+          >
+            {
+              header.links &&
+                header.links.map((link) => (
+                  <li class="text-lg font-semibold">
+                    <a
+                      href={link.link}
+                      target={link.target}
+                      aria-label={link.ariaLabel}
+                      class:list={[
+                        "rounded-2xl px-4 py-1.5",
+                        type !== "dark" && "hover:bg-grey-700 hover:text-white",
+                        type === "dark" && "hover:text-white hover:underline",
+                        type !== "dark" &&
+                          activePage === link.id &&
+                          "bg-grey-700 text-white",
+                        type === "dark" &&
+                          activePage === link.id &&
+                          "text-white",
+                      ]}
+                    >
+                      {link.name}
+                    </a>
+                  </li>
+                ))
             }
           </ul>
+          <div class="flex flex-col gap-3">
+            <ul class="flex flex-row justify-center gap-7 text-center">
+              {
+                header.rightLinks.map((link) => (
+                  <li>
+                    <a
+                      href={link.link}
+                      target={link.target}
+                      aria-label={link.ariaLabel}
+                    >
+                      {link.icon && (
+                        <i
+                          class:list={[
+                            "bi text-3xl font-thin",
+                            "bi-" + link.icon,
+                          ]}
+                        />
+                      )}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+            <div class="after-border relative h-1"></div>
+            <ul
+              class="flex flex-row justify-center gap-7 text-center text-grey-700 dark:text-white/90"
+            >
+              {
+                header.footerLinks.map((link) => (
+                  <li class="text-sm">
+                    <a
+                      href={link.link}
+                      target={link.target}
+                      aria-label={link.ariaLabel}
+                    >
+                      {link.name}
+                    </a>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </header>
 </div>
 
 <style>
@@ -430,23 +451,36 @@ const {
 </style>
 
 <script>
-  const header = document.getElementById("header");
+  const headerDesktop = document.getElementById("header-desktop");
   const menu = document.getElementById("menu") as HTMLElement;
   const openMenu = document.getElementById("open-menu") as HTMLButtonElement;
   const closeMenu = document.getElementById("close-menu") as HTMLButtonElement;
-  const projectsDropdown = document.getElementById("projects-dropdown");
+  // const projectsDropdown = document.getElementById("projects-dropdown");
+  const notManualDarkType =
+    !headerDesktop?.dataset.type || headerDesktop?.dataset.type !== "dark";
+  const banner = document.getElementById("banner");
+  const bannerHeight = banner ? banner.offsetHeight : 0;
+  const baseOpenHeight = 108 + bannerHeight;
+  const baseClosedHeight = 68;
+
+  const safeSetHeaderProps = (height: number, expanded: boolean) => {
+    if (!headerDesktop) return;
+    headerDesktop.style.height = `${height}px`;
+    headerDesktop.style.paddingTop = expanded ? `${bannerHeight}px` : "0";
+    document.documentElement.style.setProperty(
+      "--header-height",
+      `${height}px`,
+    );
+  };
+
+  safeSetHeaderProps(baseOpenHeight, true);
+
   document.addEventListener("scroll", () => {
-    if (!header?.dataset.type || header?.dataset.type !== "dark") {
+    if (notManualDarkType) {
       if (window.scrollY > 50) {
-        header?.classList.remove("h-27");
-        header?.classList.add("h-17");
-        projectsDropdown?.classList.remove("pt-12", "top-18");
-        projectsDropdown?.classList.add("top-13.25", "pt-7");
+        safeSetHeaderProps(baseClosedHeight, false);
       } else {
-        header?.classList.remove("h-17");
-        header?.classList.add("h-27");
-        projectsDropdown?.classList.remove("top-13.25", "pt-7");
-        projectsDropdown?.classList.add("pt-12", "top-18");
+        safeSetHeaderProps(baseOpenHeight, true);
       }
     }
   });
