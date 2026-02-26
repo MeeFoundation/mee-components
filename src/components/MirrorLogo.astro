@@ -1,0 +1,87 @@
+---
+import logoE from "./images/logo-e.svg";
+import logoM from "./images/logo-m.svg";
+
+type Props = {
+  size?: "small" | "large";
+};
+
+const { size = "large" } = Astro.props;
+const height = size === "large" ? 64 : 20;
+const mSignWidth = size === "large" ? 91 : 28;
+const eSignWidth = size === "large" ? 64 : 20;
+const wrapperHeight = size === "large" ? 64 : 20;
+---
+
+<article
+  style={`height: ${wrapperHeight}px`}
+  class="mirror-logo my-4 flex items-baseline lg:hidden"
+>
+  <img
+    src={logoM.src}
+    width={mSignWidth}
+    height={height}
+    class="flex flex-shrink-0"
+    alt="m"
+  />
+  <img
+    src={logoE.src}
+    width={eSignWidth}
+    height={height}
+    class="flex flex-shrink-0"
+    alt="e"
+  />
+  <img
+    src={logoE.src}
+    width={eSignWidth}
+    height={height}
+    id="mirror-logo-e"
+    class="flex flex-shrink-0"
+    alt="e"
+  />
+</article>
+
+<style>
+  #mirror-logo-e {
+    transform: translateX(-100%) scaleX(1);
+  }
+  .anim {
+    animation: splitAndMirror 2000ms linear 700ms both;
+  }
+  @keyframes splitAndMirror {
+    20% {
+      transform: translateX(0%);
+    }
+    80% {
+      transform: scaleX(1);
+    }
+    100% {
+      transform: scaleX(-1);
+    }
+  }
+</style>
+
+<script>
+  const mirrorE = document.getElementById("mirror-logo-e");
+  const mirrorLogo = document.querySelector(".mirror-logo");
+  let startAnimation = false;
+
+  const observerMirrorLogo = new IntersectionObserver(
+    (entries, _) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (!startAnimation) {
+            mirrorE?.classList.add("anim");
+            startAnimation = true;
+          }
+        } else {
+          mirrorE?.classList.remove("anim");
+          startAnimation = false;
+        }
+      });
+    },
+    { threshold: 1 },
+  );
+
+  if (mirrorLogo) observerMirrorLogo.observe(mirrorLogo);
+</script>

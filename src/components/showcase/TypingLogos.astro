@@ -1,8 +1,15 @@
 ---
+import MirrorLogo from "@components/MirrorLogo.astro";
 import TypingLogo from "@components/TypingLogo.astro";
 ---
 
 <div class="flex flex-col gap-10 p-10">
-  <TypingLogo size="small" />
-  <TypingLogo size="large" />
+  <div>
+    <TypingLogo size="small" />
+    <MirrorLogo size="small" />
+  </div>
+  <div>
+    <TypingLogo size="large" />
+    <MirrorLogo size="large" />
+  </div>
 </div>
