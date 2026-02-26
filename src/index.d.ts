@@ -15,6 +15,7 @@ export { default as IconButton } from "./components/IconButton.astro";
 export { default as Input } from "./components/Input.astro";
 export { default as Loading } from "./components/Loading.astro";
 export { default as MeeLogo } from "./components/MeeLogo.astro";
+export { default as MirrorLogo } from "./components/MirrorLogo.astro";
 export { default as Modal } from "./components/Modal.astro";
 export { default as Notification } from "./components/Notification.astro";
 export { default as PasswordInput } from "./components/PasswordInput.astro";
