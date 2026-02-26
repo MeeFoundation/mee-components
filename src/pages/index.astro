@@ -1,30 +1,34 @@
 ---
-import Layout from "@layouts/Layout.astro";
-import Buttons from "@components/showcase/Buttons.astro";
-import IconButtons from "@components/showcase/IconButtons.astro";
-import Shadows from "@components/showcase/Shadows.astro";
 import Accordion from "@components/Accordion.astro";
-import PasswordInputs from "@components/showcase/PasswordInputs.astro";
-import Inputs from "@components/showcase/Inputs.astro";
-import VerificationCodeInputs from "@components/showcase/VerificationCodeInputs.astro";
-import Switches from "@components/showcase/Switches.astro";
-import RadioInputs from "@components/showcase/RadioInputs.astro";
-import Notifications from "@components/showcase/Notifications.astro";
+import Accordions from "@components/showcase/Accordions.astro";
 import Alerts from "@components/showcase/Alerts.astro";
+import Avatars from "@components/showcase/Avatars.astro";
+import Badges from "@components/showcase/Badges.astro";
+import Buttons from "@components/showcase/Buttons.astro";
+import Checkboxes from "@components/showcase/Checkboxes.astro";
+import IconButtons from "@components/showcase/IconButtons.astro";
+import Inputs from "@components/showcase/Inputs.astro";
 import Loader from "@components/showcase/Loader.astro";
 import Modals from "@components/showcase/Modals.astro";
-import Checkboxes from "@components/showcase/Checkboxes.astro";
+import Notifications from "@components/showcase/Notifications.astro";
+import PasswordInputs from "@components/showcase/PasswordInputs.astro";
+import RadioInputs from "@components/showcase/RadioInputs.astro";
 import Scrollbars from "@components/showcase/Scrollbars.astro";
-import Accordions from "@components/showcase/Accordions.astro";
-import Avatars from "@components/showcase/Avatars.astro";
+import Shadows from "@components/showcase/Shadows.astro";
+import Switches from "@components/showcase/Switches.astro";
 import Tables from "@components/showcase/Tables.astro";
+import TypingLogos from "@components/showcase/TypingLogos.astro";
+import VerificationCodeInputs from "@components/showcase/VerificationCodeInputs.astro";
 import ThemeSelect from "@components/ThemeSelect.astro";
-import Badges from "@components/showcase/Badges.astro";
+import Layout from "@layouts/Layout.astro";
 ---
 
 <Layout title="Showcase">
   <main class="flex flex-col gap-3 p-10">
-    <Accordion title="Theme Select" icon="menu-button-wide" >
+    <Accordion title="Typing Logo" icon="menu-button-wide"
+      ><TypingLogos /></Accordion
+    >
+    <Accordion title="Theme Select" icon="menu-button-wide">
       <ThemeSelect />
     </Accordion>
     <Accordion title="Buttons" icon="menu-button-wide">
@@ -43,7 +47,9 @@ import Badges from "@components/showcase/Badges.astro";
       ><PasswordInputs /></Accordion
     >
     <Accordion title="Inputs" icon="input-cursor-text"><Inputs /></Accordion>
-    <Accordion title="Verification Code" icon="1-square"><VerificationCodeInputs /></Accordion>
+    <Accordion title="Verification Code" icon="1-square"
+      ><VerificationCodeInputs /></Accordion
+    >
     <Accordion title="Switches" icon="toggle-on"><Switches /></Accordion>
     <Accordion title="Radio Inputs" icon="ui-radios"><RadioInputs /></Accordion>
     <Accordion title="Checkboxes" icon="check2-square"><Checkboxes /></Accordion
