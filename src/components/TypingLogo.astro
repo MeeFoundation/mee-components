@@ -1,0 +1,191 @@
+---
+import logoE from "./images/logo-e.svg";
+import logoM from "./images/logo-m.svg";
+
+type Props = {
+  size?: "small" | "large";
+};
+
+const { size = "large" } = Astro.props;
+const height = size === "large" ? 64 : 20;
+const mSignWidth = size === "large" ? 91 : 28;
+const eSignWidth = size === "large" ? 64 : 20;
+const wrapperHeight = size === "large" ? 64 : 20;
+---
+
+<article
+  style={`height: ${wrapperHeight}px`}
+  class="typing-logo my-4 hidden items-baseline lg:flex"
+>
+  <img
+    src={logoM.src}
+    width={mSignWidth}
+    height={height}
+    class="flex flex-shrink-0"
+    alt="m"
+  />
+  <img
+    src={logoE.src}
+    width={eSignWidth}
+    height={height}
+    class="flex flex-shrink-0"
+    alt="e"
+  />
+  <img
+    src={logoE.src}
+    id="mirror-e"
+    alt="e"
+    width={eSignWidth}
+    height={height}
+    class="img-filter flex flex-shrink-0 -scale-x-100"
+  />
+  <div class="flex h-full items-center">
+    <p></p>
+    <p
+      class:list={[
+        "flex h-full gap-0 leading-[0px] text-brand-300",
+        size === "large" && "-mt-5 text-[112px]",
+        size === "small" && "-mt-1.5 text-[36px]",
+      ]}
+      id="logo-wording-opacity"
+    >
+    </p>
+  </div>
+</article>
+
+<script>
+  const electronicallyText = "lectronically";
+  const exclusivelyText = "xclusively";
+  const logoWordingsOpacity = document.getElementById("logo-wording-opacity");
+  const mirrorE = document.getElementById("mirror-e");
+  const typingLogo = document.querySelector(".typing-logo");
+
+  let j = 0;
+  let speed = 90;
+  let startAnimation = false;
+  let typeWriterOpacityTimeout: ReturnType<typeof setTimeout>;
+  let removeWrittenTextOpacityTimeout: ReturnType<typeof setTimeout>;
+  let removeWrittenTextOpacityTimeout2: ReturnType<typeof setTimeout>;
+
+  function typeWriterOpacity(text: string) {
+    if (j < text.length) {
+      const wordSpan = document.createElement("span");
+      wordSpan.classList.add("anim-fade-in");
+      wordSpan.appendChild(document.createTextNode(text.charAt(j)));
+      logoWordingsOpacity?.appendChild(wordSpan);
+      j++;
+      typeWriterOpacityTimeout = setTimeout(
+        () => typeWriterOpacity(text),
+        speed,
+      );
+    }
+  }
+
+  function removeWrittenTextOpacity(callback?: () => void) {
+    if (j > 0) {
+      if (logoWordingsOpacity && logoWordingsOpacity.lastChild) {
+        logoWordingsOpacity.removeChild(logoWordingsOpacity.lastChild);
+      }
+      j--;
+      removeWrittenTextOpacityTimeout = setTimeout(() => {
+        removeWrittenTextOpacity(callback);
+      }, speed / 3);
+    } else if (callback) {
+      j = 0;
+      callback();
+    }
+  }
+
+  function resetWordings(callback?: () => void) {
+    if (logoWordingsOpacity) {
+      logoWordingsOpacity.innerHTML = "";
+    }
+    j = 0;
+    if (callback) {
+      callback();
+    }
+  }
+
+  function stopAnimation() {
+    clearTimeout(typeWriterOpacityTimeout);
+    clearTimeout(removeWrittenTextOpacityTimeout);
+    clearTimeout(removeWrittenTextOpacityTimeout2);
+
+    resetWordings();
+    startAnimation = false;
+    mirrorE?.classList.remove("anim-mirror");
+  }
+
+  const observerTypingLogo = new IntersectionObserver(
+    (entries, _) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          if (!startAnimation) {
+            mirrorE?.classList.add("anim-mirror");
+            typeWriterOpacityTimeout = setTimeout(
+              () => typeWriterOpacity(electronicallyText),
+              1050,
+            );
+            removeWrittenTextOpacityTimeout = setTimeout(() => {
+              removeWrittenTextOpacity(() => {
+                {
+                  resetWordings(() => clearTimeout(typeWriterOpacityTimeout));
+                  typeWriterOpacity(exclusivelyText);
+                }
+              });
+            }, 3500);
+
+            removeWrittenTextOpacityTimeout2 = setTimeout(() => {
+              removeWrittenTextOpacity(() => {
+                resetWordings();
+                clearTimeout(typeWriterOpacityTimeout);
+                clearTimeout(removeWrittenTextOpacityTimeout);
+                clearTimeout(removeWrittenTextOpacityTimeout2);
+              });
+            }, 7100);
+            startAnimation = true;
+          }
+        } else {
+          stopAnimation();
+        }
+      });
+    },
+    { threshold: 1 },
+  );
+
+  if (typingLogo) observerTypingLogo.observe(typingLogo);
+</script>
+
+<style>
+  .img-filter {
+    filter: brightness(0) saturate(100%) invert(81%) sepia(20%) saturate(350%)
+      hue-rotate(137deg) brightness(91%) contrast(85%);
+  }
+
+  .anim-mirror {
+    animation: 7000ms linear 0.8s both mirror;
+  }
+
+  @keyframes mirror {
+    0% {
+      transform: scaleX(-1);
+      filter: brightness(0) saturate(100%) invert(47%) sepia(57%) saturate(304%)
+        hue-rotate(140deg) brightness(90%) contrast(81%);
+    }
+    3% {
+      transform: scaleX(1);
+      filter: brightness(0) saturate(100%) invert(81%) sepia(20%) saturate(350%)
+        hue-rotate(137deg) brightness(91%) contrast(85%);
+    }
+    96% {
+      transform: scaleX(1);
+      filter: brightness(0) saturate(100%) invert(81%) sepia(20%) saturate(350%)
+        hue-rotate(137deg) brightness(91%) contrast(85%);
+    }
+    100% {
+      transform: scaleX(-1);
+      filter: brightness(0) saturate(100%) invert(47%) sepia(57%) saturate(304%)
+        hue-rotate(140deg) brightness(90%) contrast(81%);
+    }
+  }
+</style>
